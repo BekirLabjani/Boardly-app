@@ -13,14 +13,14 @@ export class GeneralFunktionsService {
   }
 
   openBoard(){
-
+    this.router.navigateByUrl('/summary')
   }
 
   openAddTask() {
-
+    this.router.navigateByUrl('/summary')
   }
 
   openContact(){
-
+    this.router.navigateByUrl('/summary')
   }
 }
