@@ -23,4 +23,8 @@ export class GeneralFunktionsService {
   openContact(){
     this.router.navigateByUrl('/summary')
   }
+
+  openLogIn(){
+    this.router.navigateByUrl('/login')
+  }
 }

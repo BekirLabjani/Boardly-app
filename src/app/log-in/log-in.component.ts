@@ -35,6 +35,7 @@ export class LogInComponent {
   login():void {
 
     this.afAuth.login(this.user)
+    this.funkService.openSummary();
 
   }
   googleSignIn() {
