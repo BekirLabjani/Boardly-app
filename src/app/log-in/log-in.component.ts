@@ -1,12 +1,39 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-
+import { FormsModule, NgForm } from '@angular/forms';
+// import { AngularFireAuth } from '@angular/fire/auth';
+import { GoogleAuthProvider, UserCredential } from 'firebase/auth';
+import { AuthService } from '../service/auth.service.spec';
+import { Userdata } from '../models/userdata';
 @Component({
   selector: 'app-log-in',
   standalone: true,
-  imports: [],
+  imports: [FormsModule, CommonModule],
   templateUrl: './log-in.component.html',
-  styleUrl: './log-in.component.scss'
+  styleUrls: ['./log-in.component.scss']
 })
 export class LogInComponent {
+  
+  user: Userdata ={
+    email: '',
+    password: '',
+  };
+  
+  loginData = {
+    name: '',
+    email: '',
+    message: '',
+  };
 
+  constructor(private afAuth: AuthService) {}
+
+  onSubmit(ngForm: NgForm) {
+    // Logik zur Verarbeitung des Login-Formulars
+  }
+
+  googleSignIn():void {
+
+    this.afAuth.googleSignIn(this.user)
+
+  }
 }

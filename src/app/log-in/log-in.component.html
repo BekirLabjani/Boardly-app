@@ -1,1 +1,81 @@
 <p>log-in works!</p>
+<div id="registerSuccessfullyContent"></div>
+<div id="animationJoinLogoContainer" class="animationJoinLogo">
+  <img class="join-logo animated" src="./assets/img/join-logo.svg" alt="" />
+  <img
+    class="join-logo-responsive animated"
+    src="./assets/img/join-logo-white.svg"
+    alt=""
+  />
+</div>
+<div id="joinLogoContainer" class="logo-sign-up-container">
+  <img class="jlogo" src="./assets/img/join-logo.svg" alt="" />
+</div>
+<div id="signUpButtonHeadline" class="sign-up-button-container">
+  <p>Not a Join user?</p>
+  <p onclick="renderSignUpContent()" class="sign-up-log-in-button">Sign up</p>
+</div>
+<div id="contentUserValidation">
+  `
+  <div class="log-in-container">
+    <div class="headline-log-in-container">
+      <h1 class="headline-log-in">Log in</h1>
+      <div class="bottom-line"></div>
+    </div>
+    <!-- <form onsubmit="login(); return false" class="input-log-in" action="">
+      <div class="input-field-container">
+        <input placeholder="Email" type="email" id="emailInput" name="email" required class="input-field" required/>
+        <img src="./assets/img/mail_add_contact.png" alt="mail" />
+      </div>
+      <div class="input-field-container" id="inputFieldPassword">
+      <input oninput="passwordInputVisible()" class="input-field" placeholder="Password" type="password" id="passwordInput" name="password" required/>
+      <img onclick="passwordVisible()" id="passwordImg" src="./assets/img/lock.svg" alt="lock" />
+    </div>
+    <p id="textThePasswordNotMatchLogin"></p>
+    <div class="remember-me-container">
+      <input onclick="setRememberMe()" type="checkbox" id="rememberMe" class="accept-icon"/>
+      <p>Remember me</p>
+    </div>
+    <div class="submit-log-in-container">
+      <button class="sign-up-log-in-button width-log-in-button ">Log in</button>
+      <p onclick="guestLogin()" class="guest-log-in-button width-guest-log-in-button">Guest Log in</p>
+    </div>
+    </form> -->
+    <form (ngSubmit)="onSubmit(loginData)" #loginData="ngForm" class="input-log-in">
+      <div class="input-field-container"><input class="input-field" type="text" id="email" /></div>
+      <div class="input-field-container"><input class="input-field" type="text" id="password"/></div>
+      <div class="line">
+        <span>ODER</span>
+      </div>
+      <button (click)="googleSignIn()" class="google-btn">
+        <img src="./assets/img/google-icon.png" alt="Google Icon" />
+        Mit Google anmelden
+      </button>
+      <div class="submit-log-in-container">
+        <button class="sign-up-log-in-button width-log-in-button ">Log in</button>
+        <p onclick="guestLogin()" class="guest-log-in-button width-guest-log-in-button">Guest Log in</p>
+      </div>
+    </form>
+    <p>oder</p>
+
+  </div>
+</div>
+<div id="signUpButtonResponsive" class="sign-up-button-container-responsive">
+  <p>Not a Join user?</p>
+  <p onclick="renderSignUpContent()" class="sign-up-log-in-button">Sign up</p>
+</div>
+<div
+  id="loginpageDataProtectionContainer"
+  class="loginpage-data-protection-container"
+>
+  <span
+    onclick="renderLogInPrivacyPolicyContent()"
+    class="loginpage-data-protection-link"
+    >Privacy Policy</span
+  >
+  <span
+    onclick="renderLogInLegalNoticeContent()"
+    class="loginpage-data-protection-link"
+    >Legal notice</span
+  >
+</div>
