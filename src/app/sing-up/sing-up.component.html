@@ -1,0 +1,57 @@
+<div id="registerSuccessfullyContent"></div>
+<div id="animationJoinLogoContainer" class="animationJoinLogo">
+  <img class="join-logo animated" src="./assets/img/join-logo.svg" alt="" />
+  <img class="join-logo-responsive animated" src="./assets/img/join-logo-white.svg" alt="" />
+</div>
+<div id="joinLogoContainer" class="logo-sign-up-container">
+  <img class="jlogo" src="./assets/img/join-logo.svg" alt="" />
+</div>
+<div id="signUpButtonHeadline" class="sign-up-button-container">
+  <p>Not a Join user?</p>
+  <p onclick="renderSignUpContent()" class="sign-up-log-in-button">Sign up</p>
+</div>
+<div id="contentUserValidation">
+    <div class="sign-up-container">
+        <div class="arrow-back-sign-up-container">
+          <img onclick="renderLogInContent()" class="arrow-back-sign-up" src="./assets/img/arrow-left-line.svg" alt="arrowback" />
+        </div>
+        <div class="headline-log-in-container">
+          <h1 class="headline-log-in">Sign up</h1>
+          <div class="bottom-line"></div>
+        </div>
+        <form onsubmit="register(); return false" class="input-log-in">
+          <div class="input-field-container">
+            <input placeholder="Name" type="text" id="nameInput" name="name" required class="input-field" required />
+            <img src="./assets/img/person_add_contact.png" alt="mail" />
+          </div>
+          <div class="input-field-container">
+            <input placeholder="Email" type="email" id="emailInput" name="email" required class="input-field" required />
+            <img src="./assets/img/mail_add_contact.png" alt="mail" />
+          </div>
+          <div class="input-field-container">
+            <input oninput="passwordInputVisible(), validatePassword();" class="input-field" placeholder="Password" type="password" id="passwordInput" name="password" required />
+            <img onclick="passwordVisible()" id="passwordImg" src="./assets/img/lock.svg" alt="lock" />
+          </div>
+          <div id="inputFieldConfirmPassword" class="input-field-container">
+            <input oninput="confirmPasswordInputVisible(), validatePassword();" class="input-field" placeholder="Confirm Password" type="password" id="confirmPasswordInput" name="confirmpassword" required />
+            <img onclick="confirmPasswordVisible()" id="confirmPasswordImg" src="./assets/img/lock.svg" alt="lock" />
+          </div>
+          <p id="textThePasswordNotMatchSignUp"></p>
+          <div class="accept-privacy-policy-container">
+            <input required type="checkbox" id="rememberMe" class="accept-icon"/>
+            <p>I accept the<span onclick="renderSignupPrivacyPolicyContent()" class="sign-up-data-protection-link">Privacy Policy</span></p>
+          </div>
+          <div class="submit-sign-up-container">
+            <button id="signUpButton" class="sign-up-log-in-button">Sign up</button>
+          </div>
+        </form>
+      </div>
+</div>
+<div id="signUpButtonResponsive" class="sign-up-button-container-responsive">
+  <p>Not a Join user?</p>
+  <p onclick="renderSignUpContent()" class="sign-up-log-in-button">Sign up</p>
+</div>
+<div id="loginpageDataProtectionContainer" class="loginpage-data-protection-container">
+  <span onclick="renderLogInPrivacyPolicyContent()" class="loginpage-data-protection-link">Privacy Policy</span>
+  <span onclick="renderLogInLegalNoticeContent()" class="loginpage-data-protection-link">Legal notice</span>
+</div>

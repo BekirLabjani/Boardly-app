@@ -5,6 +5,7 @@ import { FormsModule, NgForm } from '@angular/forms';
 import { GoogleAuthProvider, UserCredential } from 'firebase/auth';
 import { AuthService } from '../service/auth.service.spec';
 import { Userdata } from '../models/userdata';
+import { GeneralFunktionsService } from '../service/general-funktions.service';
 @Component({
   selector: 'app-log-in',
   standalone: true,
@@ -25,7 +26,7 @@ export class LogInComponent {
     message: '',
   };
 
-  constructor(private afAuth: AuthService) {}
+  constructor(private afAuth: AuthService, private funkService: GeneralFunktionsService) {}
 
   onSubmit(ngForm: NgForm) {
     // Logik zur Verarbeitung des Login-Formulars
@@ -35,5 +36,9 @@ export class LogInComponent {
 
     this.afAuth.googleSignIn(this.user)
 
+  }
+
+  guestLogIn() {
+    this.funkService.openSummary();
   }
 }
