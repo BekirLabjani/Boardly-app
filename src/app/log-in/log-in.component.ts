@@ -32,12 +32,20 @@ export class LogInComponent {
     // Logik zur Verarbeitung des Login-Formulars
   }
 
-  login():void {
-
+  login(): void {
     this.afAuth.login(this.user)
-    this.funkService.openSummary();
-
+      .then(() => {
+        // Login erfolgreich, also openSummary aufrufen
+        this.funkService.openSummary();
+      })
+      .catch((error) => {
+        // Fehler: Authentifizierung fehlgeschlagen
+        console.error("Login failed:", error);
+      });
   }
+  
+  
+  
   googleSignIn() {
     
   }
