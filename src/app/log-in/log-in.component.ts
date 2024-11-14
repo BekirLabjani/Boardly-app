@@ -32,12 +32,14 @@ export class LogInComponent {
     // Logik zur Verarbeitung des Login-Formulars
   }
 
-  googleSignIn():void {
+  login():void {
 
-    this.afAuth.googleSignIn(this.user)
+    this.afAuth.login(this.user)
 
   }
-
+  googleSignIn() {
+    
+  }
   guestLogIn() {
     this.funkService.openSummary();
   }

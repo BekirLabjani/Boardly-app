@@ -41,9 +41,9 @@
       <p onclick="guestLogin()" class="guest-log-in-button width-guest-log-in-button">Guest Log in</p>
     </div>
     </form> -->
-    <form (ngSubmit)="onSubmit(loginData)" #loginData="ngForm" class="input-log-in">
-      <div class="input-field-container"><input class="input-field" type="text" id="email" /></div>
-      <div class="input-field-container"><input class="input-field" type="text" id="password"/></div>
+    <form (ngSubmit)="login()" #loginData="ngForm" class="input-log-in">
+      <div class="input-field-container"><input class="input-field" type="text" id="email" [(ngModel)] ="user.email" name="email" required></div>
+      <div class="input-field-container"><input class="input-field" type="text" id="password" [(ngModel)] ="user.password" name="password" required></div>
       <div class="line">
         <span>ODER</span>
       </div>

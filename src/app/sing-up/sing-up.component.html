@@ -8,7 +8,7 @@
 </div>
 <div id="signUpButtonHeadline" class="sign-up-button-container">
   <p>Not a Join user?</p>
-  <p onclick="renderSignUpContent()" class="sign-up-log-in-button">Sign up</p>
+  <p  class="sign-up-log-in-button">Sign up</p>
 </div>
 <div id="contentUserValidation">
     <div class="sign-up-container">
@@ -19,7 +19,7 @@
           <h1 class="headline-log-in">Sign up</h1>
           <div class="bottom-line"></div>
         </div>
-        <form onsubmit="register(); return false" class="input-log-in">
+        <!-- <form onsubmit="register(); return false" class="input-log-in">
           <div class="input-field-container">
             <input placeholder="Name" type="text" id="nameInput" name="name" required class="input-field" required />
             <img src="./assets/img/person_add_contact.png" alt="mail" />
@@ -41,6 +41,16 @@
             <input required type="checkbox" id="rememberMe" class="accept-icon"/>
             <p>I accept the<span onclick="renderSignupPrivacyPolicyContent()" class="sign-up-data-protection-link">Privacy Policy</span></p>
           </div>
+          <div class="submit-sign-up-container">
+            <button id="signUpButton" class="sign-up-log-in-button">Sign up</button>
+          </div>
+        </form> -->
+
+        <form (ngSubmit)="regist(registData.value)" #registData="ngForm">
+          <div class="input-field-container"><input type="text" class="input-field" id="name" placeholder="" ngModel name="name" required ></div>
+          <div class="input-field-container"><input type="email" class="input-field" id="email" placeholder="" ngModel name="email" required ></div>
+          <div class="input-field-container"><input type="text" class="input-field" id="password" placeholder="" ngModel name="password" required ></div>
+          <div class="input-field-container"><input type="text" class="input-field" id="confirmPasswordInput" placeholder="" ngModel name="confirmPasswordInput" required ></div>
           <div class="submit-sign-up-container">
             <button id="signUpButton" class="sign-up-log-in-button">Sign up</button>
           </div>

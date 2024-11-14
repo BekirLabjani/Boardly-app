@@ -9,9 +9,10 @@ import { Userdata } from '../models/userdata';
 export class AuthService {
   constructor(private auth: Auth, private router: Router) {}
 
-  googleSignIn(userData: Userdata): Promise<void> 
+  login(userData: Userdata): Promise<void> 
   {
     return signInWithEmailAndPassword(this.auth, userData.email, userData.password).then(()=> {
+      alert('funktioniert!!')
       this.router.navigate(['/']);
     })
   }
