@@ -27,4 +27,8 @@ export class GeneralFunktionsService {
   openLogIn(){
     this.router.navigateByUrl('/login')
   }
+
+  openSignUp(){
+    this.router.navigateByUrl('/regist');
+  }
 }

@@ -1,4 +1,4 @@
-<div id="registerSuccessfullyContent"></div>
+<!-- <div id="registerSuccessfullyContent"></div>
   <div id="animationJoinLogoContainer" class="animationJoinLogo">
     <img class="join-logo animated" src="./assets/img/join-logo.svg" alt="" />
     <img
@@ -81,4 +81,40 @@
       >Legal notice</span
     >
   </div>
+</div> -->
+
+<div class="content">
+  <div class="first-line logo-container">
+    <img src="./assets/img/login/join-logo.svg" alt="logo" class="animated-logo">
+    <div class="flex gap-16 hidden-content">
+      <span>Not a Join user?</span>
+      <button (click)="openSignUp()">Sign Up</button>
+    </div>
+  </div>
+  <div class="log-in-container hidden-content">
+    <img src="./assets/img/login/headline-login.svg" alt="Login">
+    <form onsubmit="logIn(); return false;">
+      <div class="input-field">
+        <input required type="email" placeholder="Email">
+        <img src="./assets/img/login/mail.svg" alt="mail">
+      </div>
+      <div class="input-field">
+        <input required type="password" placeholder="Password">
+        <img src="./assets/img/login/lock.svg" alt="lock">
+      </div>
+      <div class="rememberme-div">
+        <input class="checkbox" type="checkbox">
+        <span>Remember me</span>
+      </div>
+      <div class="buttons">
+        <button class="log-in-button">Log in</button>
+        <button (click)="guestLogIn()" class="guest-log-in-button">Guest Log in</button>
+      </div>
+    </form>
+  </div>
+  <div class="third-line hidden-content">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Legal Notice</a>
+  </div>
 </div>
+

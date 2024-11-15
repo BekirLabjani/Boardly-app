@@ -52,4 +52,9 @@ export class LogInComponent {
   guestLogIn() {
     this.funkService.openSummary();
   }
+
+  openSignUp(){
+    this.funkService.openSignUp();
+  }
+  
 }
