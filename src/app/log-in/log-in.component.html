@@ -85,14 +85,18 @@
 
 <div class="content">
   <div class="first-line logo-container">
-    <img src="./assets/img/login/join-logo.svg" alt="logo" class="animated-logo">
+    <img
+      src="./assets/img/login/join-logo.svg"
+      alt="logo"
+      class="animated-logo"
+    />
     <div class="flex gap-16 hidden-content">
       <span>Not a Join user?</span>
       <button (click)="openSignUp()">Sign Up</button>
     </div>
   </div>
   <div class="log-in-container hidden-content">
-    <img src="./assets/img/login/headline-login.svg" alt="Login">
+    <img src="./assets/img/login/headline-login.svg" alt="Login" />
     <form #loginForm="ngForm" (ngSubmit)="login()">
       <div class="input-field">
         <input
@@ -115,8 +119,17 @@
         <img src="./assets/img/login/lock.svg" alt="lock" />
       </div>
       <div class="rememberme-div">
-        <input class="checkbox" type="checkbox" />
-        <span>Remember me</span>
+        <label class="custom-checkbox">
+          <input id="myCheck" type="checkbox" />
+          <span class="checkmark" id="check"></span>
+        </label>
+        <p>Remember me</p>
+      </div>
+      <div class="google-login">
+        <button (click)="googleSignIn()" class="google-btn">
+          <img src="./assets/img/google-icon.png" alt="Google Icon" />
+          Mit Google anmelden
+        </button>
       </div>
       <div class="buttons">
         <button class="log-in-button" type="submit">Log in</button>
@@ -129,11 +142,9 @@
         </button>
       </div>
     </form>
-    
   </div>
   <div class="third-line hidden-content">
     <a href="#">Privacy Policy</a>
     <a href="#">Legal Notice</a>
   </div>
 </div>
-

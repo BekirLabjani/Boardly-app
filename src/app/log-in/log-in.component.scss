@@ -35,25 +35,6 @@
 //   animation-delay: 1.8s;
 // }
 
-// .google-btn {
-//   width: 100%;
-//   height: 50px;
-//   gap: 10px;
-//   border-radius: 100px;
-//   background-color: #eceefe;
-//   border: 1px solid rgba(104, 104, 104, 0);
-//   display: flex;
-//   justify-content: center;
-//   align-items: center;
-//   cursor: pointer;
-//   margin-top: 40px;
-//   >img {
-//       width: 40px;
-//       height: 40px;
-//       box-sizing: border-box;
-//   }
-// }
-
 // @keyframes containerAnimation {
 //   0% {
 //     opacity: 1;
@@ -693,7 +674,6 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  padding: 64px;
   background-color: rgb(230, 228, 228);
   gap: 16px;
 }
@@ -787,7 +767,7 @@ input {
   align-items: center;
   width: 90%;
   gap: 16px;
-  > span {
+  > p {
     font-size: 24px;
   }
 }
@@ -871,10 +851,64 @@ input {
     height: auto;
   }
 
+  .custom-checkbox input {
+    opacity: 0;
+    position: absolute;
+}
+
+
+.custom-checkbox .checkmark {
+    display: inline-block;
+    top: 3px;
+    width: 15px;
+    height: 15px;
+    background: #fff;
+    border: 3px solid #000;
+    border-radius: 6px;
+    cursor: pointer;
+    position: relative;
+}
+
+
+.custom-checkbox input:checked+.checkmark:after {
+    content: "\2713";
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 16px;
+    color: #000;
+}
+
   .hidden-content {
     opacity: 0;
     animation: opacity 5s ease-in-out;
     opacity: 1;
+  }
+
+  .google-login{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .google-btn {
+    width: 100%;
+    height: 50px;
+    gap: 10px;
+    border-radius: 100px;
+    background-color: #eceefe;
+    border: 1px solid rgba(104, 104, 104, 0);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    margin-top: 40px;
+    >img {
+        width: 40px;
+        height: 40px;
+        box-sizing: border-box;
+    }
   }
 
   @keyframes logo-move {
