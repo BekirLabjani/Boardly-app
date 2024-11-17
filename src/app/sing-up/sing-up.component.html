@@ -1,4 +1,4 @@
-<div id="registerSuccessfullyContent"></div>
+<!-- <div id="registerSuccessfullyContent"></div>
 <div id="animationJoinLogoContainer" class="animationJoinLogo">
   <img class="join-logo animated" src="./assets/img/join-logo.svg" alt="" />
   <img class="join-logo-responsive animated" src="./assets/img/join-logo-white.svg" alt="" />
@@ -18,8 +18,8 @@
         <div class="headline-log-in-container">
           <h1 class="headline-log-in">Sign up</h1>
           <div class="bottom-line"></div>
-        </div>
-        <!-- <form onsubmit="register(); return false" class="input-log-in">
+        </div> -->
+<!-- <form onsubmit="register(); return false" class="input-log-in">
           <div class="input-field-container">
             <input placeholder="Name" type="text" id="nameInput" name="name" required class="input-field" required />
             <img src="./assets/img/person_add_contact.png" alt="mail" />
@@ -45,23 +45,93 @@
             <button id="signUpButton" class="sign-up-log-in-button">Sign up</button>
           </div>
         </form> -->
-
-        <form (ngSubmit)="regist(registData.value)" #registData="ngForm">
-          <div class="input-field-container"><input type="text" class="input-field" id="name" placeholder="" ngModel name="name" required ></div>
-          <div class="input-field-container"><input type="email" class="input-field" id="email" placeholder="" ngModel name="email" required ></div>
-          <div class="input-field-container"><input type="text" class="input-field" id="password" placeholder="" ngModel name="password" required ></div>
-          <div class="input-field-container"><input type="text" class="input-field" id="confirmPasswordInput" placeholder="" ngModel name="confirmPasswordInput" required ></div>
-          <div class="submit-sign-up-container">
-            <button id="signUpButton" class="sign-up-log-in-button">Sign up</button>
-          </div>
-        </form>
-      </div>
-</div>
-<div id="signUpButtonResponsive" class="sign-up-button-container-responsive">
+<!-- </div>
+</div> -->
+<!-- <div id="signUpButtonResponsive" class="sign-up-button-container-responsive">
   <p>Not a Join user?</p>
   <p onclick="renderSignUpContent()" class="sign-up-log-in-button">Sign up</p>
 </div>
 <div id="loginpageDataProtectionContainer" class="loginpage-data-protection-container">
   <span onclick="renderLogInPrivacyPolicyContent()" class="loginpage-data-protection-link">Privacy Policy</span>
   <span onclick="renderLogInLegalNoticeContent()" class="loginpage-data-protection-link">Legal notice</span>
+</div> -->
+
+<div class="content">
+  <img class="logo" src="./assets/img/signup/join-logo.svg" alt="logo" />
+  <div class="signup-container">
+    <div class="first-line">
+      <img (click)="openLogin()" class="cursor" src="./assets/img/signup/arrow-left-line.svg" alt="arrow-left" />
+      <img src="./assets/img/signup/headline.svg" alt="SignUp" />
+    </div>
+    <form (ngSubmit)="regist(registData.value)" #registData="ngForm">
+      <div class="input-field-container">
+        <input
+          type="text"
+          class="input-field"
+          id="name"
+          placeholder="Name"
+          ngModel
+          name="name"
+          required
+        />
+        <img src="./assets/img/signup/person.svg" alt="person" />
+      </div>
+      <div class="input-field-container">
+        <input
+          type="email"
+          class="input-field"
+          id="email"
+          placeholder="Email"
+          ngModel
+          name="email"
+          required
+        />
+        <img src="./assets/img/signup/mail.svg" alt="mail" />
+      </div>
+      <div class="input-field-container">
+        <input
+          type="password"
+          class="input-field"
+          id="password"
+          placeholder="Password"
+          ngModel
+          name="password"
+          required
+          #passwordInput="ngModel"
+        />
+        <img src="./assets/img/signup/lock.svg" alt="lock" />
+      </div>
+      <div class="input-field-container">
+        <input
+          type="password"
+          class="input-field"
+          id="confirmPasswordInput"
+          placeholder="Confirm Password"
+          ngModel
+          name="confirmPassword"
+          required
+          #confirmPasswordInput="ngModel"
+          (input)="validatePasswords()"
+        />
+        <img src="./assets/img/signup/lock.svg" alt="lock" />
+      </div>
+      <!-- Fehlermeldung anzeigen -->
+      <p *ngIf="passwordMismatch" class="error-message">Password is not the same</p>
+      <div class="accept-privacy-policy-div">
+        <label class="custom-checkbox">
+          <input id="myCheck" type="checkbox" name="myCheck" [(ngModel)]="acceptPolicy"/>
+          <span class="checkmark" id="check"></span>
+        </label>
+        <p>I accept the <a href="#" class="cursor">Privacy Policy</a></p>
+      </div>
+      <p *ngIf="!acceptPolicy && registData.submitted" class="error-message">You have to accept Privacy Policy</p>
+        <button type="submit" id="signUpButton" class="signup-button" [disabled]="passwordMismatch">
+          Sign up
+        </button>
+    </form>
+  </div>
+  <div class="last-line">
+    <a href="#">Privacy Policy</a>
+    <a href="#">Legal Notice</a>
+  </div>
 </div>
