@@ -12,6 +12,7 @@ export class TaskService {
     try {
       const querySnapshot = await getDocs(collection(this.firestore, 'tasks'));
       return querySnapshot.docs.map(doc => doc.data() as Task);
+            // Nimmt alle tasks von firestore und wandelt sie als Interface Task um..
     } catch (error) {
       console.error('Error fetching tasks: ', error);
       return [];
