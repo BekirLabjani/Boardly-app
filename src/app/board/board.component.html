@@ -1,6 +1,6 @@
 <app-sidebar></app-sidebar>
 <app-header></app-header>
-<div id="contentJoin">
+<!-- <div id="contentJoin">
   <div class="popUpWindow" id="popUpWindow"></div>
   <div class="popUpWindow" id="popUpAddWindow">
     <div class="popUpContainer">
@@ -122,25 +122,14 @@
         >
           @for (task of inProgressTasks; track $index) {
           <div class="task-card">
-            <!-- <strong>{{ task.title }}</strong
-            ><br />
-            Description: {{ task.description }}<br />
-            Assign To: {{ task.assignTo }}<br />
-            Due Date: {{ task.duDate }}<br />
-            Priority: {{ task.priority }}<br />
-            Category: {{ task.category }}<br />
-            Subtasks: {{ task.subTasks }} -->
+    
           </div>
           <div class="smallCard cardA">
             <div class="smallCardcategory">
               <p id="category" class="${className}">
                 {{ task.category }}{{ task.duDate }}
               </p>
-              <img
-                class="d-none"
-                src="./assets/img/punkte.png"
-                alt=""
-              />
+              <img class="d-none" src="./assets/img/punkte.png" alt="" />
             </div>
             <div class="taskText">
               <div class="taskTitle">{{ task.title }}</div>
@@ -184,42 +173,31 @@
           ondragover="allowDrop(event); highlight('awaitFeedback')"
           ondragleave="removeHighlight('awaitFeedback')"
         >
-        @for (task of awaitFeedBack; track $index) {
+          @for (task of awaitFeedBack; track $index) {
           <div class="task-card">
-            <!-- <strong>{{ task.title }}</strong
-            ><br />
-            Description: {{ task.description }}<br />
-            Assign To: {{ task.assignTo }}<br />
-            Due Date: {{ task.duDate }}<br />
-            Priority: {{ task.priority }}<br />
-            Category: {{ task.category }}<br />
-            Subtasks: {{ task.subTasks }} -->
-          </div>
-          <div class="smallCard cardA">
-            <div class="smallCardcategory">
-              <p id="category" class="${className}">
-                {{ task.category }}{{ task.duDate }}
-              </p>
-              <img
-                class="d-none"
-                src="./assets/img/punkte.png"
-                alt=""
-              />
-            </div>
-            <div class="taskText">
-              <div class="taskTitle">{{ task.title }}</div>
-              <div class="taskDescription">{{ task.description }}</div>
-            </div>
-            <div class="smallCardFooter">
-              <div class="boardAssigend">
-                {{ task.assignTo }}{{ task.priority }}
+            <div class="smallCard cardA">
+              <div class="smallCardcategory">
+                <p id="category" class="${className}">
+                  {{ task.category }}{{ task.duDate }}
+                </p>
+                <img class="d-none" src="./assets/img/punkte.png" alt="" />
               </div>
-              <div class="smallPrio" id="smallCardPrio">
-                {{ task.category }}{{ task.subTasks }}
+              <div class="taskText">
+                <div class="taskTitle">{{ task.title }}</div>
+                <div class="taskDescription">{{ task.description }}</div>
+              </div>
+              <div class="smallCardFooter">
+                <div class="boardAssigend">
+                  {{ task.assignTo }}{{ task.priority }}
+                </div>
+                <div class="smallPrio" id="smallCardPrio">
+                  {{ task.category }}{{ task.subTasks }}
+                </div>
               </div>
             </div>
           </div>
-          }</div>
+          }
+        </div>
       </section>
       <section class="taskBoardTtle">
         <div class="doneHeadline headLineCss" id="doneHeadline">
@@ -233,6 +211,25 @@
           ondragleave="removeHighlight('done')"
         ></div>
       </section>
+    </div>
+  </div>
+</div> -->
+
+<div class="board-container-page">
+  <div class="top"></div>
+  <div class="bottom">
+    <div class="board-headline" id="tasks">
+      <h1 class="titleBoard">Board</h1>
+      <div class="searchbar">
+        <div class="search">
+          <form action="" class="search-bar">
+            <input type="search" name="search" pattern=".*\S.*" required>
+            <button class="search-btn" type="submit">
+              <span>Search</span>
+            </button>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
 </div>

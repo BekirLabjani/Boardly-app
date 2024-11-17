@@ -12,7 +12,7 @@ import { TaskService } from '../service/taskservie.service';
   standalone: true,
   imports: [SidebarComponent, HeaderComponent],
   templateUrl: './board.component.html',
-  styleUrls: ['./board.component.scss']
+  styleUrls: ['./board.component.scss', 'taskscomponent.scss']
 })
 export class BoardComponent implements OnInit {
   tasks: Task[] = [];
