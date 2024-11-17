@@ -838,3 +838,45 @@ input {
   font-size: 14px;
   margin-top: 5px;
 }
+
+.registerSuccessfully {
+  position: fixed;
+  top: -100px; /* Start außerhalb des sichtbaren Bereichs */
+  left: 50%;
+  transform: translateX(-50%);
+  width: 300px;
+  padding: 20px;
+  text-align: center;
+  font-size: 18px;
+  color: white;
+  background-color: #29abe2; /* Schöner Blauton */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  animation: slideIn 1s ease-out forwards, fadeOut 1s ease-out 1.5s forwards;
+  z-index: 1000;
+}
+
+@keyframes slideIn {
+  0% {
+    top: -100px; /* Von oben starten */
+    opacity: 0;
+  }
+  50% {
+    top: 50%; /* In die Mitte */
+    opacity: 1;
+  }
+  100% {
+    top: 50%;
+    opacity: 1;
+  }
+}
+
+@keyframes fadeOut {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
