@@ -1,91 +1,238 @@
 <app-sidebar></app-sidebar>
 <app-header></app-header>
 <div id="contentJoin">
-    <div class="popUpWindow" id="popUpWindow"></div>
-    <div class="popUpWindow" id="popUpAddWindow">
-      <div class="popUpContainer">
-        <div class="addBoard" id="addBoard">
-        
-        </div>
-      </div>
-    </div>
-    <div class="tasksToDo" id="tasks">
-      <div class="searchBar">
-        <div class="searchbarIn">
-          <div class="headlineBoard">
-            <h1 class="titleBoard">Board</h1>
-            <div class="plusImgMobile" onclick="appendGeneratedAddTask()">
-              <img class="plus_add_task_mobile" src="./assets/img/plus_add_task_mobile.svg" alt="" />
-              <img class="plus_add_task_mobileHover" src="./assets/img/plus_add_task_mobileHover.svg" alt="" />
-            </div>
-          </div>
-          <div class="searchBoxLeft">
-            <div class="searchBox">
-              <div class="searchinput">
-                <input class="src" type="text" placeholder="Find Task" name="" id="searchInput" onkeyup="searchTask()" />
-                <div class="searchImg">
-                  <img src="./assets/img/vector.png" alt="" />
-                  <img class="board-search" src="./assets/img/board-search.png" alt="" />
-                  <img class="board-searchHover" src="./assets/img/board-searchHover.svg" alt="" />
-                </div>
-              </div>
-            </div>
-            <div class="primaryBoard" onclick="appendGeneratedAddTask('todo')">
-              <div class="textCreateTask">Add task</div>
-              <img class="imgCheckBlack" src="./assets/img/add.svg" alt="" />
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="taskAria">
-        <section class="taskBoardTtle">
-          <div class="todoHeadline headLineCss" id="TodoHeadline">
-            <h2 class="progressTitles">To Do</h2>
-            <a class="imgPlusTask" href="#" onclick="appendGeneratedAddTask('todo')">
-              <img class="plusImg" src="./assets/img/imgPlusTask.svg" />
-              <img class="plusImgHover" src="./assets/img/imgPlusHover.svg" alt="" />
-            </a>
-          </div>
-          <div class="tasksCardsDiv" id="todo" ondrop="moveIt('todo')" ondragover="allowDrop(event); highlight('todo')" ondragleave="removeHighlight('todo')"></div>
-        </section>
-        <section class="taskBoardTtle">
-          <div class="inProgressHeadline headLineCss" id="inProgressHeadline">
-            <h2 class="progressTitles">In Progress</h2>
-            <a class="imgPlusTask" href="#" onclick="appendGeneratedAddTask('inProgress')">
-              <img class="plusImg" src="./assets/img/imgPlusTask.svg" />
-              <img class="plusImgHover" src="./assets/img/imgPlusHover.svg" alt="" />
-            </a>
-          </div>
-          <div
-            class="inProgress tasksCardsDiv"
-            id="inProgress"
-            ondrop="moveIt('inProgress')"
-            ondragover="allowDrop(event); highlight('inProgress')"
-            ondragleave="removeHighlight('inProgress')"
-          ></div>
-        </section>
-        <section class="taskBoardTtle">
-          <div class="awaitFeedbackHeadline headLineCss" id="awaitFeedbackHeadline">
-            <h2 class="progressTitles">Await FeedBack</h2>
-            <a class="imgPlusTask" href="#" onclick="appendGeneratedAddTask('awaitFeedback')">
-              <img class="plusImg" src="./assets/img/imgPlusTask.svg" />
-              <img class="plusImgHover" src="./assets/img/imgPlusHover.svg" alt="" />
-            </a>
-          </div>
-          <div
-            class="awaitFeedback tasksCardsDiv"
-            id="awaitFeedback"
-            ondrop="moveIt('awaitFeedback')"
-            ondragover="allowDrop(event); highlight('awaitFeedback')"
-            ondragleave="removeHighlight('awaitFeedback')"
-          ></div>
-        </section>
-        <section class="taskBoardTtle">
-          <div class="doneHeadline headLineCss" id="doneHeadline">
-            <h2 class="progressTitles">Done</h2>
-          </div>
-          <div class="done tasksCardsDiv" id="done" ondrop="moveIt('done')" ondragover="allowDrop(event); highlight('done')" ondragleave="removeHighlight('done')"></div>
-        </section>
-      </div>
+  <div class="popUpWindow" id="popUpWindow"></div>
+  <div class="popUpWindow" id="popUpAddWindow">
+    <div class="popUpContainer">
+      <div class="addBoard" id="addBoard"></div>
     </div>
   </div>
+  <div class="tasksToDo" id="tasks">
+    <div class="searchBar">
+      <div class="searchbarIn">
+        <div class="headlineBoard">
+          <h1 class="titleBoard">Board</h1>
+          <div class="plusImgMobile" onclick="appendGeneratedAddTask()">
+            <img
+              class="plus_add_task_mobile"
+              src="./assets/img/plus_add_task_mobile.svg"
+              alt=""
+            />
+            <img
+              class="plus_add_task_mobileHover"
+              src="./assets/img/plus_add_task_mobileHover.svg"
+              alt=""
+            />
+          </div>
+        </div>
+        <div class="searchBoxLeft">
+          <div class="searchBox">
+            <div class="searchinput">
+              <input
+                class="src"
+                type="text"
+                placeholder="Find Task"
+                name=""
+                id="searchInput"
+                onkeyup="searchTask()"
+              />
+              <div class="searchImg">
+                <img src="./assets/img/vector.png" alt="" />
+                <img
+                  class="board-search"
+                  src="./assets/img/board-search.png"
+                  alt=""
+                />
+                <img
+                  class="board-searchHover"
+                  src="./assets/img/board-searchHover.svg"
+                  alt=""
+                />
+              </div>
+            </div>
+          </div>
+          <div class="primaryBoard" onclick="appendGeneratedAddTask('todo')">
+            <div class="textCreateTask">Add task</div>
+            <img class="imgCheckBlack" src="./assets/img/add.svg" alt="" />
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="taskAria">
+      <section class="taskBoardTtle">
+        <div class="todoHeadline headLineCss" id="TodoHeadline">
+          <h2 class="progressTitles">To Do</h2>
+          <a
+            class="imgPlusTask"
+            href="#"
+            onclick="appendGeneratedAddTask('todo')"
+          >
+            <img class="plusImg" src="./assets/img/imgPlusTask.svg" />
+            <img
+              class="plusImgHover"
+              src="./assets/img/imgPlusHover.svg"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="tasksCardsDiv"
+          id="todo"
+          ondrop="moveIt('todo')"
+          ondragover="allowDrop(event); highlight('todo')"
+          ondragleave="removeHighlight('todo')"
+        >
+          @for (task of todoTasks; track $index) {
+          <div class="task-card">
+            <strong>{{ task.title }}</strong
+            ><br />
+            Description: {{ task.description }}<br />
+            Assign To: {{ task.assignTo }}<br />
+            Due Date: {{ task.duDate }}<br />
+            Priority: {{ task.priority }}<br />
+            Category: {{ task.category }}<br />
+            Subtasks: {{ task.subTasks }}
+          </div>
+          }
+        </div>
+      </section>
+
+      <section class="taskBoardTtle">
+        <div class="inProgressHeadline headLineCss" id="inProgressHeadline">
+          <h2 class="progressTitles">In Progress</h2>
+          <a
+            class="imgPlusTask"
+            href="#"
+            onclick="appendGeneratedAddTask('inProgress')"
+          >
+            <img class="plusImg" src="./assets/img/imgPlusTask.svg" />
+            <img
+              class="plusImgHover"
+              src="./assets/img/imgPlusHover.svg"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="inProgress tasksCardsDiv"
+          id="inProgress"
+          ondrop="moveIt('inProgress')"
+          ondragover="allowDrop(event); highlight('inProgress')"
+          ondragleave="removeHighlight('inProgress')"
+        >
+          @for (task of inProgressTasks; track $index) {
+          <div class="task-card">
+            <!-- <strong>{{ task.title }}</strong
+            ><br />
+            Description: {{ task.description }}<br />
+            Assign To: {{ task.assignTo }}<br />
+            Due Date: {{ task.duDate }}<br />
+            Priority: {{ task.priority }}<br />
+            Category: {{ task.category }}<br />
+            Subtasks: {{ task.subTasks }} -->
+          </div>
+          <div class="smallCard cardA">
+            <div class="smallCardcategory">
+              <p id="category" class="${className}">
+                {{ task.category }}{{ task.duDate }}
+              </p>
+              <img
+                class="d-none"
+                src="./assets/img/punkte.png"
+                alt=""
+              />
+            </div>
+            <div class="taskText">
+              <div class="taskTitle">{{ task.title }}</div>
+              <div class="taskDescription">{{ task.description }}</div>
+            </div>
+            <div class="smallCardFooter">
+              <div class="boardAssigend">
+                {{ task.assignTo }}{{ task.priority }}
+              </div>
+              <div class="smallPrio" id="smallCardPrio">
+                {{ task.category }}{{ task.subTasks }}
+              </div>
+            </div>
+          </div>
+          }
+        </div>
+      </section>
+      <section class="taskBoardTtle">
+        <div
+          class="awaitFeedbackHeadline headLineCss"
+          id="awaitFeedbackHeadline"
+        >
+          <h2 class="progressTitles">Await FeedBack</h2>
+          <a
+            class="imgPlusTask"
+            href="#"
+            onclick="appendGeneratedAddTask('awaitFeedback')"
+          >
+            <img class="plusImg" src="./assets/img/imgPlusTask.svg" />
+            <img
+              class="plusImgHover"
+              src="./assets/img/imgPlusHover.svg"
+              alt=""
+            />
+          </a>
+        </div>
+        <div
+          class="awaitFeedback tasksCardsDiv"
+          id="awaitFeedback"
+          ondrop="moveIt('awaitFeedback')"
+          ondragover="allowDrop(event); highlight('awaitFeedback')"
+          ondragleave="removeHighlight('awaitFeedback')"
+        >
+        @for (task of awaitFeedBack; track $index) {
+          <div class="task-card">
+            <!-- <strong>{{ task.title }}</strong
+            ><br />
+            Description: {{ task.description }}<br />
+            Assign To: {{ task.assignTo }}<br />
+            Due Date: {{ task.duDate }}<br />
+            Priority: {{ task.priority }}<br />
+            Category: {{ task.category }}<br />
+            Subtasks: {{ task.subTasks }} -->
+          </div>
+          <div class="smallCard cardA">
+            <div class="smallCardcategory">
+              <p id="category" class="${className}">
+                {{ task.category }}{{ task.duDate }}
+              </p>
+              <img
+                class="d-none"
+                src="./assets/img/punkte.png"
+                alt=""
+              />
+            </div>
+            <div class="taskText">
+              <div class="taskTitle">{{ task.title }}</div>
+              <div class="taskDescription">{{ task.description }}</div>
+            </div>
+            <div class="smallCardFooter">
+              <div class="boardAssigend">
+                {{ task.assignTo }}{{ task.priority }}
+              </div>
+              <div class="smallPrio" id="smallCardPrio">
+                {{ task.category }}{{ task.subTasks }}
+              </div>
+            </div>
+          </div>
+          }</div>
+      </section>
+      <section class="taskBoardTtle">
+        <div class="doneHeadline headLineCss" id="doneHeadline">
+          <h2 class="progressTitles">Done</h2>
+        </div>
+        <div
+          class="done tasksCardsDiv"
+          id="done"
+          ondrop="moveIt('done')"
+          ondragover="allowDrop(event); highlight('done')"
+          ondragleave="removeHighlight('done')"
+        ></div>
+      </section>
+    </div>
+  </div>
+</div>

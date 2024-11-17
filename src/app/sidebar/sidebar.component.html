@@ -7,28 +7,36 @@
       <!-- Menu -->
       <div class="sidebarLinkContainer">
         <div class="sidebarLinks">
-          <a id="sidebarCategorySummary" class="sidebarCategory" href="./summary.html">
-            <div class="sidebarLink">
-              <img class="sidebarIMG" src="./assets/img/Icons_summary.png" />
-              <div class="sidebarMenuText">Summary</div>
-            </div>
-          </a>
-          <a id="sidebarCategoryAddTask" class="sidebarCategory" href="./add_task.html">
+     <div class="sidebarCategory">
+      <a id="sidebarCategorySummary" class="sidebarCategory" (click)="openSumm($event)" href="#">
+        <div class="sidebarLink">
+          <img class="sidebarIMG" src="./assets/img/Icons_summary.png" />
+          <div class="sidebarMenuText">Summary</div>
+        </div>
+      </a>
+     </div>
+          <a id="sidebarCategoryAddTask" class="sidebarCategory"  href="#" (click)="openTask($event)">
             <div class="sidebarLink">
               <img class="sidebarIMG" src="./assets/img/Icons_add_task.png" />
               <div class="sidebarMenuText">Add Task</div>
             </div>
           </a>
-          <a id="sidebarCategoryBorard" class="sidebarCategory" href="./board.html">
+          <a id="sidebarCategoryBorard" class="sidebarCategory" (click)="openBoard($event)" href="#">
             <div class="sidebarLink">
               <img class="sidebarIMG" src="./assets/img/Icons_board.png" />
               <div class="sidebarMenuText">Board</div>
             </div>
           </a>
-          <a id="sidebarCategoryContacts" class="sidebarCategory" href="./contacts.html">
+          <a id="sidebarCategoryContacts" class="sidebarCategory" (click)="openCont($event)" href="#">
             <div class="sidebarLink">
               <img class="sidebarIMG" src="./assets/img/Icons_contacts.png" />
               <div class="sidebarMenuText">Contacts</div>
+            </div>
+          </a>
+          <a id="sidebarCategoryContacts" class="sidebarCategory" (click)="openCont($event)" href="#">
+            <div class="sidebarLink">
+              <img class="sidebarIMG" src="./assets/img/delet.png" />
+              <div class="sidebarMenuText">Delet</div>
             </div>
           </a>
         </div>
@@ -45,13 +53,13 @@
     </div>
   </div>
   <div class="box-sizingResponsiv d-none">
-    <a class="sidebarCategoryResponsiv" href="./summary.html">
+    <a class="sidebarCategoryResponsiv" href="./summary.html"  (click)="openSumm($event)">
       <div class="sidebarLinkResponsiv">
         <img class="summaryBt" src="./assets/img/summaryBt.svg" alt="" />
         <img class="summaryBtHover" src="./assets/img/summaryBtHover.svg" alt="" />
       </div>
     </a>
-    <a class="sidebarCategoryResponsiv" href="./add_task.html">
+    <a class="sidebarCategoryResponsiv" href="#" >
       <div class="sidebarLinkResponsiv">
         <img class="addTaskBt" src="./assets/img/addTaskBt.svg" alt="" />
         <img class="addTaskBtHover" src="./assets/img/addTaskBtHover.svg" alt="" />
@@ -63,7 +71,7 @@
         <img class="boardBtHover" src="./assets/img/boardBtHover.svg" alt="" />
       </div>
     </a>
-    <a class="sidebarCategoryResponsiv" href="./contacts.html">
+    <a class="sidebarCategoryResponsiv" href="./contacts.html" (click)="openCont($event)">
       <div class="sidebarLinkResponsiv">
         <img class="contactsBt" src="./assets/img/contactsBt.svg" />
         <img class="contactsBtHover" src="./assets/img/contactsBtHover.svg" />

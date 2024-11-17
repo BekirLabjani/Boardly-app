@@ -1,14 +1,86 @@
-<app-sidebar></app-sidebar>
+<!-- <app-sidebar></app-sidebar> -->
 <app-header></app-header>
 
-<div class="">
-  <form>
-    <input type="text" class="" id="" name=""  placeholder="" required 8>
-    <input type="text" class="" id="" name=""  placeholder="" required 8>
-    <input type="text" class="" id="" name=""  placeholder="" required 8>
-    <input type="date" class="" id="" name=""  placeholder="" required 8>
-    <input type="radio" class="" id="" name="" placeholder="" required 8>
-    <input type="text" class="" id="" name=""  placeholder="" required 8>
-    <input type="text" class="" id="" name=""  placeholder="" required 8>
+<div class="task-form-container" id="taskFormContainer">
+  <form (ngSubmit)="addNewTask()" #taskForm="ngForm">
+    <div class="input-container" id="title-container">
+      <label for="title">Title</label>
+      <input type="text" id="title" [(ngModel)]="task.title" name="title" required />
+    </div>
+  
+    <div class="input-container" id="description-container">
+      <label for="description">Description</label>
+      <input type="text" id="description" [(ngModel)]="task.description" name="description" required />
+    </div>
+  
+    <div class="input-container" id="assignTo-container">
+      <label for="assignTo">Assign To</label>
+      <input type="text" id="assignTo" [(ngModel)]="task.assignTo" name="assignTo" required />
+    </div>
+  
+    <div class="input-container" id="duDate-container">
+      <label for="duDate">Due Date</label>
+      <input type="date" id="duDate" [(ngModel)]="task.duDate" name="duDate" required />
+    </div>
+  
+    <div class="input-container" id="priority-container">
+      <label for="priority">Priority</label>
+      <input type="text" id="priority" [(ngModel)]="task.priority" name="priority" required />
+    </div>
+  
+    <div class="input-container" id="priority-container">
+      <label>Priority</label>
+      <div>
+        <label for="priority-option-1">
+          <input
+            type="radio"
+            id="priority-option-1"
+            name="priority"
+            [(ngModel)]="task.priority"
+            value="High"
+            required
+          />
+          High
+        </label>
+        <label for="priority-option-2">
+          <input
+            type="radio"
+            id="priority-option-2"
+            name="priority"
+            [(ngModel)]="task.priority"
+            value="Medium"
+          />
+          Medium
+        </label>
+        <label for="priority-option-3">
+          <input
+            type="radio"
+            id="priority-option-3"
+            name="priority"
+            [(ngModel)]="task.priority"
+            value="Low"
+          />
+          Low
+        </label>
+        <label for="priority-option-4">
+          <input
+            type="radio"
+            id="priority-option-4"
+            name="priority"
+            [(ngModel)]="task.priority"
+            value="None"
+          />
+          None
+        </label>
+      </div>
+    </div>
+    
+  
+    <div class="input-container" id="subTasks-container">
+      <label for="subTasks">SubTasks</label>
+      <input type="text" id="subTasks" [(ngModel)]="task.subTasks" name="subTasks" />
+    </div>
+  
+    <button type="submit">Add Task</button>
   </form>
 </div>
