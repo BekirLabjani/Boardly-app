@@ -23,6 +23,8 @@ export class LogInComponent implements OnInit {
   };
   
   userId: string | null = null;
+  loginError = false;
+  guest = { email: '', password: '' };
 
   constructor(
     private afAuth: AuthService,
@@ -40,16 +42,27 @@ export class LogInComponent implements OnInit {
     }
   }
 
-  login(): void {
+  login(guest: any): void {
+    if(guest){
+      guest = this.user;
+    }
     this.afAuth.login(this.user)
       .then(() => {
+        this.loginError = false;
         // Login erfolgreich, Benutzer weiterleiten
         this.funkService.openSummary();
       })
       .catch((error) => {
+        this.loginError = true;
         // Fehlerbehandlung
         console.error("Login failed:", error);
       });
+  }
+
+  guestLogin(){
+    this.user.email = 'guest@guestmail.de';
+    this.user.password = 'guest12345guest';
+    this.login(this.user);
   }
 
   

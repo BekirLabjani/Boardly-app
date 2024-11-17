@@ -97,7 +97,7 @@
   </div>
   <div class="log-in-container hidden-content">
     <img src="./assets/img/login/headline-login.svg" alt="Login" />
-    <form #loginForm="ngForm" (ngSubmit)="login()">
+    <form #loginForm="ngForm" (ngSubmit)="login(guest)">
       <div class="input-field">
         <input
           name="email"
@@ -108,16 +108,18 @@
         />
         <img src="./assets/img/login/mail.svg" alt="mail" />
       </div>
-      <div class="input-field">
+      <div class="input-field" [class.error]="loginError">
         <input
           name="password"
           [(ngModel)]="user.password"
           required
           type="password"
           placeholder="Password"
+          (focus)="loginError = false"
         />
         <img src="./assets/img/login/lock.svg" alt="lock" />
       </div>
+      <p *ngIf="loginError" class="error-message">Password is wrong</p>
       <div class="rememberme-div">
         <label class="custom-checkbox">
           <input id="myCheck" type="checkbox" />
@@ -133,13 +135,7 @@
       </div>
       <div class="buttons">
         <button class="log-in-button" type="submit">Log in</button>
-        <button
-          type="button"
-       
-          class="guest-log-in-button"
-        >
-          Guest Log in
-        </button>
+        <button (click)="guestLogin()" type="button" class="guest-log-in-button">Guest Log in</button>
       </div>
     </form>
   </div>
