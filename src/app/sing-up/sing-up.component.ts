@@ -79,4 +79,5 @@ export class SingUpComponent {
   openLogin() {
     this.generFunk.openLogIn();
   }
+
 }

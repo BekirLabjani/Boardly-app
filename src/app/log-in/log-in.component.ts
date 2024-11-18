@@ -25,6 +25,8 @@ export class LogInComponent implements OnInit {
   userId: string | null = null;
   loginError = false;
   guest = { email: '', password: '' };
+  savedUsers = [{ email: '', password: ''}];
+  rememberMe = false;
 
   constructor(
     private afAuth: AuthService,
@@ -39,6 +41,16 @@ export class LogInComponent implements OnInit {
     if (this.userId) {
       console.log('User ID from URL:', this.userId);
       this.user.id = this.userId; // Optional: Benutzer-ID zuweisen
+    }
+     // Prüfen, ob "Remember Me" aktiviert war
+  const rememberMeStatus = localStorage.getItem('checked');
+  this.rememberMe = rememberMeStatus === 'true';
+    if(this.rememberMe){
+      let email: any = document.getElementById('email');
+      let password: any = document.getElementById('password');
+      this.getLocalStorage();
+      this.user.email = this.savedUsers[0].email;
+      this.user.password = this.savedUsers[0].password;
     }
   }
 
@@ -77,6 +89,46 @@ export class LogInComponent implements OnInit {
 
   openSignUp(){
     this.funkService.openSignUp();
+  }
+
+  checkedFunction() {
+    let checkBox: any = document.getElementById("myCheck");
+    if (checkBox.checked == true) {
+      this.rememberMe = true;
+      localStorage.setItem('checked', 'true');
+      this.saveUserToLocalStorage();
+    } else if(!checkBox.checked){
+      localStorage.setItem('checked', 'false');
+      this.rememberMe = false;
+    }
+  }
+
+  saveUserToLocalStorage() {
+    let email: any = document.getElementById('email');
+    let password: any = document.getElementById('password');
+    this.savedUsers = [{
+      email: email.value,
+      password: password.value,
+    }];
+    localStorage.setItem("savedUsers", JSON.stringify(this.savedUsers));
+  }
+
+  /**
+   * Retrieves data from localStorage.
+   */
+   getLocalStorage() {
+    let textInArray: any = localStorage.getItem("savedUsers");
+    this.savedUsers = JSON.parse(textInArray);
+  }
+
+  onRememberMeChange(): void {
+    if (this.rememberMe) {
+      localStorage.setItem('rememberMe', 'true');
+      this.saveUserToLocalStorage();
+    } else {
+      localStorage.setItem('rememberMe', 'false');
+      localStorage.removeItem('savedUsers');
+    }
   }
   
 }

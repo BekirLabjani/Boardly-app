@@ -1,88 +1,3 @@
-<!-- <div id="registerSuccessfullyContent"></div>
-  <div id="animationJoinLogoContainer" class="animationJoinLogo">
-    <img class="join-logo animated" src="./assets/img/join-logo.svg" alt="" />
-    <img
-      class="join-logo-responsive animated"
-      src="./assets/img/join-logo-white.svg"
-      alt=""
-    />
-  </div>
-  <div id="signUpButtonHeadline" class="sign-up-button-container">
-    <p>Not a Join user?</p>
-    <p onclick="renderSignUpContent()" class="sign-up-log-in-button">Sign up</p>
-  </div>
-  <div class="content">
-  <div id="contentUserValidation">
-    `
-    <div class="log-in-container">
-      <div class="headline-log-in-container">
-        <h1 class="headline-log-in">Log in</h1>
-        <div class="bottom-line"></div>
-      </div>
-      <form (ngSubmit)="login()" #loginData="ngForm" class="input-log-in">
-        <div class="input-field-container">
-          <input
-            class="input-field"
-            type="text"
-            id="email"
-            [(ngModel)]="user.email"
-            name="email"
-            required
-          />
-        </div>
-        <div class="input-field-container">
-          <input
-            class="input-field"
-            type="text"
-            id="password"
-            [(ngModel)]="user.password"
-            name="password"
-            required
-          />
-        </div>
-        <div class="line">
-          <span>ODER</span>
-        </div>
-        <button (click)="googleSignIn()" class="google-btn">
-          <img src="./assets/img/google-icon.png" alt="Google Icon" />
-          Mit Google anmelden
-        </button>
-        <div class="submit-log-in-container">
-          <button class="sign-up-log-in-button width-log-in-button">
-            Log in
-          </button>
-          <p
-            (click)="guestLogIn()"
-            class="guest-log-in-button width-guest-log-in-button"
-          >
-            Guest Log in
-          </p>
-        </div>
-      </form>
-      <p>oder</p>
-    </div>
-  </div>
-  <div id="signUpButtonResponsive" class="sign-up-button-container-responsive">
-    <p>Not a Join user?</p>
-    <p onclick="renderSignUpContent()" class="sign-up-log-in-button">Sign up</p>
-  </div>
-  <div
-    id="loginpageDataProtectionContainer"
-    class="loginpage-data-protection-container"
-  >
-    <span
-      onclick="renderLogInPrivacyPolicyContent()"
-      class="loginpage-data-protection-link"
-      >Privacy Policy</span
-    >
-    <span
-      onclick="renderLogInLegalNoticeContent()"
-      class="loginpage-data-protection-link"
-      >Legal notice</span
-    >
-  </div>
-</div> -->
-
 <div class="content">
   <div class="first-line logo-container">
     <img
@@ -105,6 +20,7 @@
           required
           type="email"
           placeholder="Email"
+          id="email"
         />
         <img src="./assets/img/login/mail.svg" alt="mail" />
       </div>
@@ -116,13 +32,16 @@
           type="password"
           placeholder="Password"
           (focus)="loginError = false"
+          id="password"
         />
         <img src="./assets/img/login/lock.svg" alt="lock" />
       </div>
       <p *ngIf="loginError" class="error-message">Password is wrong</p>
       <div class="rememberme-div">
         <label class="custom-checkbox">
-          <input id="myCheck" type="checkbox" />
+          <input (click)="checkedFunction()"
+          id="myCheck" type="checkbox" name="myCheck" [(ngModel)]="rememberMe"
+          (change)="onRememberMeChange()" />
           <span class="checkmark" id="check"></span>
         </label>
         <p>Remember me</p>
