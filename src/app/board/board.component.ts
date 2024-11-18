@@ -1,9 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, ElementRef, OnInit } from '@angular/core';
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HeaderComponent } from '../header/header.component';
 import { Firestore, collection, query, where, getDocs,updateDoc,doc } from '@angular/fire/firestore';
 import { Task } from '../models/task';
 import { TaskService } from '../service/taskservie.service';
+import { SidebarService } from '../service/side-bar-service.service';
 
 
 
@@ -15,14 +16,28 @@ import { TaskService } from '../service/taskservie.service';
   styleUrls: ['./board.component.scss', 'taskscomponent.scss']
 })
 export class BoardComponent implements OnInit {
+  isSidebarActive: boolean = true;
+
   tasks: Task[] = [];
   todoTasks: Task[] = [];  // Aufgaben, die im "To Do"-Status sind
   inProgressTasks: Task[] = []; 
   awaitFeedBack: Task[] = []; 
 
-  constructor(private firestore: Firestore, private taskService: TaskService) {}
+  constructor(
+    private firestore: Firestore,
+    private taskService: TaskService,
+    private sideService: SidebarService,
+    private el: ElementRef
+  ) {}
 
   ngOnInit(): void {
+    this.isSidebarActive = this.sideService.getSidebarStatus();
+    this.updateSidebarStyles();
+    
+    this.sideService.sidebarStatus$.subscribe(status => {
+      this.isSidebarActive = status;
+      this.updateSidebarStyles();
+    });
     this.loadTasks(); // Lade Aufgaben beim Initialisieren des Components
   }
   async loadTasks() {
@@ -33,5 +48,20 @@ export class BoardComponent implements OnInit {
     this.todoTasks = this.tasks.filter(task => task.priority !== 'In Progress');
     this.inProgressTasks = this.tasks.filter(task => task.priority === 'In Progress');
     this.awaitFeedBack = this.tasks.filter(task => task.priority === 'Await FeedBack');
+  }
+
+  private updateSidebarStyles() {
+    const summaryMainElement = this.el.nativeElement.querySelector('.board-container-page');
+    if (this.isSidebarActive) {
+      summaryMainElement.style.marginLeft = '250px';
+      summaryMainElement.style.width = 'calc(100vw - 250px)';
+    } else {
+      summaryMainElement.style.marginLeft = '80px';
+      summaryMainElement.style.width = 'calc(100vw - 80px)';
+    }
+  }
+
+  toggleSidebar() {
+    this.sideService.toggleSidebar();
   }
 }

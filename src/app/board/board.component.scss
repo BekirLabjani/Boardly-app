@@ -1,8 +1,10 @@
 .board-container-page {
-  width: calc(100vw - 232px);
+  width: calc(100vw - 250px);
   height: calc(100vh - 90px);
   background-color: gray;
-  margin-left: 232px;
+  margin-left: 250px;
+  transition: all 0.5s ease;
+  overflow-x: auto;
 }
 
 .bottom {
@@ -192,6 +194,7 @@ body {
     color: #000;
     font-weight: 700;
     line-height: 120%;
+    padding-bottom: 40px;
   }
   
   .boardTaskContainer {
@@ -217,36 +220,10 @@ body {
     margin-bottom: 100px;
   }
   
-  .searchBar {
-    width: 100%;
-    height: 232px;
-    flex-shrink: 0;
-    justify-content: center;
-    align-items: center;
-    padding: 1px 1px 0px;
-  }
   .frame28 {
     width: 100%;
   }
-  .searchbarIn {
-    display: flex;
-    align-items: center;
-    height: 100%;
-    justify-content: space-between;
-    padding-left: 100px;
-  }
   
-  .searchBox {
-    display: flex;
-    width: 312px;
-    height: 28px;
-    padding: 8px 16px;
-    align-items: center;
-    gap: 10px;
-    border-radius: 10px;
-    border: 1px solid var(--icon, #a8a8a8);
-    background: #fff;
-  }
   
   .primaryBoard {
     transition: all 100ms ease-in-out;
@@ -277,61 +254,7 @@ body {
     background: #29abe2;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
   }
-  
-  .searchBoxLeft {
-    display: flex;
-    width: 504px;
-    gap: 32px;
-    margin-right: 65px;
-  }
-  
-  .searchinput {
-    cursor: pointer;
-    width: 310px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  
-  .searchImg:hover .board-search {
-    display: none;
-  }
-  
-  .board-searchHover {
-    display: none;
-  }
-  
-  .searchImg:hover .board-searchHover {
-    display: block;
-  }
-  
-  .src {
-    cursor: pointer;
-    width: 100px;
-    height: 24px;
-    color: var(--Style, #d1d1d1);
-    font-family: "Inter", sans-serif;
-    font-size: 20px;
-    font-weight: 400;
-    line-height: 120%;
-    outline: none;
-    border-style: none;
-  }
-  
-  .searchImg {
-    cursor: pointer;
-    display: flex;
-    gap: 16px;
-    align-items: center;
-  }
-  
-  .plusImg,
-  .plusImgHover {
-    width: 24px;
-    width: 24px;
-  }
-  
+ 
   .imgPlusTask:hover .plusImgHover {
     display: block;
   }

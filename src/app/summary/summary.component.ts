@@ -22,18 +22,15 @@ export class SummaryComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Initialen Zustand der Sidebar vom Service beziehen
     this.isSidebarActive = this.sidebarService.getSidebarStatus();
     this.updateSidebarStyles();
     
-    // Abonniere Sidebar-Status-Änderungen
     this.sidebarService.sidebarStatus$.subscribe(status => {
       this.isSidebarActive = status;
       this.updateSidebarStyles();
     });
   }
 
-  // Methode zum Ändern der Sidebar-Styles
   private updateSidebarStyles() {
     const summaryMainElement = this.el.nativeElement.querySelector('.summaryMain');
     if (this.isSidebarActive) {
@@ -45,7 +42,6 @@ export class SummaryComponent implements OnInit {
     }
   }
 
-  // Toggle Sidebar aktivieren/deaktivieren
   toggleSidebar() {
     this.sidebarService.toggleSidebar();
   }
