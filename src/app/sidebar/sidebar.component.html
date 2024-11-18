@@ -1,80 +1,59 @@
-<div class="box-sizing">
-    <div class="sidebar">
-      <!-- Logo -->
-      <div class="sidbarLogo">
-        <img src="./assets/img/logo-white.svg" alt="logo" />
-      </div>
-      <!-- Menu -->
-      <div class="sidebarLinkContainer">
-        <div class="sidebarLinks">
-     <div class="sidebarCategory">
-      <a id="sidebarCategorySummary" class="sidebarCategory" (click)="openSumm($event)" href="#">
-        <div class="sidebarLink">
-          <img class="sidebarIMG" src="./assets/img/Icons_summary.png" />
-          <div class="sidebarMenuText">Summary</div>
-        </div>
-      </a>
-     </div>
-          <a id="sidebarCategoryAddTask" class="sidebarCategory"  href="#" (click)="openTask($event)">
-            <div class="sidebarLink">
-              <img class="sidebarIMG" src="./assets/img/Icons_add_task.png" />
-              <div class="sidebarMenuText">Add Task</div>
-            </div>
-          </a>
-          <a id="sidebarCategoryBorard" class="sidebarCategory" (click)="openBoard($event)" href="#">
-            <div class="sidebarLink">
-              <img class="sidebarIMG" src="./assets/img/Icons_board.png" />
-              <div class="sidebarMenuText">Board</div>
-            </div>
-          </a>
-          <a id="sidebarCategoryContacts" class="sidebarCategory" (click)="openCont($event)" href="#">
-            <div class="sidebarLink">
-              <img class="sidebarIMG" src="./assets/img/Icons_contacts.png" />
-              <div class="sidebarMenuText">Contacts</div>
-            </div>
-          </a>
-          <a id="sidebarCategoryContacts" class="sidebarCategory" (click)="openCont($event)" href="#">
-            <div class="sidebarLink">
-              <img class="sidebarIMG" src="./assets/img/delet.png" />
-              <div class="sidebarMenuText">Delet</div>
-            </div>
-          </a>
-        </div>
-      </div>
-      <!-- Datenschutz -->
-      <div class="privacy">
-        <div class="dataProtectionContainer" id="sidebarCategoryPrivacyPolicy">
-          <span id="sidebarTextPrivacyPolicy" onclick="renderPrivacyPolicyContent()" class="dataProtection">Privacy Policy</span>
-        </div>
-        <div class="dataProtectionContainer" id="sidebarCategoryLegalNotice">
-          <span id="sidebarTextLegalNotice" onclick="renderLegalNoticeContent()" class="dataProtection">Legal Notice</span>
-        </div>
-      </div>
+<div class="sidebar" [class.active]="isSidebarActive">
+  <div class="top">
+    <div class="logo">
+      <i><img src="./assets/img/sidebar/logo-white.svg" alt=""></i>
+      <span class="icon">Join</span>
+    </div>
+    <span id="btn" (click)="toggleSidebar()">
+      <img src="./assets/img/sidebar/burgermenu.svg" alt="" />
+    </span>
+  </div>
+  <div class="user">
+    <img
+      class="user-img"
+      src="./assets/img/sidebar/special-logo.svg"
+      alt=""
+    />
+    <div>
+      <p class="bold">Labjani B.</p>
+      <p>Admin</p>
     </div>
   </div>
-  <div class="box-sizingResponsiv d-none">
-    <a class="sidebarCategoryResponsiv" href="./summary.html"  (click)="openSumm($event)">
-      <div class="sidebarLinkResponsiv">
-        <img class="summaryBt" src="./assets/img/summaryBt.svg" alt="" />
-        <img class="summaryBtHover" src="./assets/img/summaryBtHover.svg" alt="" />
-      </div>
-    </a>
-    <a class="sidebarCategoryResponsiv" href="#" >
-      <div class="sidebarLinkResponsiv">
-        <img class="addTaskBt" src="./assets/img/addTaskBt.svg" alt="" />
-        <img class="addTaskBtHover" src="./assets/img/addTaskBtHover.svg" alt="" />
-      </div>
-    </a>
-    <a class="sidebarCategoryResponsiv" href="./board.html">
-      <div class="sidebarLinkResponsiv">
-        <img class="boardBt" src="./assets/img/boardBt.svg" alt="" />
-        <img class="boardBtHover" src="./assets/img/boardBtHover.svg" alt="" />
-      </div>
-    </a>
-    <a class="sidebarCategoryResponsiv" href="./contacts.html" (click)="openCont($event)">
-      <div class="sidebarLinkResponsiv">
-        <img class="contactsBt" src="./assets/img/contactsBt.svg" />
-        <img class="contactsBtHover" src="./assets/img/contactsBtHover.svg" />
-      </div>
-    </a>
-  </div>
+  <ul>
+    <li>
+      <a href="">
+        <i class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#eeee"><path d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"/></svg></i>
+        <span class="nav-item">Dashboard</span>
+      </a>
+      <span class="tooltip">Dashboard</span>
+    </li>
+    <li>
+      <a href="">
+        <i class="material-symbols-outlined"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm360-80h100v-480H520v480Zm-180 0h100v-480H340v480Zm-180 0h100v-480H160v480Zm540 0h100v-480H700v480Z"/></svg></i>
+        <span class="nav-item">Board</span>
+      </a>
+      <span class="tooltip">Board</span>
+    </li>
+    <li>
+      <a href="">
+        <i class="bx bx-add-to-queue"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h560q33 0 56.5 23.5T840-760v268q-19-9-39-15.5t-41-9.5v-243H200v560h242q3 22 9.5 42t15.5 38H200Zm0-120v40-560 243-3 280Zm80-40h163q3-21 9.5-41t14.5-39H280v80Zm0-160h244q32-30 71.5-50t84.5-27v-3H280v80Zm0-160h400v-80H280v80ZM720-40q-83 0-141.5-58.5T520-240q0-83 58.5-141.5T720-440q83 0 141.5 58.5T920-240q0 83-58.5 141.5T720-40Zm-20-80h40v-100h100v-40H740v-100h-40v100H600v40h100v100Z"/></svg></i>
+        <span class="nav-item">AddTask</span>
+      </a>
+      <span class="tooltip">AddTask</span>
+    </li>
+    <li>
+      <a href="">
+        <i class="bx bxs-contact"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M160-40v-80h640v80H160Zm0-800v-80h640v80H160Zm320 400q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm70-80q45-56 109-88t141-32q77 0 141 32t109 88h70v-480H160v480h70Zm118 0h264q-29-20-62.5-30T480-280q-36 0-69.5 10T348-240Zm132-280q-17 0-28.5-11.5T440-560q0-17 11.5-28.5T480-600q17 0 28.5 11.5T520-560q0 17-11.5 28.5T480-520Zm0 40Z"/></svg></i>
+        <span class="nav-item">Contact</span>
+      </a>
+      <span class="tooltip">Contact</span>
+    </li>
+    <li>
+      <a href="">
+        <i class="bx bxs-trash"><svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#FFFFFF"><path d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"/></svg></i>
+        <span class="nav-item">Delete</span>
+      </a>
+      <span class="tooltip">Delete</span>
+    </li>
+  </ul>
+</div>

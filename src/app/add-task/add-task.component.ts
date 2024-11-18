@@ -6,11 +6,12 @@ import { FormsModule } from '@angular/forms';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { Auth } from '@angular/fire/auth';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-add-task',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, FormsModule, RouterModule],
+  imports: [HeaderComponent, SidebarComponent, FormsModule, RouterModule, CommonModule],
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.scss']
 })
