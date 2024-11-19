@@ -1,7 +1,7 @@
 .board-container-page {
   width: calc(100vw - 250px);
   height: calc(100vh - 90px);
-  background-color: gray;
+  background-color: rgb(42,54,71);
   margin-left: 250px;
   transition: all 0.5s ease;
   overflow-x: auto;
@@ -220,6 +220,28 @@ body {
     margin-bottom: 100px;
   }
   
+    
+  .taskBoardTtle {
+    min-width: 400px; 
+    max-width: 400px;
+    gap: 16px;
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .taskAria {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    padding: 0px 64px;
+    max-height: 688px;
+    width: 90%;
+    align-items: flex-start;
+    gap: 26px;
+    flex-shrink: 0;
+    padding-bottom: 64px;
+  }
+
   .frame28 {
     width: 100%;
   }
@@ -277,28 +299,12 @@ body {
     cursor: pointer;
   }
   
-  .taskAria {
-    display: flex;
-    justify-content: space-between;
-    padding: 0px 64px;
-    max-height: 688px;
-    width: 90%;
-    align-items: flex-start;
-    gap: 26px;
-    flex-shrink: 0;
-    padding-bottom: 64px;
-  }
-  
-  .taskBoardTtle {
-    width: 252px;
-    gap: 16px;
-    display: flex;
-    flex-direction: column;
-  }
-  
+
+
   .headLineCss {
     display: flex;
-    max-width: 244px;
+    min-width: 340px;
+    max-width: 340px;
     justify-content: space-between;
     align-items: center;
     margin-left: 30px;
@@ -322,71 +328,10 @@ body {
     gap: 10px;
     flex-shrink: 0;
   }
-  
-  .noTask {
-    color: var(--icon, #a8a8a8);
-    font-family: "open-sans", sans-serif;
-    font-size: 16px;
-    line-height: 120%;
-    display: flex;
-    height: 48px;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    gap: 10px;
-    align-self: stretch;
-    border-radius: 10px;
-    border: 1px dashed var(--icon, #a8a8a8);
-    background: #e7e7e7;
-    box-shadow: 0px 0px 4px 0px rgba(0, 0, 0, 0.16);
-  }
-  
-  .cardA {
-    position: relative;
-    border: 2px solid transparent;
-    background: linear-gradient(71deg, #080509, #1a171c, #080509);
-    background-clip: padding-box;
-    border-radius: 45px;
-    padding: 40px;
-  }
-  
-  .task-card {
-    max-width: 550px;
-    border: 0;
-    width: 100%;
-    margin-inline: auto;
+ 
 
-  }
-  .cardA:hover {
-    
-  }
   
-  .taskText {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    word-break: break-all;
-  }
-  
-  .taskTitle {
-    color: #2a3647;
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 120%;
-  }
-  
-  .taskDescription {
-    color: #a8a8a8;
-    font-family: Inter;
-    font-size: 16px;
-    font-style: normal;
-    font-weight: 400;
-    line-height: 120%;
-  }
-  
+
   .smallCardFooter {
     display: flex;
     width: 100%;

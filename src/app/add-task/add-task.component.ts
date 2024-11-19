@@ -2,16 +2,43 @@ import { Component, Output, EventEmitter } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { Task } from '../models/task'; 
-import { FormsModule } from '@angular/forms';
+import {FormControl, FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { Firestore, collection, addDoc } from '@angular/fire/firestore';
 import { Auth } from '@angular/fire/auth';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatIconModule} from '@angular/material/icon';
+import {MatInputModule} from '@angular/material/input';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import {provideNativeDateAdapter} from '@angular/material/core';
+import {ChangeDetectionStrategy} from '@angular/core';
+import {MatSelectModule} from '@angular/material/select';
+import { Categorys } from '../models/categorys';
+
+
 
 @Component({
   selector: 'app-add-task',
   standalone: true,
-  imports: [HeaderComponent, SidebarComponent, FormsModule, RouterModule, CommonModule],
+  imports: [
+  HeaderComponent,
+  SidebarComponent,
+  FormsModule,
+  RouterModule,
+  CommonModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatIconModule,
+  MatDatepickerModule,
+  MatSelectModule,
+  MatFormFieldModule,
+  MatSelectModule,
+  FormsModule,
+  ReactiveFormsModule
+],
+changeDetection: ChangeDetectionStrategy.OnPush,
+providers: [provideNativeDateAdapter()],
   templateUrl: './add-task.component.html',
   styleUrls: ['./add-task.component.scss']
 })
@@ -28,6 +55,15 @@ export class AddTaskComponent {
     category: '',
     subTasks: ''
   };
+  
+  toppings = new FormControl('');
+  toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
+
+  foods: Categorys[] = [
+    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'pizza-1', viewValue: 'Pizza'},
+    {value: 'tacos-2', viewValue: 'Tacos'},
+  ];
 
   constructor(private firestore: Firestore, private auth: Auth) {}
 

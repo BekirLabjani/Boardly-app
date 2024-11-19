@@ -1,5 +1,5 @@
 <app-sidebar></app-sidebar>
-<app-header></app-header>
+
 <!-- <div id="contentJoin">
   <div class="popUpWindow" id="popUpWindow"></div>
   <div class="popUpWindow" id="popUpAddWindow">
@@ -274,37 +274,26 @@
           ondragleave="removeHighlight('awaitFeedback')"
         >
         @for (task of awaitFeedBack; track $index) {
-          <div class="task-card">
-            <div class="smallCard cardA">
-              <div class="smallCardcategory">
-                <p id="category" class="${className}">
-                  {{ task.category }}{{ task.duDate }}
-                </p>
-                <img class="d-none" src="./assets/img/punkte.png" alt="" />
-              </div>
-              <div class="taskText">
-                <div class="taskTitle">{{ task.title }}</div>
-                <div class="taskDescription">{{ task.description }}</div>
-              </div>
-              <div class="smallCardFooter">
-                <div class="boardAssigend">
-                  {{ task.assignTo }}{{ task.priority }}
-                </div>
-                <div class="smallPrio" id="smallCardPrio">
-                  {{ task.category }}{{ task.subTasks }}
-                </div>
-              </div>
+          <div class="card shadow">
+            <div class="category">
+              <span>{{task.category}}</span>
+            </div>
+            <div class="title">
+              <span>{{task.title}}</span>
+            </div>
+            <div class="description">
+              <span>{{task.subTasks}}</span>
             </div>
           </div>
           }
       </div>
-      </section>
+      </section>69
       <section class="taskBoardTtle">
         <div class="doneHeadline headLineCss" id="doneHeadline">
           <h2 class="progressTitles">Done</h2>
         </div>
         <div class="done tasksCardsDiv" id="done" ondrop="moveIt('done')" ondragover="allowDrop(event); highlight('done')" ondragleave="removeHighlight('done')">
-          
+
         </div>
       </section>
     </div>

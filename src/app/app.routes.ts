@@ -7,7 +7,7 @@ import { SingUpComponent } from './sing-up/sing-up.component';
 import { ContactComponent } from './contact/contact.component';
 
 export const routes: Routes = [
-    { path: '', component: LogInComponent },
+    { path: '', component: AddTaskComponent },
     { path: 'summary', component: SummaryComponent },
     { path: 'board', component: BoardComponent },
     { path: 'addTask', component: AddTaskComponent },
