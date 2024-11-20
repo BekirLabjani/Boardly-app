@@ -3,11 +3,12 @@ import { SidebarComponent } from '../sidebar/sidebar.component';
 import { HeaderComponent } from '../header/header.component';
 import { LetterAComponent } from './letters/letter-a/letter-a.component';
 import { SidebarService } from '../service/side-bar-service.service';
+import { EditContactComponent } from './edit-contact/edit-contact.component';
 
 @Component({
   selector: 'app-contact',
   standalone: true,
-  imports: [SidebarComponent, HeaderComponent, LetterAComponent],
+  imports: [SidebarComponent, HeaderComponent, LetterAComponent, EditContactComponent],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss'
 })
