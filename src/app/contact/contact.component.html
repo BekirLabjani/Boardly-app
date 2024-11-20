@@ -128,6 +128,44 @@
 <app-sidebar></app-sidebar>
 <app-header></app-header>
 <div class="content">
-    <button>Add new contact <img src="./assets/img/contacts/person_add.svg"></button>
-    <app-letter-a></app-letter-a>
+    <div class="left-container">
+        <button>Add new contact <img src="./assets/img/contacts/person_add.svg"></button>
+        <app-letter-a></app-letter-a>
+    </div>
+    <div class="right-container">
+        <div class="flex gap-16">
+            <h2>Contacts</h2>
+            <div class="vertical-line"></div>
+            <span>Better with a team</span>
+        </div>
+        <div class="column gap-80">
+            <div class="flex gap-80">
+                <div class="circle">AM</div>
+                <div class="column gap-16">
+                    <h4>Anton Mayer</h4>
+                    <div class="flex gap-16">
+                        <a href="#" class="flex">
+                            <img src="./assets/img/contacts/edit.svg" alt="pen">
+                            <span>edit</span>
+                        </a>
+                        <a href="#" class="flex">
+                            <img src="./assets/img/contacts/delete.svg" alt="delete">
+                            <span>delete</span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="information">
+                <h4>Contact Information</h4>
+                <div class="space-between info">
+                    <span>Email</span>
+                    <a href="#">antom&#64;gmail.com</a>
+                </div>
+                <div class="space-between info">
+                    <span>Phone</span>
+                    <p>+49 15712312312</p>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
