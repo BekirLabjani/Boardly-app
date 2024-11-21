@@ -2,22 +2,22 @@ import { Component, OnInit } from '@angular/core';
 import { ContactComponent } from '../contact.component';
 
 @Component({
-  selector: 'app-edit-contact',
+  selector: 'app-add-contact',
   standalone: true,
   imports: [],
-  templateUrl: './edit-contact.component.html',
-  styleUrl: './edit-contact.component.scss'
+  templateUrl: './add-contact.component.html',
+  styleUrl: './add-contact.component.scss'
 })
-export class EditContactComponent implements OnInit {
-
+export class AddContactComponent implements OnInit {
   constructor(private contactComponent: ContactComponent){
+
   }
 
   ngOnInit(): void {
     
   }
 
-  closeEditContact(){
-    this.contactComponent.closeEditContact();
+  closeAddContact(){
+    this.contactComponent.closeAddContact();
   }
 }

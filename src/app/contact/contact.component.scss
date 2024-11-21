@@ -1485,3 +1485,39 @@
   justify-content: center;
   align-items: center;
 }
+
+app-edit-contact{
+  // transform: translateX(150vw);
+  animation: slide ease-in-out 500ms;
+}
+
+app-add-contact{
+  animation: slide ease-in-out 500ms;
+}
+
+.d-none{
+  display: none;
+}
+
+@keyframes slide {
+  from {
+    transform: translateX(150vw);
+  }
+  to {
+    transform: translateX(0);
+  }
+}
+
+@keyframes slideOut {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(150vw);
+  }
+}
+
+.slideOut {
+  animation: slideOut 500ms ease-in-out;
+  transform: translateX(150vw);
+}

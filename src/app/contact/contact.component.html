@@ -2,7 +2,7 @@
 <app-header></app-header>
 <div class="content">
     <div class="left-container">
-        <button>Add new contact <img src="./assets/img/contacts/person_add.svg"></button>
+        <button (click)="openAddContact($event)">Add new contact <img src="./assets/img/contacts/person_add.svg"></button>
         <app-letter-a></app-letter-a>
     </div>
     <div class="right-container">
@@ -17,7 +17,7 @@
                 <div class="column gap-16">
                     <h4>Anton Mayer</h4>
                     <div class="flex gap-16">
-                        <a href="#" class="flex">
+                        <a (click)="openEditContact($event)" href="#" class="flex">
                             <img src="./assets/img/contacts/edit.svg" alt="pen">
                             <span>edit</span>
                         </a>
@@ -43,6 +43,10 @@
     </div>
 </div>
 
-<div class="overlay">
-    <app-edit-contact></app-edit-contact>
+<div id="overlay" class="overlay d-none">
+    <app-edit-contact id="edit-contact"></app-edit-contact>
+</div>
+
+<div id="overlay-second" class="overlay d-none">
+    <app-add-contact id="add-contact"></app-add-contact>
 </div>
