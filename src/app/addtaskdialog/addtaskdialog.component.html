@@ -1,0 +1,51 @@
+
+<div class="task-form-container">
+  <form (ngSubmit)="addNewTask()" #taskForm="ngForm" class="form">
+    <div class="title-dueDate">
+      <mat-form-field appearance="fill">
+        <mat-label>Title</mat-label>
+        <input matInput [(ngModel)]="task.title" name="title" required />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Due Date</mat-label>
+        <input matInput [matDatepicker]="picker" [(ngModel)]="task.duDate" name="dueDate" required />
+        <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
+      </mat-form-field>
+    </div>
+    <mat-form-field class="textarea">
+      <mat-label>Description</mat-label>
+      <textarea matInput [(ngModel)]="task.description" name="description"></textarea>
+    </mat-form-field>
+    <mat-radio-group [(ngModel)]="task.priority" name="priority">
+      <mat-radio-button *ngFor="let p of ['low', 'medium', 'high', 'urgent']" [value]="p">{{ p | titlecase }}</mat-radio-button>
+    </mat-radio-group>
+    <mat-form-field>
+      <mat-label>Category</mat-label>
+      <mat-select [(ngModel)]="task.category" name="category">
+        <mat-option *ngFor="let food of foods" [value]="food.value">{{ food.viewValue }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Assign To</mat-label>
+      <mat-select [(ngModel)]="task.assignTo" name="assignees" multiple>
+        <mat-option *ngFor="let user of users" [value]="user">{{ user }}</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <div class="sub-tasks">
+      <mat-form-field>
+        <input matInput placeholder="Add Subtask" [(ngModel)]="value" name="subtask" />
+        <button mat-icon-button matSuffix (click)="addSubtask()">
+          <mat-icon>add</mat-icon>
+        </button>
+      </mat-form-field>
+      <mat-list>
+        <mat-list-item *ngFor="let subtask of subtasks">{{ subtask }}</mat-list-item>
+      </mat-list>
+    </div>
+    <div class="task-button-container">
+      <button mat-stroked-button type="button" (click)="resetTaskForm()">Cancel</button>
+      <button mat-stroked-button type="submit">Add Task</button>
+    </div>
+  </form>
+</div>

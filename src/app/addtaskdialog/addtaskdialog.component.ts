@@ -15,47 +15,58 @@ import {provideNativeDateAdapter} from '@angular/material/core';
 import {ChangeDetectionStrategy} from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 import { Categorys } from '../models/categorys';
-
+import {MatButtonModule} from '@angular/material/button';
+import {MatTooltipModule} from '@angular/material/tooltip';
+import {MatListModule} from '@angular/material/list';
+import { MatRadioModule } from '@angular/material/radio';
 
 
 @Component({
-  selector: 'app-add-task',
+  selector: 'app-addtaskdialog',
   standalone: true,
-  imports: [
-  HeaderComponent,
-  SidebarComponent,
-  FormsModule,
-  RouterModule,
-  CommonModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatIconModule,
-  MatDatepickerModule,
-  MatSelectModule,
-  MatFormFieldModule,
-  MatSelectModule,
-  FormsModule,
-  ReactiveFormsModule
-],
-changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [  
+    FormsModule,
+    RouterModule,
+    CommonModule,
+    MatFormFieldModule,
+    MatInputModule,
+    MatIconModule,
+    MatDatepickerModule,
+    MatSelectModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MatButtonModule,
+    MatTooltipModule,
+    MatListModule,
+    CommonModule,
+    MatRadioModule,
+  ],
+    changeDetection: ChangeDetectionStrategy.OnPush,
 providers: [provideNativeDateAdapter()],
-  templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.scss']
+templateUrl: './addtaskdialog.component.html',
+styleUrls: ['./addtaskdialog.component.scss']
 })
-export class AddTaskComponent {
+export class AddtaskdialogComponent {
   @Output() add: EventEmitter<boolean> = new EventEmitter();
   title = '';
   description = '';
-  task: Task = {
+
+  task = {
     title: '',
     description: '',
     assignTo: '',
     duDate: '',
     priority: '',
     category: '',
-    subTasks: ''
+    subTasks: [] as string[],
   };
-  
+  value = ''; // Eingabewert für die Unteraufgabe
+  subtasks: string[] = []; // Liste der Unteraufgaben
+  users = ['Anna', 'Peter', 'Max']; // Beispielnutzer
+
+
   toppings = new FormControl('');
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
@@ -67,9 +78,10 @@ export class AddTaskComponent {
 
   constructor(private firestore: Firestore, private auth: Auth) {}
 
+
   async addNewTask() {
     try {
-      // Add the new task to the Firestore collection
+      // Aufgabe mit Status hinzufügen
       const taskRef = await addDoc(collection(this.firestore, 'tasks'), {
         title: this.task.title,
         description: this.task.description,
@@ -78,21 +90,32 @@ export class AddTaskComponent {
         priority: this.task.priority,
         category: this.task.category,
         subTasks: this.task.subTasks,
+        status: 'todo', // Initialer Status der Aufgabe
+        // userId: this.currentUserId, // optional: Benutzer-ID hinzufügen
         createdAt: new Date(),
       });
-
-      console.log('Task added with ID: ', taskRef.id);
-
-      // Emit event after task is added
+  
+      console.log('Task added to "tasks" with ID: ', taskRef.id);
+  
+      // Event auslösen, um Änderungen im Frontend zu signalisieren
       this.add.emit(true);
-
-      // Reset the form fields
+  
+      // Formular zurücksetzen
       this.resetTaskForm();
-
     } catch (error) {
-      console.error('Error adding task: ', error);
+      console.error('Error adding task to "tasks": ', error);
     }
   }
+  
+  
+  addSubtask() {
+    // Fügt die Unteraufgabe zur Liste hinzu
+    if (this.value) {
+      this.subtasks.push(this.value);
+      this.value = ''; // Eingabefeld zurücksetzen
+    }
+  }
+
 
   resetTaskForm() {
     this.task = {
@@ -102,7 +125,7 @@ export class AddTaskComponent {
       duDate: '',
       priority: '',
       category: '',
-      subTasks: ''
+      subTasks: [],
     };
   }
 }

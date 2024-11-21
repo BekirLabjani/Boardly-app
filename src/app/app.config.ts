@@ -18,5 +18,5 @@ const firebaseConfig = {
 };
 
 export const appConfig: ApplicationConfig = {
-  providers: [provideRouter(routes), provideFirebaseApp(() => initializeApp({"projectId":"boardly-app","appId":"1:1042347544311:web:a45189cb7ce0e503cdcdf2","storageBucket":"boardly-app.firebasestorage.app","apiKey":"AIzaSyAoF6XLZmdKiQyoNbpLInVm83WIXxE1f54","authDomain":"boardly-app.firebaseapp.com","messagingSenderId":"1042347544311","measurementId":"G-7VEFLXQFYN"})), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideAnimationsAsync()]
+  providers: [provideRouter(routes), provideFirebaseApp(() => initializeApp({"projectId":"boardly-app","appId":"1:1042347544311:web:a45189cb7ce0e503cdcdf2","storageBucket":"boardly-app.firebasestorage.app","apiKey":"AIzaSyAoF6XLZmdKiQyoNbpLInVm83WIXxE1f54","authDomain":"boardly-app.firebaseapp.com","messagingSenderId":"1042347544311","measurementId":"G-7VEFLXQFYN"})), provideAuth(() => getAuth()), provideFirestore(() => getFirestore()), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync(), provideAnimationsAsync()]
 };

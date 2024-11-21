@@ -1,15 +1,12 @@
 .board-container-page {
   width: calc(100vw - 250px);
-  height: calc(100vh - 90px);
-  background-color: rgb(42,54,71);
+  height: 100vh;
+  background-color: rgb(63, 63, 63);
   margin-left: 250px;
   transition: all 0.5s ease;
   overflow-x: auto;
 }
 
-.bottom {
-  
-}
 .searchbar{
   width: 400px;
 }
@@ -44,10 +41,7 @@ body, input {
 body, .search-bar {
   display: flex;
 }
-body {
-  background: #f1f1f1;
-  height: 100vh;
-}
+
 .search-bar input,
 .search-btn, 
 .search-btn:before, 

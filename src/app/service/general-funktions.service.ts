@@ -1,6 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { BehaviorSubject } from 'rxjs';
+import { AddtaskdialogComponent } from '../addtaskdialog/addtaskdialog.component';
+import { MatDialog } from '@angular/material/dialog';
+
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +12,12 @@ export class GeneralFunktionsService {
 
 
 
-  constructor(private router: Router) { }
+  constructor(private router: Router,private dialog: MatDialog) { }
+
+  openAddTaskDialog() {
+    this.dialog.open(AddtaskdialogComponent, {});
+  }
+
 
   openSummary() {
     this.router.navigateByUrl('/summary')
