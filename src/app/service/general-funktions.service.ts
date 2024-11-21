@@ -32,7 +32,7 @@ export class GeneralFunktionsService {
   }
 
   openContact(){
-    this.router.navigateByUrl('/summary')
+    this.router.navigateByUrl('/contact')
   }
 
   openLogIn(){
