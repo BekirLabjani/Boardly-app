@@ -62,9 +62,11 @@ export class BoardComponent implements OnInit {
       console.log('All tasks:', this.tasks);
     
       // Filtern der Aufgaben basierend auf ihrem Priority-Status
-      this.todoTasks = this.tasks.filter(task => task.priority === 'todo');
-      this.inProgressTasks = this.tasks.filter(task => task.priority === 'In Progress');
-      this.awaitFeedBack = this.tasks.filter(task => task.priority === 'Await FeedBack');
+      this.todoTasks = this.tasks.filter(task => task.status === 'todo');
+      console.log(this.todoTasks);
+      
+      this.inProgressTasks = this.tasks.filter(task => task.status === 'In Progress');
+      this.awaitFeedBack = this.tasks.filter(task => task.status === 'Await FeedBack');
     }
     
     

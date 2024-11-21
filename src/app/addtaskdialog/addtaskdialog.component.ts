@@ -19,6 +19,10 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatListModule} from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
+import { GeneralFunktionsService } from '../service/general-funktions.service';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { BehaviorSubject } from 'rxjs';
+import { Injectable } from '@angular/core';
 
 
 @Component({
@@ -62,7 +66,6 @@ export class AddtaskdialogComponent {
     category: '',
     subTasks: [] as string[],
   };
-  value = ''; // Eingabewert für die Unteraufgabe
   subtasks: string[] = []; // Liste der Unteraufgaben
   users = ['Anna', 'Peter', 'Max']; // Beispielnutzer
 
@@ -71,12 +74,15 @@ export class AddtaskdialogComponent {
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   foods: Categorys[] = [
-    {value: 'steak-0', viewValue: 'Steak'},
+    {value: 'steak-0', viewValue: 'User Story'},
     {value: 'pizza-1', viewValue: 'Pizza'},
     {value: 'tacos-2', viewValue: 'Tacos'},
   ];
+  value = ''; // Eingabewert für die Unteraufgabe
 
-  constructor(private firestore: Firestore, private auth: Auth) {}
+
+  constructor(private firestore: Firestore, private auth: Auth , private generalFunktionsService: GeneralFunktionsService,    private dialogRef: MatDialogRef<AddtaskdialogComponent>, 
+  ) {}
 
 
   async addNewTask() {
@@ -98,13 +104,17 @@ export class AddtaskdialogComponent {
       console.log('Task added to "tasks" with ID: ', taskRef.id);
   
       // Event auslösen, um Änderungen im Frontend zu signalisieren
-      this.add.emit(true);
+      // this.add.emit(true);
   
       // Formular zurücksetzen
       this.resetTaskForm();
+
     } catch (error) {
       console.error('Error adding task to "tasks": ', error);
     }
+    window.location.reload();  // Seite wird neu geladen
+
+    this.onNoClick();
   }
   
   
@@ -128,4 +138,8 @@ export class AddtaskdialogComponent {
       subTasks: [],
     };
   }
+  onNoClick() { 
+    this.generalFunktionsService.closeAddTaskDialog(this.dialogRef);
+  }
+
 }

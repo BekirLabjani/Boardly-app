@@ -214,7 +214,11 @@ body, .search-bar {
     margin-bottom: 100px;
   }
   
-    
+  .button-add-container {
+    position: fixed;
+    bottom: 100px;
+    right: 100px;
+  }
   .taskBoardTtle {
     min-width: 400px; 
     max-width: 400px;
