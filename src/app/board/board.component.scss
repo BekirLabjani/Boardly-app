@@ -6,7 +6,9 @@
   transition: all 0.5s ease;
   overflow-x: auto;
 }
-
+body {
+font-family: 'Open Sans';
+}
 .searchbar{
   width: 400px;
 }

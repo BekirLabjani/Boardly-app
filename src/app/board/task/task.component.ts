@@ -1,10 +1,11 @@
 import { NgClass } from '@angular/common';
 import { Component, Input } from '@angular/core';
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [NgClass],
+  imports: [NgClass,MatProgressBarModule],
   templateUrl: './task.component.html',
   styleUrl: './task.component.scss'
 })

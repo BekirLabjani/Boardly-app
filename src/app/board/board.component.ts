@@ -128,7 +128,7 @@ export class BoardComponent implements OnInit {
       this.lastClickedTask = task.title; 
       setTimeout(() => {
         this.lastClickedTask = null; 
-      }, 2000); 
+      }, 300); 
     }
   }
 
