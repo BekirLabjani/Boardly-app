@@ -32,17 +32,19 @@
         </div>
         <div class="tasksCardsDiv" id="todo" ondrop="moveIt('todo')" ondragover="allowDrop(event); highlight('todo')" ondragleave="removeHighlight('todo')" >
           @for (task of todoTasks; track $index) {
-                     <div  class="card shadow">
-            <div class="category">
-              <span>{{ task.category }}</span>
-            </div>
-            <div class="title">
-              <span>{{ task.title }}</span>
-            </div>
-            <div class="description">
-              <span>{{ task.subTasks }}</span>
-            </div>
-          </div>
+            <app-task class="task-card" 
+            [ngStyle]="{ 'top': ($index * 105) + 'px', 'left': '0' }"
+            [category]="task.category" 
+            [title]="task.title" 
+            [description]="task.description"
+            [priority]="task.priority"
+            (click)="handleClick($event, task)"
+            [attr.data-task-id]="task.id"
+
+            >
+
+            >
+          </app-task>
           }
         </div>
       </section>

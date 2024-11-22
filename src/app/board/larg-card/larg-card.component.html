@@ -1,0 +1,23 @@
+<h1 mat-dialog-title>{{ data.title }}</h1>
+<div mat-dialog-content>
+  <p><strong>Description:</strong> {{ data.description }}</p>
+  <p><strong>Assigned to:</strong> {{ data.assignTo }}</p>
+  <p><strong>Due Date:</strong> {{ data.duDate }}</p>
+  <p><strong>Priority:</strong> {{ data.priority }}</p>
+  <p><strong>Category:</strong> {{ data.category }}</p>
+
+  @if (data.subTasks.length > 0) {
+    <div>
+        <h3>Subtask</h3>
+        <ul>
+            @for (sublist of data.subTasks; track $index) {
+                <li>{{sublist}}</li>
+            }
+        </ul>
+    </div>
+  }
+</div>
+
+<div mat-dialog-actions>
+  <button mat-button (click)="dialogRef.close()">Close</button>
+</div>

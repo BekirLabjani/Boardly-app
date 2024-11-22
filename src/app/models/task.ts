@@ -4,7 +4,7 @@ export interface Task {
     description: string;
     assignTo: string;
     duDate: string;
-    priority: string;   // (Optional: Du kannst dies beibehalten, wenn du es noch brauchst)
+    priority: 'low' | 'medium' | 'high'; // Nur erlaubte Werte
     category: string;
     subTasks: string[];
     status: string;     // Füge hier die status-Eigenschaft hinzu

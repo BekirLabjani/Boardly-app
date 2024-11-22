@@ -74,9 +74,10 @@ export class AddtaskdialogComponent {
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   foods: Categorys[] = [
-    {value: 'steak-0', viewValue: 'User Story'},
-    {value: 'pizza-1', viewValue: 'Pizza'},
-    {value: 'tacos-2', viewValue: 'Tacos'},
+    { value: 'user-1', viewValue: 'User' },
+    { value: 'frontend-2', viewValue: 'Frontend' },
+    { value: 'backend-3', viewValue: 'Backend' },
+    { value: 'style-4', viewValue: 'Style' },
   ];
   value = ''; // Eingabewert für die Unteraufgabe
 

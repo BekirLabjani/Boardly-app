@@ -1,0 +1,66 @@
+.card {
+    min-width: 200px;
+    max-width: 200px;
+    height: 150px;
+    background: #8c8c8f;
+    border-radius: 10px;
+    transition: border-radius 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    border: solid 2px red;
+    padding: 10px;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+
+  .shadow {
+    box-shadow: inset 0 -3em 3em rgba(0, 0, 0, 0.1),
+      0 0 0 2px rgb(190, 190, 190),
+      0.3em 0.3em 1em rgba(0, 0, 0, 0.3);
+  }
+}
+
+.category {
+  width: 100%;
+  /* height: 20px; */
+  /* background: blue; */
+  height: 30px;
+  display: flex;
+  align-items: center;
+  padding-bottom: 10px;
+
+  >span {
+    background: blue;
+    padding: 5px 13px;
+    border-radius: 10px;
+  }
+}
+
+.description {
+  height: 50px;
+  /* Begrenzung der Höhe */
+  overflow: hidden;
+  /* Verhindert, dass der überstehende Text sichtbar ist */
+  text-overflow: ellipsis;
+  /* Fügt "..." hinzu, wenn der Text abgeschnitten wird */
+  white-space: nowrap;
+  /* Text bleibt in einer Zeile */
+  padding-right: 10px;
+  /* Platz für die Ellipsen */
+  font-size: 14px;
+  /* Optional: Schriftgröße anpassen */
+  display: block;
+}
+
+
+.priority-low {
+  border: solid 3px green;
+}
+
+.priority-medium {
+  border: solid 3px orange;
+}
+
+.priority-high {
+  border: solid 3px red;
+}

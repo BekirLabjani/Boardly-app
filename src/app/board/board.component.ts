@@ -12,6 +12,9 @@ import {MatTooltipModule} from '@angular/material/tooltip';
 import { AddtaskdialogComponent } from '../addtaskdialog/addtaskdialog.component';
 import { MAT_DIALOG_DATA, MatDialog,MatDialogActions,MatDialogClose,MatDialogContent,MatDialogRef,MatDialogTitle,} from '@angular/material/dialog';
 import { GeneralFunktionsService } from '../service/general-funktions.service';
+import { TaskComponent } from './task/task.component';
+import { NgStyle } from '@angular/common';
+import { LargCardComponent } from './larg-card/larg-card.component';
 
 
 
@@ -24,17 +27,25 @@ import { GeneralFunktionsService } from '../service/general-funktions.service';
   MatButtonModule,
   MatDividerModule, 
   MatTooltipModule,
+  TaskComponent,
+  LargCardComponent,
+  NgStyle,
   ],
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss', 'taskscomponent.scss']
 })
 export class BoardComponent implements OnInit {
   isSidebarActive: boolean = true;
+  isMobile: boolean = false;
+  lastClickedTask: string | null = null;
+
 
   tasks: Task[] = [];
   todoTasks: Task[] = [];  // Aufgaben, die im "To Do"-Status sind
   inProgressTasks: Task[] = []; 
   awaitFeedBack: Task[] = []; 
+  priority:  'low' | 'medium' | 'high' = 'low';
+
 
   constructor(
     private firestore: Firestore,
@@ -43,7 +54,10 @@ export class BoardComponent implements OnInit {
     private el: ElementRef,
     private dialog: MatDialog,
     private generalFunctions: GeneralFunktionsService,
-    ) {}
+    ) {
+      this.isMobile = /iPhone|iPad|iPod|Android/i.test(navigator.userAgent);
+
+    }
 
     ngOnInit(): void {
       this.isSidebarActive = this.sideService.getSidebarStatus();
@@ -91,6 +105,53 @@ export class BoardComponent implements OnInit {
 
   toggleSidebar() {
     this.sideService.toggleSidebar();
+  }
+
+  handleClick(event: MouseEvent, task: any) {
+    if (this.isMobile) {
+      this.handleMobileClick(task);
+    } else {
+      this.openLargCard(task);
+    }
+  }
+
+  handleMobileClick(task: any) {
+    if (this.lastClickedTask === task.title) {
+      // Zweiter Klick auf denselben Task
+      console.log('der zweite klick');
+      
+      this.openLargCard(task);
+      this.lastClickedTask = null; 
+    } else {
+   
+      this.animateTask(task);
+      this.lastClickedTask = task.title; 
+      setTimeout(() => {
+        this.lastClickedTask = null; 
+      }, 2000); 
+    }
+  }
+
+  animateTask(task: any) {
+    const taskElement = document.querySelector(`[data-task-id="${task.id}"]`);
+    if (taskElement) {
+      taskElement.classList.add('animate');
+      setTimeout(() => {
+        taskElement.classList.remove('animate');
+      }, 3000); 
+    }
+  }
+
+  openLargCard(task: any) {
+    // Öffne den Dialog mit den Details der Aufgabe
+    const dialogRef = this.dialog.open(LargCardComponent, {
+      data: task,  // Übergebe die Task-Daten an den Dialog
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log('Dialog was closed');
+      // Hier kannst du etwas tun, wenn der Dialog geschlossen wurde
+    });
   }
 
 }
