@@ -97,3 +97,28 @@
     display: flex;
     justify-content: space-between;
   }
+
+  .category-user {
+    background-color: #4caf50 !important;
+    color: white !important;
+  }
+  
+  .category-frontend {
+    background-color: #123d11 !important;
+    color: white !important;
+  }
+  
+  .category-backend {
+    background-color: #ff9800 !important;
+    color: white !important;
+  }
+  
+  .category-style {
+    background-color: #9c27b0 !important;
+    color: white !important;
+  }
+  
+  .mat-option {
+  font-weight: bold;
+  text-transform: uppercase;
+}

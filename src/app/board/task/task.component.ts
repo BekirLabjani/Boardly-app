@@ -11,7 +11,6 @@ import { Component, Input } from '@angular/core';
 
 
 export class TaskComponent {
-
   @Input() category: string = '';
   @Input() title: string = '';
   @Input() description: string = '';

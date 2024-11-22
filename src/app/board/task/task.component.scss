@@ -30,7 +30,7 @@
   padding-bottom: 10px;
 
   >span {
-    background: blue;
+    // background: blue;
     padding: 5px 13px;
     border-radius: 10px;
   }
@@ -64,3 +64,33 @@
 .priority-high {
   border: solid 3px red;
 }
+
+.category-user {
+  background-color: #4caf50; /* Grün */
+  color: white;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+.category-frontend {
+  background-color: #123d11; /* Blau */
+  color: white;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+.category-backend {
+  background-color: #ff9800; /* Orange */
+  color: white;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+.category-style {
+  background-color: #9c27b0; /* Lila */
+  color: white;
+  padding: 2px 8px;
+  border-radius: 5px;
+}
+
+

@@ -74,11 +74,13 @@ export class AddtaskdialogComponent {
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
 
   foods: Categorys[] = [
-    { value: 'user-1', viewValue: 'User' },
-    { value: 'frontend-2', viewValue: 'Frontend' },
-    { value: 'backend-3', viewValue: 'Backend' },
-    { value: 'style-4', viewValue: 'Style' },
+    { value: 'user', viewValue: 'User' },
+    { value: 'frontend', viewValue: 'Frontend' },
+    { value: 'backend', viewValue: 'Backend' },
+    { value: 'style', viewValue: 'Style' },
   ];
+
+  
   value = ''; // Eingabewert für die Unteraufgabe
 
 
@@ -143,4 +145,15 @@ export class AddtaskdialogComponent {
     this.generalFunktionsService.closeAddTaskDialog(this.dialogRef);
   }
 
+
+  getCategoryColor(category: string): string {
+    switch (category) {
+      case 'user': return '#4caf50'; // Grün
+      case 'frontend': return '#123d11'; // Blau
+      case 'backend': return '#ff9800'; // Orange
+      case 'style': return '#9c27b0'; // Lila
+      default: return '#cccccc'; // Grau (Standardfarbe)
+    }
+  }
+  
 }

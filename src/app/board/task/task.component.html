@@ -4,7 +4,14 @@
   'priority-high': priority === 'high'
 }">
     <div class="category">
-      <span>{{ category }}</span>
+      <span [ngClass]="{
+        'category-user': category === 'user',
+        'category-frontend': category === 'frontend',
+        'category-backend': category === 'backend',
+        'category-style': category === 'style'
+      }">
+        {{ category }}
+      </span>
     </div>
     <div class="title">
       <span><b>{{ title }}</b></span>

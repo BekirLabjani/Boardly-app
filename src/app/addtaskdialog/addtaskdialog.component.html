@@ -23,7 +23,15 @@
     <mat-form-field>
       <mat-label>Category</mat-label>
       <mat-select [(ngModel)]="task.category" name="category">
-        <mat-option *ngFor="let food of foods" [value]="food.value">{{ food.viewValue }}</mat-option>
+        <mat-option 
+          *ngFor="let food of foods" 
+          [value]="food.value" 
+          [ngStyle]="{ 
+            'background-color': getCategoryColor(food.value), 
+            'color': '#fff' 
+          }">
+          {{ food.viewValue }}
+        </mat-option>
       </mat-select>
     </mat-form-field>
     <mat-form-field>
