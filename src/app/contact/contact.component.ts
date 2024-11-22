@@ -5,6 +5,8 @@ import { LetterAComponent } from './letters/letter-a/letter-a.component';
 import { SidebarService } from '../service/side-bar-service.service';
 import { EditContactComponent } from './edit-contact/edit-contact.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-contact',
@@ -14,13 +16,16 @@ import { AddContactComponent } from './add-contact/add-contact.component';
     HeaderComponent,
     LetterAComponent,
     EditContactComponent,
-    AddContactComponent
+    AddContactComponent,
+    FormsModule,
+    CommonModule
 ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })
 export class ContactComponent implements OnInit {
   isSidebarActive: boolean = true;
+  contactAdded: boolean = false;
 
   constructor(private sidebarService: SidebarService, private el: ElementRef) {}
   ngOnInit(): void {
@@ -84,5 +89,13 @@ export class ContactComponent implements OnInit {
       overlay?.classList.add('d-none'); // Overlay verstecken
       addContact?.classList.remove('slideOut'); // Klasse entfernen
     }, 500);
+  }
+
+  animateAddedContact(){
+    if (this.contactAdded) {
+      setTimeout(() => {
+        this.contactAdded = false;
+      }, 2000);
+    }
   }
 }

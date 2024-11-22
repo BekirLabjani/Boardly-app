@@ -50,3 +50,9 @@
 <div id="overlay-second" class="overlay d-none">
     <app-add-contact id="add-contact"></app-add-contact>
 </div>
+
+<div *ngIf="contactAdded" class="overlay">
+    <div id="add-contact-animation" class="succesfullyAddedContact">
+        Contact succesfully created
+    </div>
+</div>

@@ -17,15 +17,15 @@
       </div>
       <div class="column">
         <div class="input-field">
-          <input type="text" placeholder="Name" />
+          <input [(ngModel)]="name" type="text" placeholder="Name" />
           <img src="./assets/img/contacts/person.svg" alt="person-icon" />
         </div>
         <div class="input-field">
-          <input type="text" placeholder="Email" />
+          <input  [(ngModel)]="email" type="email" placeholder="Email" />
           <img src="./assets/img/contacts/mail.svg" alt="mail-icon" />
         </div>
         <div class="input-field">
-          <input type="text" placeholder="Phone" />
+          <input [(ngModel)]="phone" type="text" placeholder="Phone" />
           <img src="./assets/img/contacts/call.svg" alt="phone-icon" />
         </div>
         <div class="flex">
@@ -33,7 +33,7 @@
             <div>Cancel</div>
             <img src="./assets/img/contacts/cancel.svg" alt="cancel-x">
           </button>
-          <button class="save-button">
+          <button (click)="addContact()" class="save-button">
               <div>Create Contact</div>
               <img src="./assets/img/contacts/check.svg" alt="check" />
             </button>
