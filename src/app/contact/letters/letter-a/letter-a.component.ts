@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-letter-a',
@@ -7,6 +7,14 @@ import { Component } from '@angular/core';
   templateUrl: './letter-a.component.html',
   styleUrl: './letter-a.component.scss'
 })
-export class LetterAComponent {
+export class LetterAComponent implements OnInit {
+
+  constructor(){
+
+  }
+
+  ngOnInit(): void {
+    
+  }
 
 }

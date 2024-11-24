@@ -7,6 +7,9 @@ import { EditContactComponent } from './edit-contact/edit-contact.component';
 import { AddContactComponent } from './add-contact/add-contact.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { Contact } from '../models/contact';
+import { Firestore, collection, getDocs } from '@angular/fire/firestore';
+
 
 @Component({
   selector: 'app-contact',
@@ -26,8 +29,9 @@ import { CommonModule } from '@angular/common';
 export class ContactComponent implements OnInit {
   isSidebarActive: boolean = true;
   contactAdded: boolean = false;
+  contacts: Contact[] = [];
 
-  constructor(private sidebarService: SidebarService, private el: ElementRef) {}
+  constructor(private sidebarService: SidebarService, private el: ElementRef, private firestore: Firestore) {}
   ngOnInit(): void {
     this.isSidebarActive = this.sidebarService.getSidebarStatus();
     this.updateSidebarStyles();
@@ -35,7 +39,28 @@ export class ContactComponent implements OnInit {
     this.sidebarService.sidebarStatus$.subscribe((status) => {
       this.isSidebarActive = status;
       this.updateSidebarStyles();
+      this.loadContacts();
     });
+  }
+
+  async getContacts(): Promise<Contact[]> {
+    try {
+      const querySnapshot = await getDocs(collection(this.firestore, 'contacts'));
+  
+      // Dokumente in das Task-Interface umwandeln und die ID hinzufügen
+      return querySnapshot.docs.map(doc => ({
+        ...doc.data(),         // Alle Daten aus dem Dokument übernehmen
+           // Dokument-ID hinzufügen
+      } as Contact)); 
+    } catch (error) {
+      console.error('Error fetching tasks: ', error);
+      return [];
+    }
+  }
+
+  async loadContacts(){
+    this.contacts = await this.getContacts();
+    console.log('All contacts:', this.contacts);
   }
 
   private updateSidebarStyles() {
