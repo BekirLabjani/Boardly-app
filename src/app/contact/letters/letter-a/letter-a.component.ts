@@ -15,6 +15,7 @@ export class LetterAComponent implements OnInit {
   @Input() phone: string = '';
   @Input() letter: string = '';
   @Input() initial: any = '';
+  // @Input() id: string = '';
   constructor(private contactComponent: ContactComponent) {
   }
 
