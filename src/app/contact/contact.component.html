@@ -14,6 +14,7 @@
                 [name] = "contact.name"
                 [email] = "contact.email"
                 [initial] = "initials[$index]"
+                (click)="showContact(contact.name, contact.email, contact.phone, initials[$index])"
                 >
                 </app-letter-a>
                 }
@@ -27,11 +28,11 @@
             <div class="vertical-line"></div>
             <span>Better with a team</span>
         </div>
-        <div class="column gap-80">
+        <div class="column gap-80" [ngClass]="{ 'd-none': !contactClicked }">
             <div class="flex gap-80">
-                <div class="circle">AM</div>
+                <div class="circle">{{ contactInitials }}</div>
                 <div class="column gap-16">
-                    <h4>Anton Mayer</h4>
+                    <h4>{{ contactName }}</h4>
                     <div class="flex gap-16">
                         <a (click)="openEditContact($event)" href="#" class="flex">
                             <img src="./assets/img/contacts/edit.svg" alt="pen">
@@ -48,11 +49,11 @@
                 <h4>Contact Information</h4>
                 <div class="space-between info">
                     <span>Email</span>
-                    <a href="#">antom&#64;gmail.com</a>
+                    <a href="#">{{ contactEmail }}</a>
                 </div>
                 <div class="space-between info">
                     <span>Phone</span>
-                    <p>+49 15712312312</p>
+                    <p>{{ contactPhone }}</p>
                 </div>
             </div>
         </div>

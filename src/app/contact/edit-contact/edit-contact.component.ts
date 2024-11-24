@@ -10,10 +10,14 @@ import { ContactComponent } from '../contact.component';
 })
 export class EditContactComponent implements OnInit {
 
-  constructor(private contactComponent: ContactComponent){
+  constructor(public contactComponent: ContactComponent){
   }
 
   ngOnInit(): void {
+    
+  }
+
+  saveEdittedContact(){
     
   }
 

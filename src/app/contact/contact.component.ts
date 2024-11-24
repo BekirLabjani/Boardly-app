@@ -10,7 +10,6 @@ import { CommonModule } from '@angular/common';
 import { Contact } from '../models/contact';
 import { Firestore, collection, getDocs } from '@angular/fire/firestore';
 
-
 @Component({
   selector: 'app-contact',
   standalone: true,
@@ -21,19 +20,28 @@ import { Firestore, collection, getDocs } from '@angular/fire/firestore';
     EditContactComponent,
     AddContactComponent,
     FormsModule,
-    CommonModule
-],
+    CommonModule,
+  ],
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.scss',
 })
 export class ContactComponent implements OnInit {
   isSidebarActive: boolean = true;
   contactAdded: boolean = false;
+  contactClicked: boolean = false;
   contacts: Contact[] = [];
   letters: string[] = [];
   initials: string[] = [];
+  contactName: string = '';
+  contactEmail: string = '';
+  contactPhone: string = '';
+  contactInitials: string = '';
 
-  constructor(private sidebarService: SidebarService, private el: ElementRef, private firestore: Firestore) {}
+  constructor(
+    private sidebarService: SidebarService,
+    private el: ElementRef,
+    private firestore: Firestore
+  ) {}
   ngOnInit(): void {
     this.isSidebarActive = this.sidebarService.getSidebarStatus();
     this.updateSidebarStyles();
@@ -47,42 +55,56 @@ export class ContactComponent implements OnInit {
 
   async getContacts(): Promise<Contact[]> {
     try {
-      const querySnapshot = await getDocs(collection(this.firestore, 'contacts'));
-  
+      const querySnapshot = await getDocs(
+        collection(this.firestore, 'contacts')
+      );
+
       // Dokumente in das Task-Interface umwandeln und die ID hinzufügen
-      return querySnapshot.docs.map(doc => ({
-        ...doc.data(),         // Alle Daten aus dem Dokument übernehmen
-           // Dokument-ID hinzufügen
-      } as Contact)); 
+      return querySnapshot.docs.map(
+        (doc) =>
+          ({
+            ...doc.data(), // Alle Daten aus dem Dokument übernehmen
+            // Dokument-ID hinzufügen
+          } as Contact)
+      );
     } catch (error) {
       console.error('Error fetching tasks: ', error);
       return [];
     }
   }
 
-  async loadContacts(){
+  async loadContacts() {
     this.contacts = await this.getContacts();
-    this.contacts.sort();
+    this.sortContactsAlphabetically();
     console.log('All contacts:', this.contacts);
     this.getFirstLetter();
     this.getInitials();
   }
 
-  getFirstLetter(){
+  sortContactsAlphabetically() {
+    const sortedContacts = this.contacts.sort((a, b) => {
+      if (a.name < b.name) return -1;
+      if (a.name > b.name) return 1;
+      return 0;
+    });
+    this.contacts = sortedContacts;
+  }
+
+  getFirstLetter() {
     for (let i = 0; i < this.contacts.length; i++) {
       const contact = this.contacts[i].name;
       let letter = contact.charAt(0);
-      if(!this.letters.includes(letter)){
+      if (!this.letters.includes(letter)) {
         this.letters.push(letter);
       }
     }
   }
 
-  getInitials(){
-    for (let i = 0; i < this.contacts.length; i++){
+  getInitials() {
+    for (let i = 0; i < this.contacts.length; i++) {
       const name = this.contacts[i].name.split(' ');
       let firstInitial = name[0].charAt(0);
-      if(name.length > 1){
+      if (name.length > 1) {
         let secondInitial = name[1].charAt(0);
         let initial = firstInitial + secondInitial;
         this.initials.push(initial);
@@ -90,6 +112,14 @@ export class ContactComponent implements OnInit {
         this.initials.push(firstInitial);
       }
     }
+  }
+
+  showContact(contactname: string, contactmail: string, contactphone: string, initials: string){
+    this.contactClicked = true;
+    this.contactName = contactname;
+    this.contactEmail = contactmail;
+    this.contactPhone = contactphone;
+    this.contactInitials = initials;
   }
 
   private updateSidebarStyles() {
@@ -113,26 +143,26 @@ export class ContactComponent implements OnInit {
   }
 
   closeEditContact() {
-      const editContact = document.getElementById('edit-contact'); // Element holen
-      const overlay = document.getElementById('overlay');
-    
-      // Nur wenn `editContact` existiert, die Animation starten
-      editContact?.classList.add('slideOut');
-    
-      // Nach der Animation (500ms) das Overlay verstecken
-      setTimeout(() => {
-        overlay?.classList.add('d-none'); // Overlay verstecken
-        editContact?.classList.remove('slideOut'); // Klasse entfernen
-      }, 500);
+    const editContact = document.getElementById('edit-contact'); // Element holen
+    const overlay = document.getElementById('overlay');
+
+    // Nur wenn `editContact` existiert, die Animation starten
+    editContact?.classList.add('slideOut');
+
+    // Nach der Animation (500ms) das Overlay verstecken
+    setTimeout(() => {
+      overlay?.classList.add('d-none'); // Overlay verstecken
+      editContact?.classList.remove('slideOut'); // Klasse entfernen
+    }, 500);
   }
 
-  openAddContact(event: Event){
+  openAddContact(event: Event) {
     event.preventDefault(); // Verhindert das Standardverhalten des Links
     let overlay = document.getElementById('overlay-second');
     overlay?.classList.remove('d-none');
   }
 
-  closeAddContact(){
+  closeAddContact() {
     const addContact = document.getElementById('add-contact'); // Element holen
     const overlay = document.getElementById('overlay-second');
 
@@ -145,10 +175,11 @@ export class ContactComponent implements OnInit {
     }, 500);
   }
 
-  animateAddedContact(){
+  animateAddedContact() {
     if (this.contactAdded) {
       setTimeout(() => {
         this.contactAdded = false;
+        window.location.reload(); // Seite wird neu geladen
       }, 2000);
     }
   }

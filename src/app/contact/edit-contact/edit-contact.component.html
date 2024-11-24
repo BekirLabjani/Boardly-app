@@ -11,23 +11,23 @@
     <div class="vertical-line"></div>
   </div>
   <div class="right-container">
-    <div class="circle">AM</div>
+    <div id="circle-initials" class="circle">{{ contactComponent.contactInitials }}</div>
     <div class="column">
       <div class="input-field">
-        <input type="text" value="Anton Mayer" />
+        <input id="input-name" type="text" value="{{ contactComponent.contactName }}" />
         <img src="./assets/img/contacts/person.svg" alt="person-icon" />
       </div>
       <div class="input-field">
-        <input type="text" value="antom&#64;gmail.com" />
+        <input id="input-email" type="text" value="{{ contactComponent.contactEmail }}" />
         <img src="./assets/img/contacts/mail.svg" alt="mail-icon" />
       </div>
       <div class="input-field">
-        <input type="text" value="+49 15712312312" />
+        <input id="input-phone" type="text" value="{{ contactComponent.contactPhone }}" />
         <img src="./assets/img/contacts/call.svg" alt="phone-icon" />
       </div>
       <div class="flex">
         <button class="delete-button">Delete</button>
-        <button class="save-button">
+        <button (click)="saveEdittedContact()" class="save-button">
             <div>Save</div>
             <img src="./assets/img/contacts/check.svg" alt="check" />
           </button>
