@@ -8,7 +8,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Contact } from '../models/contact';
-import { Firestore, collection, getDocs, doc, getDoc } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, doc, getDoc, updateDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-contact',
@@ -36,6 +36,7 @@ export class ContactComponent implements OnInit {
   contactEmail: string = '';
   contactPhone: string = '';
   contactInitials: string = '';
+
 
   constructor(
     private sidebarService: SidebarService,
@@ -65,7 +66,7 @@ export class ContactComponent implements OnInit {
         (doc) =>
           ({
             ...doc.data(), // Alle Daten aus dem Dokument übernehmen
-            // Dokument-ID hinzufügen
+            id: doc.id // Dokument-ID hinzufügen
           } as Contact)
       );
     } catch (error) {
@@ -136,6 +137,21 @@ export class ContactComponent implements OnInit {
       console.error('Fehler beim Abrufen des Dokuments:', error);
     }
   }
+
+    // Methode zum Aktualisieren eines Dokuments
+    async updateContact(docId: string, updatedData: Partial<Contact>): Promise<void> {
+      try {
+        // Referenz auf das Dokument in der Sammlung 'contacts'
+        const docRef = doc(this.firestore, 'contacts', docId);
+  
+        // Dokument aktualisieren
+        await updateDoc(docRef, updatedData);
+  
+        console.log('Dokument erfolgreich aktualisiert.');
+      } catch (error) {
+        console.error('Fehler beim Aktualisieren des Dokuments:', error);
+      }
+    }
 
   private updateSidebarStyles() {
     const contactMainElement = this.el.nativeElement.querySelector('.content');

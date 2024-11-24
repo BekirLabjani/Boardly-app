@@ -10,6 +10,7 @@
             @for (contact of contacts; track $index){
                 @if(letter == contact.name.charAt(0)){
                     <app-letter-a
+                id="contact.id"
                 [letter] = "letter"
                 [name] = "contact.name"
                 [email] = "contact.email"
