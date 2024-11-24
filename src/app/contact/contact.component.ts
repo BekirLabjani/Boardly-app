@@ -30,6 +30,8 @@ export class ContactComponent implements OnInit {
   isSidebarActive: boolean = true;
   contactAdded: boolean = false;
   contacts: Contact[] = [];
+  letters: string[] = [];
+  initials: string[] = [];
 
   constructor(private sidebarService: SidebarService, private el: ElementRef, private firestore: Firestore) {}
   ngOnInit(): void {
@@ -60,7 +62,34 @@ export class ContactComponent implements OnInit {
 
   async loadContacts(){
     this.contacts = await this.getContacts();
+    this.contacts.sort();
     console.log('All contacts:', this.contacts);
+    this.getFirstLetter();
+    this.getInitials();
+  }
+
+  getFirstLetter(){
+    for (let i = 0; i < this.contacts.length; i++) {
+      const contact = this.contacts[i].name;
+      let letter = contact.charAt(0);
+      if(!this.letters.includes(letter)){
+        this.letters.push(letter);
+      }
+    }
+  }
+
+  getInitials(){
+    for (let i = 0; i < this.contacts.length; i++){
+      const name = this.contacts[i].name.split(' ');
+      let firstInitial = name[0].charAt(0);
+      if(name.length > 1){
+        let secondInitial = name[1].charAt(0);
+        let initial = firstInitial + secondInitial;
+        this.initials.push(initial);
+      } else {
+        this.initials.push(firstInitial);
+      }
+    }
   }
 
   private updateSidebarStyles() {

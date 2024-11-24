@@ -3,7 +3,23 @@
 <div class="content">
     <div class="left-container">
         <button (click)="openAddContact($event)">Add new contact <img src="./assets/img/contacts/person_add.svg"></button>
-        <app-letter-a></app-letter-a>
+        <div class="contacts">
+            @for (letter of letters; track $index){
+                <span> {{ letter }}</span>
+                <div></div>
+            @for (contact of contacts; track $index){
+                @if(letter == contact.name.charAt(0)){
+                    <app-letter-a
+                [letter] = "letter"
+                [name] = "contact.name"
+                [email] = "contact.email"
+                [initial] = "initials[$index]"
+                >
+                </app-letter-a>
+                }
+            }
+        }
+        </div>
     </div>
     <div class="right-container">
         <div class="flex gap-16">
