@@ -8,7 +8,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Contact } from '../models/contact';
-import { Firestore, collection, getDocs } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, doc, getDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-contact',
@@ -45,6 +45,7 @@ export class ContactComponent implements OnInit {
   ngOnInit(): void {
     this.isSidebarActive = this.sidebarService.getSidebarStatus();
     this.updateSidebarStyles();
+    this.loadSingleDoc('contacts', '6yJkBKICDmMelI951ArR');
 
     this.sidebarService.sidebarStatus$.subscribe((status) => {
       this.isSidebarActive = status;
@@ -120,6 +121,20 @@ export class ContactComponent implements OnInit {
     this.contactEmail = contactmail;
     this.contactPhone = contactphone;
     this.contactInitials = initials;
+  }
+
+  async loadSingleDoc(colId: string, docId: string): Promise<void> {
+    try {
+      const docRef = doc(collection(this.firestore, colId), docId); // Dokumentreferenz erstellen
+      const docSnap = await getDoc(docRef); // Daten abrufen
+      if (docSnap.exists()) {
+        console.log('Dokumentdaten:', docSnap.data());
+      } else {
+        console.log('Kein Dokument gefunden.');
+      }
+    } catch (error) {
+      console.error('Fehler beim Abrufen des Dokuments:', error);
+    }
   }
 
   private updateSidebarStyles() {

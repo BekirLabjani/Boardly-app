@@ -18,8 +18,9 @@ export class EditContactComponent implements OnInit {
   }
 
   saveEdittedContact(){
-    
+
   }
+
 
   closeEditContact(){
     this.contactComponent.closeEditContact();
