@@ -67,15 +67,31 @@ mat-mdc-dialog-surface,
   
 }
 
-.boardVersionCircel {
-  border-radius: 100px;
-  width: 36px;
-  height: 36px;
-  text-align: center;
-  color: white;
-  border: solid 1px white;
+.circleAvatar {
+  border-radius: 44% 56% 60% 40% / 32% 40% 60% 68% ;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-left: -8px;
+  width: 42px;
+  height: 42px;
+  font-size: 24px;
+  border: solid;
+  font-family: "Inter", sans-serif;
+  >p {
+    margin: 0;
+    color: white;
+    cursor: pointer;
+  }
+}
+.background-circle {
+  background-color: green;
+}
+
+.dflex {
+  display: flex;
+}
+
+.addCircle {
+  margin-left: -10px;
+  background: gray;
 }

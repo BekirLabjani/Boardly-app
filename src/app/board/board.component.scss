@@ -217,12 +217,13 @@ body, .search-bar {
   
   .button-add-container {
     position: fixed;
-    bottom: 100px;
-    right: 100px;
+    bottom: 40px;
+    right: 70px;
   }
   .taskBoardTtle {
     min-width: 300px; 
     max-width: 300px;
+    min-height: 400px;
     gap: 16px;
     display: flex;
     flex-direction: column;
@@ -243,7 +244,7 @@ body, .search-bar {
   }
 
   .task-card {
-    position: absolute; 
+    position: relative; 
     width: calc(100% - 20px); 
     left: 10px; 
     height: 150px; 

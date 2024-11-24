@@ -23,20 +23,15 @@
       <section class="taskBoardTtle">
         <div class="todoHeadline headLineCss" id="TodoHeadline">
           <h2 class="progressTitles">To Do</h2>
-          <a
-            class="imgPlusTask"
-            href="#"    
-            id="todo"      >
-            <!-- Add task button icon -->
-          </a>
         </div>
         <div class="tasksCardsDiv" id="todo" ondrop="moveIt('todo')" ondragover="allowDrop(event); highlight('todo')" ondragleave="removeHighlight('todo')" >
           @for (task of todoTasks; track $index) {
             <app-task class="task-card" 
-            [ngStyle]="{ 'top': ($index * 105) + 'px', 'left': '0' }"
+            [ngStyle]="{ 'top': (-(($index + 1) * 20)) + 'px', 'left': '0' }"
             [category]="task.category" 
             [title]="task.title" 
             [description]="task.description"
+            [assignTo]="task.assignTo"
             [priority]="task.priority"
             (click)="handleClick($event, task)"
             [attr.data-task-id]="task.id">
@@ -49,12 +44,6 @@
       <section class="taskBoardTtle">
         <div class="inProgressHeadline headLineCss" id="inProgressHeadline">
           <h2 class="progressTitles">In Progress</h2>
-          <a
-            class="imgPlusTask"
-            href="#"
-          >
-            <!-- Add task button icon -->
-          </a>
         </div>
         <div
           class="inProgress tasksCardsDiv"
@@ -81,11 +70,6 @@
       <section class="taskBoardTtle">
         <div class="awaitFeedbackHeadline headLineCss" id="awaitFeedbackHeadline">
           <h2 class="progressTitles">Await FeedBack</h2>
-          <a
-            class="imgPlusTask"
-            href="#"          >
-            <!-- Add task button icon -->
-          </a>
         </div>
         <div
           class="awaitFeedback tasksCardsDiv"
@@ -120,7 +104,6 @@
           ondragover="allowDrop(event); highlight('done')"
           ondragleave="removeHighlight('done')"
         >
-          <!-- Tasks in 'Done' will be displayed here -->
         </div>
       </section>
     </div>

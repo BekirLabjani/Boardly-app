@@ -1,25 +1,36 @@
-<div class="card shadow" [ngClass]="{
-  'priority-low': priority === 'low',
-  'priority-medium': priority === 'medium',
-  'priority-high': priority === 'high'
-}">
-    <div class="category">
-      <span [ngClass]="{
+<div
+  class="card shadow"
+  [ngClass]="{
+    'priority-low': priority === 'low',
+    'priority-medium': priority === 'medium',
+    'priority-high': priority === 'high'
+  }"
+>
+  <div class="category">
+    <span
+      [ngClass]="{
         'category-user': category === 'user',
         'category-frontend': category === 'frontend',
         'category-backend': category === 'backend',
-        'category-style': category === 'style'
-      }">
-        {{ category }}
-      </span>
-    </div>
-    <div class="title">
-      <span><b>{{ title }}</b></span>
-    </div>
-    <div class="description">
-      <span>{{ description}}</span>  <!-- Hier wird eine Liste von Subtasks angezeigt -->
-    </div>
-    <div class="progressbar">
-      <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-    </div>
+        'category-style': category === 'style',
+        'default-category': !['user', 'frontend', 'backend', 'style'].includes(
+          category
+        )
+      }"
+    >
+      {{ category }}
+    </span>
   </div>
+  <div class="title">
+    <span><b>{{ title }}</b></span>
+    <span><b>{{ assignTo }}</b></span>
+  </div>
+  <div class="description">
+    <span>{{ description }}</span>
+    <!-- Hier wird eine Liste von Subtasks angezeigt -->
+  </div>
+  <div class="progressbar">
+    <mat-progress-bar mode="determinate" [value]="calculateProgress()">
+    </mat-progress-bar>
+  </div>
+</div>

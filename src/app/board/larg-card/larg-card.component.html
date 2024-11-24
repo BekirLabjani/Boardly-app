@@ -1,23 +1,5 @@
 <mat-dialog-content class="dialog">
-  <!-- <h1 mat-dialog-title>{{ data.title }}</h1>
-  
-    <p><strong>Description:</strong> {{ data.description }}</p>
-    <p><strong>Assigned to:</strong> {{ data.assignTo }}</p>
-    <p><strong>Due Date:</strong> {{ data.duDate }}</p>
-    <p><strong>Priority:</strong> {{ data.priority }}</p>
-    <p><strong>Category:</strong> {{ data.category }}</p>
-  
-    @if (data.subTasks.length > 0) {
-      <div>
-          <h3>Subtask</h3>
-          <ul>
-              @for (sublist of data.subTasks; track $index) {
-                  <li>{{sublist}}</li>
-              }
-          </ul>
-      </div>
-    }
-  -->
+
   <div class="category">
     <span>{{ data.category }}</span>
   </div>
@@ -33,9 +15,26 @@
   </div>
   <div class="assign">
     <span>Assing To:</span>
-      <div class="boardVersionCircel" id="circle">
-        <p class="nameIdList" id="name">{{ data.assign }}</p>
+    <div class="dflex">
+  
+      <div class="dflex">
+        @for (assign of data.assignTo; track $index) {
+          @if ($index === 0) {
+            <!-- Zeige den ersten Buchstaben des ersten Kontakts -->
+            <div class="circleAvatar background-circle">
+              <p class="" id="">{{ assign | slice: 0:1 }}</p>
+            </div>
+          } @else if ($index === 1) {
+            <!-- Zeige "1+" für mehr als einen Kontakt -->
+            <div class="circleAvatar background-circle addCircle">
+              <p class="" id="">{{data.assignTo.length - 1}}+</p>
+            </div>
+            <!-- Schleife abbrechen, um keine weiteren Elemente zu rendern -->
+          }
+        }
       </div>
+      
+    </div>    
   </div>
   <div class="subs">
     <span>{{ data.subs }}</span>

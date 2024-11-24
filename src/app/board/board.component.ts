@@ -45,7 +45,7 @@ export class BoardComponent implements OnInit {
   inProgressTasks: Task[] = []; 
   awaitFeedBack: Task[] = []; 
   priority:  'low' | 'medium' | 'high' = 'low';
-
+  assignTo: string = ''; 
 
   constructor(
     private firestore: Firestore,
@@ -79,8 +79,8 @@ export class BoardComponent implements OnInit {
       this.todoTasks = this.tasks.filter(task => task.status === 'todo');
       console.log(this.todoTasks);
       
-      this.inProgressTasks = this.tasks.filter(task => task.status === 'In Progress');
-      this.awaitFeedBack = this.tasks.filter(task => task.status === 'Await FeedBack');
+      // this.inProgressTasks = this.tasks.filter(task => task.status === 'In Progress');
+      // this.awaitFeedBack = this.tasks.filter(task => task.status === 'Await FeedBack');
     }
     
     
