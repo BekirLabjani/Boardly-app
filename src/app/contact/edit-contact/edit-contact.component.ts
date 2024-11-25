@@ -48,6 +48,12 @@ export class EditContactComponent implements OnInit {
     this.contactComponent.reloadPage();
   }
 
+  deleteContact(ID: any){
+    this.contactComponent.deleteContact(ID);
+    this.closeEditContact();
+    this.contactComponent.reloadPage();
+  }
+
 
   closeEditContact(){
     this.contactComponent.closeEditContact();

@@ -8,7 +8,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Contact } from '../models/contact';
-import { Firestore, collection, getDocs, doc, getDoc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, doc, getDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-contact',
@@ -28,6 +28,7 @@ import { Firestore, collection, getDocs, doc, getDoc, updateDoc } from '@angular
 export class ContactComponent implements OnInit {
   isSidebarActive: boolean = true;
   contactAdded: boolean = false;
+  contactDeleted: boolean = false;
   contactClicked: boolean = false;
   contacts: Contact[] = [];
   letters: string[] = [];
@@ -155,6 +156,18 @@ export class ContactComponent implements OnInit {
       }
     }
 
+    async deleteContact(docId: string){
+      const docRef = doc(collection(this.firestore, 'contacts'), docId); // Dokumentreferenz erstellen
+      await deleteDoc(doc(this.firestore, 'contacts', docId));
+      this.contactDeleted = true;
+      this.animateDeletedContact();
+    }
+
+    deleteContactDirectly(event: Event){
+      event.preventDefault();
+      this.deleteContact(this.contactId);
+    }
+
   private updateSidebarStyles() {
     const contactMainElement = this.el.nativeElement.querySelector('.content');
     if (this.isSidebarActive) {
@@ -206,6 +219,15 @@ export class ContactComponent implements OnInit {
       overlay?.classList.add('d-none'); // Overlay verstecken
       addContact?.classList.remove('slideOut'); // Klasse entfernen
     }, 500);
+  }
+
+  animateDeletedContact() {
+    if (this.contactDeleted) {
+      setTimeout(() => {
+        this.contactDeleted = false;
+        window.location.reload(); // Seite wird neu geladen
+      }, 2000);
+    }
   }
 
   animateAddedContact() {

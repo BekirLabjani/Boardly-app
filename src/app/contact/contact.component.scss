@@ -1499,6 +1499,7 @@ app-add-contact {
   animation: slide ease-in-out 500ms;
 }
 
+
 .contacts {
   display: flex;
   flex-direction: column;
@@ -1507,6 +1508,7 @@ app-add-contact {
   width: 320px;
   overflow-y: auto;
   overflow-x: hidden;
+  gap: 16px;
   > span {
     font-size: 32px;
     margin-bottom: 8px;
