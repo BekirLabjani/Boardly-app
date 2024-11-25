@@ -14,7 +14,7 @@ import { MAT_DIALOG_DATA, MatDialog,MatDialogActions,MatDialogClose,MatDialogCon
 import { GeneralFunktionsService } from '../service/general-funktions.service';
 import { TaskComponent } from './task/task.component';
 import { NgStyle } from '@angular/common';
-import { LargCardComponent } from './larg-card/larg-card.component';
+import { TaskDetailDialogComponent } from './task-detail-dialog/task-detail-dialog.component';
 
 
 
@@ -28,7 +28,6 @@ import { LargCardComponent } from './larg-card/larg-card.component';
   MatDividerModule, 
   MatTooltipModule,
   TaskComponent,
-  LargCardComponent,
   NgStyle,
   ],
   templateUrl: './board.component.html',
@@ -144,7 +143,7 @@ export class BoardComponent implements OnInit {
 
   openLargCard(task: any) {
     // Öffne den Dialog mit den Details der Aufgabe
-    const dialogRef = this.dialog.open(LargCardComponent, {
+    const dialogRef = this.dialog.open(TaskDetailDialogComponent, {
       data: task,  // Übergebe die Task-Daten an den Dialog
     });
 
