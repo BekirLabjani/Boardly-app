@@ -11,10 +11,16 @@ import { Contact } from '../../models/contact';
 })
 export class EditContactComponent implements OnInit {
 
+  contactId = this.contactComponent.contactId;
+  contactName = '';
+  contactEmail = '';
+  contactPhone = '';
+
   updatedData = {
-    name: "contactComponent.contactName",
-    email: "contactComponent.contactEmail",
-    phone: "contactComponent.phone"
+    id: this.contactId,
+    name: '',
+    email: '',
+    phone: ''
   }
 
   constructor(public contactComponent: ContactComponent){
@@ -24,9 +30,28 @@ export class EditContactComponent implements OnInit {
     
   }
 
+  getValuesOfInputs(){
+    let name = document.getElementById('input-name') as HTMLInputElement;
+    this.updatedData.name = name.value;
+    let email = document.getElementById('input-email') as HTMLInputElement;
+    this.updatedData.email = email.value;
+    let phone = document.getElementById('input-phone') as HTMLInputElement;
+    this.updatedData.phone = phone.value;
+  }
+
   saveEdittedContact(){
-    // let id: string = document.getElementById('contact.id');
-    // this.contactComponent.updateContact(id: String, this.updatedData: Contact);
+    this.getValuesOfInputs();
+    console.log(this.updatedData);
+    console.log(this.contactComponent.contactId);
+    this.contactComponent.updateContact(this.contactComponent.contactId, this.updatedData);
+    this.closeEditContact();
+    this.contactComponent.reloadPage();
+  }
+
+  deleteContact(ID: any){
+    this.contactComponent.deleteContact(ID);
+    this.closeEditContact();
+    this.contactComponent.reloadPage();
   }
 
 

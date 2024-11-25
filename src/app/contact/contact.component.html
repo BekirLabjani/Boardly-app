@@ -15,7 +15,7 @@
                 [name] = "contact.name"
                 [email] = "contact.email"
                 [initial] = "initials[$index]"
-                (click)="showContact(contact.name, contact.email, contact.phone, initials[$index])"
+                (click)="showContact(contact.name, contact.email, contact.phone, initials[$index], contact.id)"
                 >
                 </app-letter-a>
                 }
@@ -39,7 +39,7 @@
                             <img src="./assets/img/contacts/edit.svg" alt="pen">
                             <span>edit</span>
                         </a>
-                        <a href="#" class="flex">
+                        <a (click)="deleteContactDirectly($event)" href="#" class="flex">
                             <img src="./assets/img/contacts/delete.svg" alt="delete">
                             <span>delete</span>
                         </a>
@@ -72,5 +72,11 @@
 <div *ngIf="contactAdded" class="overlay">
     <div id="add-contact-animation" class="succesfullyAddedContact">
         Contact succesfully created
+    </div>
+</div>
+
+<div *ngIf="contactDeleted" class="overlay">
+    <div id="add-contact-animation" class="succesfullyAddedContact">
+        Contact succesfully deleted
     </div>
 </div>

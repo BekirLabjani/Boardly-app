@@ -26,7 +26,7 @@
         <img src="./assets/img/contacts/call.svg" alt="phone-icon" />
       </div>
       <div class="flex">
-        <button class="delete-button">Delete</button>
+        <button (click)="deleteContact( contactComponent.contactId )" class="delete-button">Delete</button>
         <button (click)="saveEdittedContact()" class="save-button">
             <div>Save</div>
             <img src="./assets/img/contacts/check.svg" alt="check" />

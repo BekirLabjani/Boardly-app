@@ -8,7 +8,7 @@ import { AddContactComponent } from './add-contact/add-contact.component';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Contact } from '../models/contact';
-import { Firestore, collection, getDocs, doc, getDoc, updateDoc } from '@angular/fire/firestore';
+import { Firestore, collection, getDocs, doc, getDoc, updateDoc, deleteDoc } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-contact',
@@ -28,6 +28,7 @@ import { Firestore, collection, getDocs, doc, getDoc, updateDoc } from '@angular
 export class ContactComponent implements OnInit {
   isSidebarActive: boolean = true;
   contactAdded: boolean = false;
+  contactDeleted: boolean = false;
   contactClicked: boolean = false;
   contacts: Contact[] = [];
   letters: string[] = [];
@@ -36,6 +37,7 @@ export class ContactComponent implements OnInit {
   contactEmail: string = '';
   contactPhone: string = '';
   contactInitials: string = '';
+  contactId: string = '';
 
 
   constructor(
@@ -116,12 +118,13 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  showContact(contactname: string, contactmail: string, contactphone: string, initials: string){
+  showContact(contactname: string, contactmail: string, contactphone: string, initials: string, id: string){
     this.contactClicked = true;
     this.contactName = contactname;
     this.contactEmail = contactmail;
     this.contactPhone = contactphone;
     this.contactInitials = initials;
+    this.contactId = id;
   }
 
   async loadSingleDoc(colId: string, docId: string): Promise<void> {
@@ -151,6 +154,18 @@ export class ContactComponent implements OnInit {
       } catch (error) {
         console.error('Fehler beim Aktualisieren des Dokuments:', error);
       }
+    }
+
+    async deleteContact(docId: string){
+      const docRef = doc(collection(this.firestore, 'contacts'), docId); // Dokumentreferenz erstellen
+      await deleteDoc(doc(this.firestore, 'contacts', docId));
+      this.contactDeleted = true;
+      this.animateDeletedContact();
+    }
+
+    deleteContactDirectly(event: Event){
+      event.preventDefault();
+      this.deleteContact(this.contactId);
     }
 
   private updateSidebarStyles() {
@@ -206,6 +221,15 @@ export class ContactComponent implements OnInit {
     }, 500);
   }
 
+  animateDeletedContact() {
+    if (this.contactDeleted) {
+      setTimeout(() => {
+        this.contactDeleted = false;
+        window.location.reload(); // Seite wird neu geladen
+      }, 2000);
+    }
+  }
+
   animateAddedContact() {
     if (this.contactAdded) {
       setTimeout(() => {
@@ -213,5 +237,11 @@ export class ContactComponent implements OnInit {
         window.location.reload(); // Seite wird neu geladen
       }, 2000);
     }
+  }
+
+  reloadPage(){
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
   }
 }
