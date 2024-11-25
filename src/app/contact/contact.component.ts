@@ -36,6 +36,7 @@ export class ContactComponent implements OnInit {
   contactEmail: string = '';
   contactPhone: string = '';
   contactInitials: string = '';
+  contactId: string = '';
 
 
   constructor(
@@ -116,12 +117,13 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  showContact(contactname: string, contactmail: string, contactphone: string, initials: string){
+  showContact(contactname: string, contactmail: string, contactphone: string, initials: string, id: string){
     this.contactClicked = true;
     this.contactName = contactname;
     this.contactEmail = contactmail;
     this.contactPhone = contactphone;
     this.contactInitials = initials;
+    this.contactId = id;
   }
 
   async loadSingleDoc(colId: string, docId: string): Promise<void> {
@@ -213,5 +215,11 @@ export class ContactComponent implements OnInit {
         window.location.reload(); // Seite wird neu geladen
       }, 2000);
     }
+  }
+
+  reloadPage(){
+    setTimeout(() => {
+      window.location.reload();
+    }, 1500);
   }
 }
