@@ -70,11 +70,11 @@
 }// tukumekishir moakirukushi
 
 .default-category::before {
-  content: "no category: "; /* Der Text, den du hinzufügen möchtest */
+  content: "no category: ";
   font-weight: bold;
   position: relative;
-  top: 10%;
-  left: 10px;
+  top: 6%;
+  left: 0px;
   transform: translateY(-50%);
   color: red;
 }
