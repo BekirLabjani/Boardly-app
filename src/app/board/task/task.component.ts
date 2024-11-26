@@ -11,7 +11,7 @@ interface SubTask {
 @Component({
   selector: 'app-task',
   standalone: true,
-  imports: [NgClass, MatProgressBarModule],
+  imports: [NgClass, MatProgressBarModule,],
   templateUrl: './task.component.html',
   styleUrls: ['./task.component.scss'], // Fix: `styleUrls` statt `styleUrl`
 })
@@ -25,7 +25,7 @@ export class TaskComponent {
 
   // Berechnung des Fortschritts basierend auf abgeschlossenen SubTasks
   calculateProgress(): number {
-    if (!this.subTasks || this.subTasks.length === 0) return 0;
+    if (!this.subTasks || this.subTasks.length === 0) return 50;
     const completedTasks = this.subTasks.filter(task => task.completed).length;
     return (completedTasks / this.subTasks.length) * 100;
   }

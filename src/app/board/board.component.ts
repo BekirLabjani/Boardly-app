@@ -157,4 +157,18 @@ export class BoardComponent implements OnInit {
       }
     });
   }
+  
+  async largCardUpdate(taskId: string, updatedData: Partial<Task>): Promise<void> {
+    try {
+      // Referenz auf das Dokument in der Sammlung 'contacts'
+      const docRef = doc(this.firestore, 'contacts', taskId);
+
+      // Dokument aktualisieren
+      await updateDoc(docRef, updatedData);
+
+      console.log('Dokument erfolgreich aktualisiert.');
+    } catch (error) {
+      console.error('Fehler beim Aktualisieren des Dokuments:', error);
+    }
+  }
 }

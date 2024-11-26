@@ -1,11 +1,13 @@
 import { ChangeDetectionStrategy, Component, Inject,} from '@angular/core';
 import { MatOption, provideNativeDateAdapter } from '@angular/material/core';
 import { MatDatepicker, MatDatepickerActions, MatDatepickerModule } from '@angular/material/datepicker';
-import { MAT_DIALOG_DATA, MatDialogActions, MatDialogContent, MatDialogRef } from '@angular/material/dialog';
-import { MatFormField, MatLabel } from '@angular/material/form-field';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatDialogContent, MatDialogRef } from '@angular/material/dialog';
+import { MatFormField, MatFormFieldControl, MatLabel } from '@angular/material/form-field';
 import { MatSelect } from '@angular/material/select';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { MatInput } from '@angular/material/input';
+import { BoardComponent } from '../../board/board.component';
 
 
 @Component({
@@ -23,6 +25,11 @@ import { CommonModule } from '@angular/common';
     MatDialogActions,
      ReactiveFormsModule,
      CommonModule,
+     MatFormField,
+     MatInput,
+     MatSelect,
+     MatDatepicker,
+
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
   providers: [provideNativeDateAdapter()],
@@ -33,6 +40,8 @@ export class EditdialogComponent {
   editForm: FormGroup;
 
   constructor(
+    public boardComponent : BoardComponent,
+    private dialog: MatDialog,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<EditdialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data: any
@@ -48,10 +57,7 @@ export class EditdialogComponent {
   }
 
   save() {
-    if (this.editForm.valid) {
-      // Schließe den Dialog und sende die aktualisierten Daten zurück
-      this.dialogRef.close(this.editForm.value);
-    }
+    // this.boardComponent.largCardUpdate()
   }
 
   cancel() {

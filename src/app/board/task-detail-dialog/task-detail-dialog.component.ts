@@ -1,10 +1,11 @@
 import { Component, Inject, Input} from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogActions, MatDialogContent, MatDialogRef } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatDialogContent, MatDialogRef } from '@angular/material/dialog';
 import { Task } from '../../models/task';
 import { FormsModule } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
+import { EditdialogComponent } from '../../addtaskdialog/editdialog/editdialog.component';
 
 
 
@@ -23,11 +24,13 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrls: ['./task-detail-dialog.component.scss'],
 })
 export class TaskDetailDialogComponent {
+  tasks: Task[] = [];
   // Array zum Verwalten des Status der Subtasks (true/false)
   subTasksStatus: boolean[] = [];
   
 
   constructor(
+    private dialog: MatDialog, 
     @Inject(MAT_DIALOG_DATA) public task: Task,
     private dialogRef: MatDialogRef<TaskDetailDialogComponent>
   ) {
@@ -39,5 +42,18 @@ export class TaskDetailDialogComponent {
     // Beispiel: Subtasks-Status speichern oder verarbeiten
     console.log('Updated Subtasks Status:', this.subTasksStatus);
     this.dialogRef.close({ updatedTask: this.task, subTasksStatus: this.subTasksStatus });
+  }
+
+  openEditDialog(task: Task) {
+    const dialogRef = this.dialog.open(EditdialogComponent, { data: task });
+  
+    dialogRef.afterClosed().subscribe(result => {
+      if (result?.updatedTask) {
+        const index = this.tasks.findIndex(t => t.id === result.updatedTask.id);
+        if (index > -1) {
+          this.tasks[index] = result.updatedTask;
+        }
+      }
+    });
   }
 }

@@ -16,14 +16,12 @@ import {ChangeDetectionStrategy} from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 import { Categorys } from '../models/categorys';
 import {MatButtonModule} from '@angular/material/button';
-import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatListModule} from '@angular/material/list';
 import { MatRadioModule } from '@angular/material/radio';
 import { GeneralFunktionsService } from '../service/general-funktions.service';
 import { MatDialog, MatDialogActions, MatDialogRef } from '@angular/material/dialog';
-import { BehaviorSubject } from 'rxjs';
-import { Injectable } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
+import { MatTooltipModule } from '@angular/material/tooltip';
 
 
 @Component({
@@ -40,7 +38,6 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
     MatSelectModule,
     MatFormFieldModule,
     MatSelectModule,
-    FormsModule,
     MatButtonModule,
     MatTooltipModule,
     MatListModule,
@@ -49,7 +46,7 @@ import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
     ReactiveFormsModule,
     MatDialogActions,
   ],
-    changeDetection: ChangeDetectionStrategy.OnPush,
+changeDetection: ChangeDetectionStrategy.OnPush,
 providers: [provideNativeDateAdapter()],
 templateUrl: './addtaskdialog.component.html',
 styleUrls: ['./addtaskdialog.component.scss']
