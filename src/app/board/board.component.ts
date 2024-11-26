@@ -15,6 +15,7 @@ import { GeneralFunktionsService } from '../service/general-funktions.service';
 import { TaskComponent } from './task/task.component';
 import { NgStyle } from '@angular/common';
 import { TaskDetailDialogComponent } from './task-detail-dialog/task-detail-dialog.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -29,6 +30,7 @@ import { TaskDetailDialogComponent } from './task-detail-dialog/task-detail-dial
   MatTooltipModule,
   TaskComponent,
   NgStyle,
+  FormsModule,
   ],
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss', 'taskscomponent.scss']
@@ -71,16 +73,18 @@ export class BoardComponent implements OnInit {
 
 
     async loadTasks() {
-      this.tasks = await this.taskService.getTasks();  // Alle Aufgaben holen
-      console.log('All tasks:', this.tasks);
+      try {
+        this.tasks = await this.taskService.getTasks();
+        console.log('All tasks:', this.tasks);
     
-      // Filtern der Aufgaben basierend auf ihrem Priority-Status
-      this.todoTasks = this.tasks.filter(task => task.status === 'todo');
-      console.log(this.todoTasks);
-      
-      // this.inProgressTasks = this.tasks.filter(task => task.status === 'In Progress');
-      // this.awaitFeedBack = this.tasks.filter(task => task.status === 'Await FeedBack');
+        this.todoTasks = this.tasks.filter(task => task.status === 'todo');
+        // this.inProgressTasks = this.tasks.filter(task => task.status === 'in-progress');
+        // this.awaitFeedBack = this.tasks.filter(task => task.status === 'await-feedback');
+      } catch (error) {
+        console.error('Error loading tasks:', error);
+      }
     }
+    
     
     
   openDialog() {
@@ -141,16 +145,16 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  openLargCard(task: any) {
-    // Öffne den Dialog mit den Details der Aufgabe
-    const dialogRef = this.dialog.open(TaskDetailDialogComponent, {
-      data: task,  // Übergebe die Task-Daten an den Dialog
-    });
-
+  openLargCard(task: Task) {
+    const dialogRef = this.dialog.open(TaskDetailDialogComponent, { data: task });
+  
     dialogRef.afterClosed().subscribe(result => {
-      console.log('Dialog was closed');
-      // Hier kannst du etwas tun, wenn der Dialog geschlossen wurde
+      if (result?.updatedTask) {
+        const index = this.tasks.findIndex(t => t.id === result.updatedTask.id);
+        if (index > -1) {
+          this.tasks[index] = result.updatedTask;
+        }
+      }
     });
   }
-
 }

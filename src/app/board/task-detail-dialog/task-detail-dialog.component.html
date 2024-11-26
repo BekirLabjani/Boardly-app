@@ -1,27 +1,27 @@
-<div class="dialog-header">
-    <h2>{{ task.title }}</h2>
-  </div>
-  <div class="dialog-content">
-    <p><b>Assigned To:</b> {{ task.assignTo.join(', ') }}</p>
-    <p><b>Description:</b> {{ task.description }}</p>
-    <p><b>Due Date:</b> {{ task.duDate }}</p>
-    <p><b>Priority:</b> {{ task.priority }}</p>
-    <p><b>Category:</b> {{ task.category }}</p>
-    <p><b>Status:</b> {{ task.status }}</p>
-  
-    <form>
-      <div *ngFor="let subTask of task.subTasks; let i = index">
+
+
+<mat-dialog-content>
+  <h1>{{task.title}}</h1>
+  <p><b>Assigned To:</b> {{ task.assignTo.join(', ') }}</p>
+  <p><b>Description:</b> {{ task.description }}</p>
+  <p><b>Due Date:</b> {{ task.duDate }}</p>
+  <p><b>Priority:</b> {{ task.priority }}</p>
+  <p><b>Category:</b> {{ task.category }}</p>
+  <p><b>Status:</b> {{ task.status }}</p>
+  <form>
+    @for (subs of task.subTasks; track $index) {
+      <div>
         <label>
           <input 
             type="checkbox" 
-            [(ngModel)]="subTasksStatus[i]" 
-            name="subTask{{ i }}" />
-          {{ subTask }}
+            [(ngModel)]="subTasksStatus[$index]" 
+            name="subTask{{ $index }}" />
+          {{ subs }}
         </label>
       </div>
-    </form>
-  </div>
-  <div class="dialog-actions">
-    <button mat-button mat-dialog-close>Close</button>
-  </div>
-  
+    }
+  </form>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Close</button>
+</mat-dialog-actions>

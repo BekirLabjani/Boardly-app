@@ -5,10 +5,14 @@ export interface Task {
   assignTo: string[];
   duDate: string;
   priority: 'low' | 'medium' | 'high';
-  category: 'user' | 'frontend' | 'backend' | 'style';
-  subTasks: string[];
-  status: 'todo' | 'in progress' | 'await feedback' | 'done';
+  category: string;
+  subTasks: SubTask[]; // SubTasks sind Objekte, nicht Strings
+  status: string;
 }
 
   
+export interface SubTask {
+  title: string;
+  completed: boolean;
+}
 
