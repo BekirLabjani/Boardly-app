@@ -7,7 +7,7 @@ import { MatSelect } from '@angular/material/select';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatInput } from '@angular/material/input';
-import { BoardComponent } from '../../board/board.component';
+import { MatList, MatListItem } from '@angular/material/list';
 
 
 @Component({
@@ -29,6 +29,8 @@ import { BoardComponent } from '../../board/board.component';
      MatInput,
      MatSelect,
      MatDatepicker,
+    MatList, 
+    MatListItem
 
   ],
   changeDetection: ChangeDetectionStrategy.OnPush,
@@ -40,7 +42,6 @@ export class EditdialogComponent {
   editForm: FormGroup;
 
   constructor(
-    public boardComponent : BoardComponent,
     private dialog: MatDialog,
     private fb: FormBuilder,
     private dialogRef: MatDialogRef<EditdialogComponent>,
@@ -57,7 +58,10 @@ export class EditdialogComponent {
   }
 
   save() {
-    // this.boardComponent.largCardUpdate()
+    if (this.editForm.valid) {
+      // Schließe den Dialog und sende die aktualisierten Daten zurück
+      this.dialogRef.close(this.editForm.value);
+    }
   }
 
   cancel() {

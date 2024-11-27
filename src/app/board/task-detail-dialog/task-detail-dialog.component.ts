@@ -1,11 +1,12 @@
 import { Component, Inject, Input} from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialog, MatDialogActions, MatDialogContent, MatDialogRef } from '@angular/material/dialog';
 import { Task } from '../../models/task';
-import { FormsModule } from '@angular/forms';
 import { MatFormField } from '@angular/material/form-field';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { EditdialogComponent } from '../../addtaskdialog/editdialog/editdialog.component';
+import { CommonModule } from '@angular/common';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';  // Importiere beide Module
 
 
 
@@ -19,7 +20,10 @@ import { EditdialogComponent } from '../../addtaskdialog/editdialog/editdialog.c
     MatDialogActions,
     MatDialogContent,
     MatButtonModule,
-    MatDialogModule,
+    MatDialogModule, 
+     CommonModule,
+    FormsModule,        // FormsModule für ngModel
+    ReactiveFormsModule 
     ],
   styleUrls: ['./task-detail-dialog.component.scss'],
 })
