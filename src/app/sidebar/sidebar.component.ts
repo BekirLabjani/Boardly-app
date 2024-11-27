@@ -48,4 +48,9 @@ export class SidebarComponent {
     event.preventDefault();
     this.router.navigateByUrl('/summary');
   }
+
+  openPrivacyPolicy(event: Event) {
+    event.preventDefault();
+    this.router.navigateByUrl('/privacypolicy');
+  }
 }

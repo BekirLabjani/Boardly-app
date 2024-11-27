@@ -4,6 +4,7 @@ import { SummaryComponent } from './summary/summary.component';
 import { BoardComponent } from './board/board.component';
 import { SingUpComponent } from './sing-up/sing-up.component';
 import { ContactComponent } from './contact/contact.component';
+import { PrivacyPolicyComponent } from './shared/privacy-policy/privacy-policy.component';
 
 export const routes: Routes = [
     { path: '', component: BoardComponent },
@@ -12,4 +13,5 @@ export const routes: Routes = [
     { path: 'contact', component: ContactComponent },
     { path: 'login', component: LogInComponent },
     { path: 'regist', component: SingUpComponent },
+    { path: 'privacypolicy', component: PrivacyPolicyComponent },
 ];
