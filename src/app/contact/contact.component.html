@@ -15,7 +15,8 @@
                 [name] = "contact.name"
                 [email] = "contact.email"
                 [initial] = "initials[$index]"
-                (click)="showContact(contact.name, contact.email, contact.phone, initials[$index], contact.id)"
+                [color] = "contact.color"
+                (click)="showContact(contact.name, contact.email, contact.phone, initials[$index], contact.id, contact.color)"
                 >
                 </app-letter-a>
                 }
@@ -31,7 +32,7 @@
         </div>
         <div class="column gap-80" [ngClass]="{ 'd-none': !contactClicked }">
             <div class="flex gap-80">
-                <div class="circle">{{ contactInitials }}</div>
+                <div class="circle" [ngStyle]="{'background-color': contactColor}">{{ contactInitials }}</div>
                 <div class="column gap-16">
                     <h4>{{ contactName }}</h4>
                     <div class="flex gap-16">

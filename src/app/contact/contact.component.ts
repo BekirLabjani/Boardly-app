@@ -38,6 +38,7 @@ export class ContactComponent implements OnInit {
   contactPhone: string = '';
   contactInitials: string = '';
   contactId: string = '';
+  contactColor: string = '';
 
 
   constructor(
@@ -80,9 +81,20 @@ export class ContactComponent implements OnInit {
   async loadContacts() {
     this.contacts = await this.getContacts();
     this.sortContactsAlphabetically();
+    this.loadColors();
     console.log('All contacts:', this.contacts);
     this.getFirstLetter();
     this.getInitials();
+  }
+
+  loadColors(){
+    for (let i = 0; i < this.contacts.length; i++) {
+      const contact = this.contacts[i];
+      if(!contact.color){
+        contact.color = '#00008B'; // Dunkelblau
+      } 
+      this.contactColor = contact.color;
+    }
   }
 
   sortContactsAlphabetically() {
@@ -118,13 +130,18 @@ export class ContactComponent implements OnInit {
     }
   }
 
-  showContact(contactname: string, contactmail: string, contactphone: string, initials: string, id: string){
+  showContact(contactname: string, contactmail: string, contactphone: string, initials: string, id: string, color: string | undefined){
     this.contactClicked = true;
     this.contactName = contactname;
     this.contactEmail = contactmail;
     this.contactPhone = contactphone;
     this.contactInitials = initials;
     this.contactId = id;
+    if(color){
+      this.contactColor = color;
+    } else {
+      color = '#00008B';
+    }
   }
 
   async loadSingleDoc(colId: string, docId: string): Promise<void> {

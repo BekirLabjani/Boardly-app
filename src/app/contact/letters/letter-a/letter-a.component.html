@@ -1,7 +1,7 @@
 <div class="content">
     <div class="name">
         <div class="flex-start">
-            <div class="circle">{{ initial }}</div>
+            <div class="circle" [ngStyle]="{'background-color': color}">{{ initial }}</div>
             <div class="column">
                 <span>{{ name }}</span>
                 <p>{{ email }}</p>

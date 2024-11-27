@@ -1,11 +1,13 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ContactComponent } from '../../contact.component';
 import { Contact } from '../../../models/contact';
+import { FormsModule } from '@angular/forms';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-letter-a',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './letter-a.component.html',
   styleUrl: './letter-a.component.scss',
 })
@@ -15,6 +17,7 @@ export class LetterAComponent implements OnInit {
   @Input() phone: string = '';
   @Input() letter: string = '';
   @Input() initial: any = '';
+  @Input() color: any = '';
   constructor(private contactComponent: ContactComponent) {
   }
 
