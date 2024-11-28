@@ -171,4 +171,53 @@ export class BoardComponent implements OnInit {
       console.error('Fehler beim Aktualisieren des Dokuments:', error);
     }
   }
+
+  /**
+ * Allows dropping of draggable elements.
+ * @param {Event} ev - Drag event.
+ */
+ allowDrop(ev: Event) {
+  ev.preventDefault();
+}
+
+/**
+ * Marks the start of dragging a task.
+ * @param {number} id - ID of the dragged task.
+ */
+// function startDragging(id) {
+//   draggedTask = id;
+// }
+
+/**
+ * Moves a task to a new category.
+ * @param {string} category - Category to move the task to.
+ * @returns {Promise<void>}
+ */
+async moveIt(category: string): Promise<void> {
+  // let currentWorkflow = tasks[draggedTask]["workflow"];
+  // tasks[draggedTask]["workflow"] = category;
+  // await setItem("task", JSON.stringify(tasks));
+  // let taskElement = document.getElementById(`task${draggedTask}`);
+  // taskElement.remove();
+  // taskCounts[currentWorkflow]--;
+  // await addOneTaskToBoard(draggedTask);
+  // removeHighlight(category);
+  // checkEmptyTasks();
+}
+
+/**
+ * Highlights the drop area when an element is dragged over it.
+ * @param {string} id - ID of the drop area.
+ */
+ highlight(id: string) {
+  // document.getElementById(id).classList.add("drag-area-highlight");
+}
+
+/**
+ * Removes the highlight from the drop area when an element is dragged out.
+ * @param {string} id - ID of the drop area.
+ */
+ removeHighlight(id: string) {
+  // document.getElementById(id).classList.remove("drag-area-highlight");
+}
 }
