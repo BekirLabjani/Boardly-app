@@ -53,4 +53,9 @@ export class SidebarComponent {
     event.preventDefault();
     this.router.navigateByUrl('/privacypolicy');
   }
+
+  openLegalNotice(event: Event) {
+    event.preventDefault();
+    this.router.navigateByUrl('/legalnotice');
+  }
 }
