@@ -51,22 +51,21 @@
       <div class="div"></div>
     }
   </div>
-  <form>  
-    @for (subs of task.subTasks; track $index) {
-    <div>
+  <form >
+    <div *ngFor="let subtask of subTasks; let i = index; trackBy: trackBySubtaskId">
       <label>
         <input
-          id="subTaskInput$index"
-          (change)="subTaskCompleted($index)"
+          id="subTaskInput{{ i }}"
           type="checkbox"
-          [(ngModel)]="subTasksStatus[$index]"
-          name="subTask{{ $index }}"
+          [(ngModel)]="subTasksStatus[i]"
+          name="subTask{{ i }}"
         />
-        {{ subs }}
+        {{ subtask.title }}
       </label>
     </div>
-    }
-  </form> 
+    
+  </form>
+  
 </div>
 
 

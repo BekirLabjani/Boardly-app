@@ -47,6 +47,7 @@ export class BoardComponent implements OnInit {
   awaitFeedBack: Task[] = []; 
   priority:  'low' | 'medium' | 'high' = 'low';
   assignTo: string = ''; 
+  
 
   constructor(
     private firestore: Firestore,

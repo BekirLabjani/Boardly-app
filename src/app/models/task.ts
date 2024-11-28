@@ -1,3 +1,5 @@
+import { SubInterface } from "./sub-interface";
+
 export interface Task {
   id: string;
   title: string;
@@ -6,13 +8,6 @@ export interface Task {
   duDate: string;
   priority: 'low' | 'medium' | 'high';
   category: string;
-  subTasks: SubTask[]; // SubTasks sind Objekte, nicht Strings
+  subTasks: SubInterface[]; // Korrekte Definition
   status: string;
 }
-
-  
-export interface SubTask {
-  title: string;
-  completed: boolean;
-}
-

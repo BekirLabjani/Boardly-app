@@ -1,4 +1,4 @@
-import { Component, Output, EventEmitter } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 import { HeaderComponent } from "../header/header.component";
 import { SidebarComponent } from '../sidebar/sidebar.component';
 import { Task } from '../models/task'; 
@@ -11,7 +11,7 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatIconModule} from '@angular/material/icon';
 import {MatInputModule} from '@angular/material/input';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-import {provideNativeDateAdapter} from '@angular/material/core';
+import {MatPseudoCheckbox, provideNativeDateAdapter} from '@angular/material/core';
 import {ChangeDetectionStrategy} from '@angular/core';
 import {MatSelectModule} from '@angular/material/select';
 import { Categorys } from '../models/categorys';
@@ -22,6 +22,9 @@ import { GeneralFunktionsService } from '../service/general-funktions.service';
 import { MatDialog, MatDialogActions, MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder, Validators, FormArray } from '@angular/forms';
 import { MatTooltipModule } from '@angular/material/tooltip';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { TaskService } from '../service/taskservie.service';
+import { SubtaskService } from '../service/subservice.service';
 
 
 @Component({
@@ -51,10 +54,11 @@ providers: [provideNativeDateAdapter()],
 templateUrl: './addtaskdialog.component.html',
 styleUrls: ['./addtaskdialog.component.scss']
 })
-export class AddtaskdialogComponent {
+export class AddtaskdialogComponent implements OnInit {
   @Output() add: EventEmitter<boolean> = new EventEmitter();
   taskForm: FormGroup;
   successMessageVisible = false; // Flag für die Sichtbarkeit des Erfolgs-Divs
+  subTasksStatus: boolean[] = []; // Array zur Verwaltung des Status
 
   title = '';
   description = '';
@@ -68,9 +72,9 @@ export class AddtaskdialogComponent {
     category: '',
     subTasks: [] as string[],
   };
+
   subtasks: string[] = []; // Liste der Unteraufgaben
   users = ['Anna', 'Peter', 'Max']; // Beispielnutzer
-
 
   toppings = new FormControl('');
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
@@ -84,12 +88,15 @@ export class AddtaskdialogComponent {
 
   
   value = ''; // Eingabewert für die Unteraufgabe
-
+  
 
   constructor(
     private firestore: Firestore,
+    private snackBar: MatSnackBar,
     private fb: FormBuilder,
     private auth: Auth , 
+    private taskService: TaskService,
+    private subtaskService: SubtaskService,
     private generalFunktionsService: GeneralFunktionsService,
     private dialogRef: MatDialogRef<AddtaskdialogComponent>, 
   ) 
@@ -104,57 +111,77 @@ export class AddtaskdialogComponent {
       subTasks: this.fb.array([]), // Dynamische Subtasks
     });
   }
-  
+
+  ngOnInit(): void {
+    this.initializeSubTaskStatus();
+  }
+
+  initializeSubTaskStatus() {
+    // Initialisiere den Status basierend auf der Anzahl der SubTasks
+    this.subTasksStatus = new Array(this.subTasks.length).fill(false);
+  }
 
   async addNewTask() {
     if (this.taskForm.valid) {
       const taskData = this.taskForm.value;
   
-      try {
-        // Erstelle die Aufgabe in Firestore
-        const taskRef = await addDoc(collection(this.firestore, 'tasks'), {
-          ...taskData, // Alle Formularfelder als Dokument hinzufügen
-          status: 'todo', // Initialer Status der Aufgabe
-          createdAt: new Date(), // Zeitstempel der Erstellung
-        });
-
-        console.log('Task successfully added to Firestore with ID:', taskRef.id);
+      // SubTasks müssen als Array von Objekten gespeichert werden
+      const subTasksArray = this.subTasks.controls.map(control => ({
+        title: control.value.title,
+        completed: control.value.completed,
+      }));
   
-        // Optionale Benutzerinformation, z.B. ein Hinweis auf Erfolg
+      try {
+        const taskRef = await addDoc(collection(this.firestore, 'tasks'), {
+          ...taskData,
+          subTasks: subTasksArray,
+          status: 'todo',
+          createdAt: new Date(),
+        });
+  
+        console.log('Task successfully added to Firestore with ID:', taskRef.id);
         alert('Task successfully added!');
   
-        // Zurücksetzen des Formulars
-        this.taskForm.reset({
-          title: '',
-          description: '',
-          assignTo: [],
-          duDate: '',
-          priority: 'low', // Standardwert wiederherstellen
-          category: '',
-          subTasks: [],
-        });
+        // Speichern der SubTasks im Service
+        this.subtaskService.setSubTasks(subTasksArray);
   
-        window.location.reload();  // Seite wird neu geladen
-
+        this.taskForm.reset();
+        this.subTasks.clear();
         this.onNoClick();
       } catch (error) {
         console.error('Error adding task to Firestore:', error);
         alert('An error occurred while adding the task. Please try again.');
       }
     } else {
-      console.error('Form is invalid');
-      alert('Please fill in all required fields correctly.');
+      alert('Please fill in all required fields.');
     }
   }
   
-  
-  
-  addSubtask(value: string) {
-    if (value) {
-      this.subTasks.push(this.fb.control(value));
-    }
+  removeSubtask(index: number) {
+    this.subTasks.removeAt(index);
   }
 
+  updateSubtaskCompletion(index: number, completed: boolean) {
+    const subTask = this.subTasks.at(index);
+    if (subTask) {
+      subTask.get('completed')?.setValue(completed);
+    }
+  }
+  
+
+  
+  addSubtask(value: string) {
+    if (value.trim()) {
+      const subTaskForm = this.fb.group({
+        title: [value.trim(), Validators.required],
+        completed: [false] // Initialwert für den Completed-Status
+      });
+      this.subTasks.push(subTaskForm);
+      // Status des neuen Subtasks hinzufügen
+      this.subTasksStatus.push(false);
+    }
+  }
+  
   get subTasks(): FormArray {
     return this.taskForm.get('subTasks') as FormArray;
   }
@@ -186,5 +213,7 @@ export class AddtaskdialogComponent {
     }
   }
   
+
+ 
 
 }
