@@ -173,16 +173,9 @@ export class AddtaskdialogComponent implements OnInit {
   }
   
 
-  
-  addSubtask(value: string) {
-    if (value.trim()) {
-      const subTaskForm = this.fb.group({
-        title: [value.trim(), Validators.required],
-        completed: [false] // Initialwert für den Completed-Status
-      });
-      this.subTasks.push(subTaskForm);
-      // Status des neuen Subtasks hinzufügen
-      this.subTasksStatus.push(false);
+  addSubtask(subtask: string): void {
+    if (subtask.trim()) {
+      this.subTasks.push(this.fb.group({ title: subtask.trim(), completed: false }));
     }
   }
   
