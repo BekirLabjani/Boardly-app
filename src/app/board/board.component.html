@@ -66,16 +66,15 @@
       </section>
 
       <!-- Await Feedback Section -->
-      <section class="taskBoardTtle">
+      <section class="taskBoardTtle" id="awaitFeedback"
+      ondrop="moveIt('awaitFeedback')"
+      ondragover="allowDrop(event); highlight('awaitFeedback')"
+      ondragleave="removeHighlight('awaitFeedback')">
         <div class="awaitFeedbackHeadline headLineCss" id="awaitFeedbackHeadline">
           <h2 class="progressTitles">Await FeedBack</h2>
         </div>
         <div
           class="awaitFeedback tasksCardsDiv"
-          id="awaitFeedback"
-          ondrop="moveIt('awaitFeedback')"
-          ondragover="allowDrop(event); highlight('awaitFeedback')"
-          ondragleave="removeHighlight('awaitFeedback')"
         >
           <!-- <div *ngFor="let task of awaitFeedBack" class="card shadow">
             <div class="category">
