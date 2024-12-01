@@ -8,6 +8,6 @@ export interface Task {
   duDate: string;
   priority: 'low' | 'medium' | 'high';
   category: string;
-  subTasks: SubInterface[]; // Korrekte Definition
+  subTasks: { title: string; completed: boolean }[];
   status: string;
 }
