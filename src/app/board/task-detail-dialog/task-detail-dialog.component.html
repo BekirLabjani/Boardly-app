@@ -1,80 +1,43 @@
-<!-- 
-<mat-dialog-content id="content">
-  <h1>{{ task.title }}</h1>
-  <p><b>Assigned To:</b> {{ task.assignTo.join(", ") }}</p>
-  <p><b>Description:</b> {{ task.description }}</p>
-  <p><b>Due Date:</b> {{ task.duDate }}</p>
-  <p><b>Priority:</b> {{ task.priority }}</p>
-  <p><b>Category:</b> {{ task.category }}</p>
-  <p><b>Status:</b> {{ task.status }}</p>
-  <form>
-    @for (subs of task.subTasks; track $index) {
-    <div>
-      <label>
-        <input
-          id="subTaskInput$index"
-          (change)="subTaskCompleted($index)"
-          type="checkbox"
-          [(ngModel)]="subTasksStatus[$index]"
-          name="subTask{{ $index }}"
-        />
-        {{ subs }}
-      </label>
-    </div>
-    }
-  </form>
-</mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
-  <button mat-button mat-dialog-close (click)="openEditDialog(task)">
-    Edit
-  </button>
-</mat-dialog-actions> -->
-
-
 <mat-dialog-content id="content" class="content">
-<div class="category">
-  <span class="category">{{task.category}}</span>
-</div>
-<div class="information">
-  <span class="title">{{task.title}}</span>
-  <span class="description"></span>
-</div>
-<div class="dueDate">
-    <p><b>Due Date:</b> {{ task.duDate }}</p>
-  <p><b>Priority:</b> {{ task.priority }}</p>
-</div>
-<div class="subs">
-  <div class="assign">
-    <span>Assign To:</span>
-    @for (assign of task.assignTo; track $index) {
-      <div class="div"></div>
-    }
+  <div class="category">
+    <span class="category">{{ task.category }}</span>
   </div>
-  <form >
-    <div *ngFor="let subtask of subTasks; let i = index; trackBy: trackBySubtaskId">
-      <label>
-        <input
+  <div class="information">
+    <span class="title">{{ task.title }}</span>
+    <span class="description">{{ task.description }}</span>
+  </div>
+  <div class="dueDate">
+    <p><b>Due Date:</b> {{ task.duDate }}</p>
+    <p><b>Priority:</b> {{ task.priority }}</p>
+  </div>
+  <div class="subs">
+    <div class="assign">
+      <span>Assign To:</span>
+      <div *ngFor="let user of task.assignTo; let i = index">
+        <div>{{ user }}</div>
+      </div>
+    </div>
+    <form>
+      <div *ngFor="let subtask of task.subTasks; let i = index; trackBy: trackBySubtaskId">
+        <label>
+          <input
           id="subTaskInput{{ i }}"
           type="checkbox"
           [(ngModel)]="subTasksStatus[i]"
+          (change)="updateSubtaskCompletion(i, subTasksStatus[i])"
           name="subTask{{ i }}"
         />
-        {{ subtask.title }}
-      </label>
-    </div>
-    
-  </form>
-  
-</div>
-
-
+          {{ subtask.title }}
+        </label>
+      </div>
+      
+    </form>
+  </div>
 </mat-dialog-content>
 <mat-dialog-actions>
   <button mat-button mat-dialog-close>Close</button>
   <button mat-button mat-dialog-close (click)="openEditDialog(task)">
     Edit
   </button>
-
   <p><b>Status:</b> {{ task.status }}</p>
 </mat-dialog-actions>

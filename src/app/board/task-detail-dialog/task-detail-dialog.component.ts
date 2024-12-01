@@ -57,7 +57,8 @@ export class TaskDetailDialogComponent implements OnInit  {
   // @Input() task!: Task; // Task wird als Input übergeben
   subTasks: SubInterface[] = [];
   // Array zum Verwalten des Status der Subtasks (true/false)
-  subTasksStatus: boolean[] = [];
+  subTasksStatus: boolean[] = []; // Instanzvariable für den Status der Subtasks
+
 
   constructor(
     private subService: SubtaskService,
@@ -69,29 +70,17 @@ export class TaskDetailDialogComponent implements OnInit  {
     // Initialisiere den Status basierend auf den vorhandenen Subtasks
     // this.subTasksStatus = Array(this.task.subTasks.length).fill(false);
   }
-
   ngOnInit(): void {
-    this.subService.subTasks$.subscribe((subTasks) => {
-      if (subTasks && subTasks.length > 0) {
-        this.subTasks = subTasks;
-        this.subTasksStatus = new Array(subTasks.length).fill(false);
-      } else {
-        console.log('No subTasks available.');
-      }
-    });
+    // Initialisiere subTasksStatus mit dem aktuellen completed-Status der Subtasks
+    this.subTasksStatus = this.task.subTasks.map(subtask => subtask.completed);
   }
+  
   
   trackBySubtaskId(index: number, subtask: SubInterface): string {
     return subtask.title; // oder eine andere eindeutige Kennung
   }
-  
-  ngAfterViewInit(): void {}
 
-  saveChanges(): void {
-    // Beispiel: Subtasks-Status speichern oder verarbeiten
-    console.log('Updated Subtasks Status:', this.subTasksStatus);
-    // this.dialogRef.close({ updatedTask: this.task, subTasksStatus: this.subTasksStatus });
-  }
+
 
   openEditDialog(task: Task) {
     //this.setCheckedToInput();
@@ -109,4 +98,35 @@ export class TaskDetailDialogComponent implements OnInit  {
     });
   }
 
+  updateSubtaskCompletion(index: number, isChecked: boolean): void {
+    // Aktualisiere den Status im lokalen Array
+    this.subTasksStatus[index] = isChecked;
+    // Aktualisiere den `completed`-Status der Subtask im Task-Objekt
+    this.task.subTasks[index].completed = isChecked;
+  }
+  
+  
+  async saveTask() {
+    try {
+      // Aktualisiere die Subtasks in der Task-Objekt
+      this.task.subTasks = this.task.subTasks.map((subtask, index) => {
+        return {
+          ...subtask,
+          completed: this.subTasksStatus[index] // Setze den `completed`-Status von `subTasksStatus`
+        };
+      });
+  
+      // Speichere die Task in Firestore
+      const taskRef = doc(this.firestore, 'tasks', this.task.id);
+      await updateDoc(taskRef, {
+        subTasks: this.task.subTasks,
+      });
+  
+      console.log('Task updated successfully');
+    } catch (error) {
+      console.error('Error updating task in Firestore:', error);
+    }
+  }
+  
+  
 }
