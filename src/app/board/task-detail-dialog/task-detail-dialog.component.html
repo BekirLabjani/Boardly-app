@@ -19,15 +19,17 @@
     </div>
     <form>
       <div *ngFor="let subtask of task.subTasks; let i = index; trackBy: trackBySubtaskId">
-        <label>
+        <label class="checkbox-container">
           <input
+          class="custom-checkbox"
           id="subTaskInput{{ i }}"
           type="checkbox"
           [(ngModel)]="subTasksStatus[i]"
           (change)="updateSubtaskCompletion(i, subTasksStatus[i])"
           name="subTask{{ i }}"
         />
-          {{ subtask.title }}
+        <span class="checkmark"></span>
+        <span>{{ subtask.title }}</span>
         </label>
       </div>
       
