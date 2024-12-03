@@ -102,8 +102,8 @@ export class AddtaskdialogComponent implements OnInit {
   ) 
   {
     this.taskForm = this.fb.group({
-      title: ['', Validators.required], // Pflichtfeld
-      description: ['', Validators.required],
+      title: ['', [Validators.required, Validators.minLength(10)]], 
+      description: ['', [Validators.required, Validators.maxLength(20)]], // Maximal 500 Zeichen
       assignTo: [[], Validators.required],
       duDate: ['', Validators.required],
       priority: ['low', Validators.required], // Standardwert: 'low'
@@ -136,26 +136,30 @@ export class AddtaskdialogComponent implements OnInit {
           ...taskData,
           subTasks: subTasksArray,
           status: 'todo',
-          createdAt: new Date(),
         });
   
         console.log('Task successfully added to Firestore with ID:', taskRef.id);
-        alert('Task successfully added!');
+        this.snackBar.open('Task successfully added!', 'Close', {
+          duration: 3000,
+        });
   
-        // Speichern der SubTasks im Service
-        this.subtaskService.setSubTasks(subTasksArray);
-  
+        // Optional: Rücksetzen des Formulars nach erfolgreicher Speicherung
         this.taskForm.reset();
         this.subTasks.clear();
         this.onNoClick();
       } catch (error) {
         console.error('Error adding task to Firestore:', error);
-        alert('An error occurred while adding the task. Please try again.');
+        this.snackBar.open('An error occurred while adding the task. Please try again.', 'Close', {
+          duration: 3000,
+        });
       }
     } else {
-      alert('Please fill in all required fields.');
+      this.snackBar.open('Please fill in all required fields.', 'Close', {
+        duration: 3000,
+      });
     }
   }
+
   
   removeSubtask(index: number) {
     this.subTasks.removeAt(index);
@@ -169,16 +173,9 @@ export class AddtaskdialogComponent implements OnInit {
   }
   
 
-  
-  addSubtask(value: string) {
-    if (value.trim()) {
-      const subTaskForm = this.fb.group({
-        title: [value.trim(), Validators.required],
-        completed: [false] // Initialwert für den Completed-Status
-      });
-      this.subTasks.push(subTaskForm);
-      // Status des neuen Subtasks hinzufügen
-      this.subTasksStatus.push(false);
+  addSubtask(subtask: string): void {
+    if (subtask.trim()) {
+      this.subTasks.push(this.fb.group({ title: subtask.trim(), completed: false }));
     }
   }
   

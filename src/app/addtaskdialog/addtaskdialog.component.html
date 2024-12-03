@@ -57,12 +57,22 @@
     <div class="sub-tasks">
       <mat-form-field>
         <input matInput placeholder="Add Subtask" #subTaskInput />
-        <button mat-icon-button matSuffix (click)="addSubtask(subTaskInput.value); subTaskInput.value=''">
+        <button 
+          mat-icon-button 
+          matSuffix 
+          type="button" 
+          (click)="addSubtask(subTaskInput.value); subTaskInput.value=''">
           <mat-icon>add</mat-icon>
         </button>
       </mat-form-field>
+    
       <mat-list>
-        <mat-list-item *ngFor="let subtask of subTasks.controls">{{ subtask.value }}</mat-list-item>
+        <mat-list-item *ngFor="let subtask of subTasks.controls; let i = index">
+          {{ subtask.get('title')?.value }} <!-- Zeigt nur den Titel an -->
+          <button mat-icon-button (click)="removeSubtask(i)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </mat-list-item>
       </mat-list>
     </div>
 
