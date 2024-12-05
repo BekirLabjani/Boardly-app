@@ -21,6 +21,7 @@ import {
   getDocs,
   updateDoc,
   doc,
+  deleteDoc,
 } from '@angular/fire/firestore';
 import { MatList, MatListItem } from '@angular/material/list';
 import { SubtaskService } from '../../service/subservice.service';
@@ -28,6 +29,9 @@ import { SubInterface } from '../../models/sub-interface';
 import { MatPseudoCheckboxModule } from '@angular/material/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { AddtaskdialogComponent } from '../../addtaskdialog/addtaskdialog.component';
+import { Injectable } from '@angular/core';
+import { TaskService } from '../../service/taskservie.service';
+import { Timestamp } from '@angular/fire/firestore';
 
 @Component({
   selector: 'app-task-detail-dialog',
@@ -49,6 +53,7 @@ import { AddtaskdialogComponent } from '../../addtaskdialog/addtaskdialog.compon
     MatCheckboxModule,
     AddtaskdialogComponent,
 
+
   ],
   styleUrls: ['./task-detail-dialog.component.scss'],
 })
@@ -65,7 +70,8 @@ export class TaskDetailDialogComponent implements OnInit  {
     private dialog: MatDialog,
     @Inject(MAT_DIALOG_DATA) public task: Task,
     private dialogRef: MatDialogRef<TaskDetailDialogComponent>,
-    private firestore: Firestore
+    private firestore: Firestore,
+    private taskService: TaskService // Hinzugefügt
   ) {
     // Initialisiere den Status basierend auf den vorhandenen Subtasks
     // this.subTasksStatus = Array(this.task.subTasks.length).fill(false);
@@ -80,7 +86,24 @@ export class TaskDetailDialogComponent implements OnInit  {
     return subtask.title; // oder eine andere eindeutige Kennung
   }
 
-
+  getFormattedDate(duDate: string | Timestamp | undefined): string {
+    if (!duDate) return 'No due date'; // Rückgabe für undefinierte oder leere Werte
+  
+    // Wenn du ein Timestamp hast
+    if (duDate instanceof Timestamp) {
+      const date = new Date(duDate.seconds * 1000);
+      return date.toLocaleDateString();
+    }
+  
+    // Wenn du einen ISO-String hast (z.B. "2024-12-05T00:00:00.000Z")
+    if (typeof duDate === 'string') {
+      const date = new Date(duDate);
+      return date.toLocaleDateString();
+    }
+  
+    return 'Invalid date';
+  }
+  
 
   openEditDialog(task: Task) {
     //this.setCheckedToInput();
@@ -98,13 +121,39 @@ export class TaskDetailDialogComponent implements OnInit  {
     });
   }
 
-  updateSubtaskCompletion(index: number, isChecked: boolean): void {
-    // Aktualisiere den Status im lokalen Array
-    this.subTasksStatus[index] = isChecked;
-    // Aktualisiere den `completed`-Status der Subtask im Task-Objekt
-    this.task.subTasks[index].completed = isChecked;
+  updateSubtaskCompletion(index: number, isCompleted: boolean): void {
+    this.subTasksStatus[index] = isCompleted;
+    this.task.subTasks[index].completed = isCompleted; 
+
+    this.saveTask().then(() => {
+    }).catch((error) => {
+      console.error('Error updating subtask in Firestore:', error);
+    });
   }
   
+  async deleteTask(): Promise<void> {
+    try {
+      const taskRef = doc(this.firestore, 'tasks', this.task.id);
+      await deleteDoc(taskRef);
+      console.log('Task deleted successfully');
+
+      // Schließe den Dialog, nachdem der Task gelöscht wurde
+      this.dialogRef.close();
+    } catch (error) {
+      console.error('Error deleting task:', error);
+    }
+  }
+  
+  
+  getInitials(name: string): string {
+    if (!name) return ''; 
+    const names = name.split(' ');
+    const initials = names
+      .map((part) => part.charAt(0).toUpperCase()) 
+      .slice(0, 2) 
+      .join('');
+    return initials;
+  }
   
   async saveTask() {
     try {

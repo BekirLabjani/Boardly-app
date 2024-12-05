@@ -74,7 +74,7 @@ export class AddtaskdialogComponent implements OnInit {
   };
 
   subtasks: string[] = []; // Liste der Unteraufgaben
-  users = ['Anna', 'Peter', 'Max']; // Beispielnutzer
+  users = ['Anna Schulz', 'Peter Pan', 'Max Muster']; // Beispielnutzer
 
   toppings = new FormControl('');
   toppingList: string[] = ['Extra cheese', 'Mushroom', 'Onion', 'Pepperoni', 'Sausage', 'Tomato'];
@@ -103,7 +103,7 @@ export class AddtaskdialogComponent implements OnInit {
   {
     this.taskForm = this.fb.group({
       title: ['', [Validators.required, Validators.minLength(10)]], 
-      description: ['', [Validators.required, Validators.maxLength(20)]], // Maximal 500 Zeichen
+      description: ['', [Validators.required, Validators.maxLength(100)]], // Maximal 500 Zeichen
       assignTo: [[], Validators.required],
       duDate: ['', Validators.required],
       priority: ['low', Validators.required], // Standardwert: 'low'

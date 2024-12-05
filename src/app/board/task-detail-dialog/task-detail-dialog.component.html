@@ -1,21 +1,29 @@
 <mat-dialog-content id="content" class="content">
   <div class="category">
-    <span class="category">{{ task.category }}</span>
+    <span class="ctg">{{ task.category }}</span>
   </div>
   <div class="information">
     <span class="title">{{ task.title }}</span>
     <span class="description">{{ task.description }}</span>
   </div>
   <div class="dueDate">
-    <p><b>Due Date:</b> {{ task.duDate }}</p>
-    <p><b>Priority:</b> {{ task.priority }}</p>
+    <p><b>Due Date:</b> <span class="time-container">{{ getFormattedDate(task.duDate) }}</span></p>
+    <p><b>Priority:</b> <span class="priorityDetailTask">{{ task.priority }}</span></p>
+    <p><b>Status:</b> {{ task.status }}</p>
   </div>
   <div class="subs">
     <div class="assign">
       <span>Assign To:</span>
-      <div *ngFor="let user of task.assignTo; let i = index">
-        <div>{{ user }}</div>
-      </div>
+      <div class="assign-container">
+        <ng-container *ngFor="let user of task.assignTo; let i = index">
+          <div *ngIf="i < 2" class="circle">
+            <span id="nameOfContact">{{ getInitials(user) }}</span>
+          </div>
+        </ng-container>
+        <div *ngIf="task.assignTo.length > 2" class="circle extra">
+          <span id="extraContacts">+{{ task.assignTo.length - 2 }}</span>
+        </div>
+      </div>          
     </div>
     <form>
       <div *ngFor="let subtask of task.subTasks; let i = index; trackBy: trackBySubtaskId">
@@ -36,10 +44,7 @@
     </form>
   </div>
 </mat-dialog-content>
-<mat-dialog-actions>
-  <button mat-button mat-dialog-close>Close</button>
-  <button mat-button mat-dialog-close (click)="openEditDialog(task)">
-    Edit
-  </button>
-  <p><b>Status:</b> {{ task.status }}</p>
+<mat-dialog-actions class="buttons">
+  <button mat-button mat-dialog-close (click)="openEditDialog(task)" class="edit-button"> Edit </button>
+  <button mat-button (click)="deleteTask()" class="edit-button">Delete</button>
 </mat-dialog-actions>
