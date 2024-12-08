@@ -16,6 +16,13 @@ import { TaskComponent } from './task/task.component';
 import { NgStyle } from '@angular/common';
 import { TaskDetailDialogComponent } from './task-detail-dialog/task-detail-dialog.component';
 import { FormsModule } from '@angular/forms';
+import {
+  CdkDragDrop,
+  moveItemInArray,
+  transferArrayItem,
+  CdkDrag,
+  CdkDropList,
+} from '@angular/cdk/drag-drop';
 
 
 
@@ -31,6 +38,8 @@ import { FormsModule } from '@angular/forms';
   TaskComponent,
   NgStyle,
   FormsModule,
+  CdkDropList,
+  CdkDrag
   ],
   templateUrl: './board.component.html',
   styleUrls: ['./board.component.scss', 'taskscomponent.scss']
@@ -173,52 +182,41 @@ export class BoardComponent implements OnInit {
     }
   }
 
-  /**
- * Allows dropping of draggable elements.
- * @param {Event} ev - Drag event.
- */
- allowDrop(ev: Event) {
-  ev.preventDefault();
-}
+  // Methode, um Aufgaben zwischen den Listen zu verschieben
+  drop(event: CdkDragDrop<Task[]>) {
+    if (event.previousContainer === event.container) {
+      moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);  // Element innerhalb der gleichen Liste verschieben
+    } else {
+      transferArrayItem(  // Element von einer Liste in eine andere verschieben
+        event.previousContainer.data,
+        event.container.data,
+        event.previousIndex,
+        event.currentIndex
+      );
+    }
+  }
 
-/**
- * Marks the start of dragging a task.
- * @param {number} id - ID of the dragged task.
- */
-// function startDragging(id) {
-//   draggedTask = id;
-// }
+  // Hilfsmethoden für Drag-and-Drop (z.B. Highlight, allowDrop, moveTo)
+  highlight(area: string) {
+    const element = document.getElementById(area);
+    if (element) {
+      element.classList.add('highlight');
+    }
+  }
 
-/**
- * Moves a task to a new category.
- * @param {string} category - Category to move the task to.
- * @returns {Promise<void>}
- */
-async moveIt(category: string): Promise<void> {
-  // let currentWorkflow = tasks[draggedTask]["workflow"];
-  // tasks[draggedTask]["workflow"] = category;
-  // await setItem("task", JSON.stringify(tasks));
-  // let taskElement = document.getElementById(`task${draggedTask}`);
-  // taskElement.remove();
-  // taskCounts[currentWorkflow]--;
-  // await addOneTaskToBoard(draggedTask);
-  // removeHighlight(category);
-  // checkEmptyTasks();
-}
+  removeHighlight(area: string) {
+    const element = document.getElementById(area);
+    if (element) {
+      element.classList.remove('highlight');
+    }
+  }
 
-/**
- * Highlights the drop area when an element is dragged over it.
- * @param {string} id - ID of the drop area.
- */
- highlight(id: string) {
-  // document.getElementById(id).classList.add("drag-area-highlight");
-}
+  allowDrop(event: DragEvent) {
+    event.preventDefault();  // Verhindert die Standardbehandlung von Drag-and-Drop
+  }
 
-/**
- * Removes the highlight from the drop area when an element is dragged out.
- * @param {string} id - ID of the drop area.
- */
- removeHighlight(id: string) {
-  // document.getElementById(id).classList.remove("drag-area-highlight");
-}
+  moveTo(event: CdkDragDrop<Task[]>) {
+    // Beispiel-Methode, um Aufgaben zwischen Listen zu verschieben (entweder nach InProgress oder Feedback)
+    console.log('Moved task:', event.item.data);
+  }
 }

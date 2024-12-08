@@ -24,9 +24,11 @@
         <div class="todoHeadline headLineCss" id="TodoHeadline">
           <h2 class="progressTitles">To Do</h2>
         </div>
-        <div class="tasksCardsDiv" id="todo" ondrop="moveIt('todo')" ondragover="allowDrop(event); highlight('todo')" ondragleave="removeHighlight('todo')" >
+        <div class="tasksCardsDiv" id="todo" cdkDropList>
           @for (task of todoTasks; track $index) {
             <app-task class="task-card" 
+            cdkDrag
+            dragleave="removeHighlight('In-Progress')"  drop="moveTo('In-Progress')" dragover="allowDrop(event); highlight('In-Progress')"
             [ngStyle]="{ 'top': (-(($index + 1) * 20)) + 'px', 'left': '0' }"
             [category]="task.category" 
             [title]="task.title" 
