@@ -28,26 +28,11 @@ export class SidebarComponent {
     this.sidebarService.toggleSidebar();
   }
 
-  // Navigationsmethoden
-  openTask(event: Event) {
+  navigateTo(event: Event, route: string) {
     event.preventDefault();
-    this.router.navigateByUrl('/addTask');
+    this.router.navigateByUrl(route);
   }
-
-  openCont(event: Event) {
-    event.preventDefault();
-    this.router.navigateByUrl('/contact');
-  }
-
-  openBoard(event: Event) {
-    event.preventDefault();
-    this.router.navigateByUrl('/board');
-  }
-
-  openSumm(event: Event) {
-    event.preventDefault();
-    this.router.navigateByUrl('/summary');
-  }
+  
 
   openPrivacyPolicy(event: Event) {
     event.preventDefault();
@@ -58,4 +43,19 @@ export class SidebarComponent {
     event.preventDefault();
     this.router.navigateByUrl('/legalnotice');
   }
+
+  profileDropdownOpen = false;
+
+toggleProfileDropdown(event: Event) {
+  event.stopPropagation();
+  this.profileDropdownOpen = !this.profileDropdownOpen;
+}
+
+editProfile(event: Event) {
+  event.stopPropagation();
+  this.profileDropdownOpen = false;
+  // z. B. zur Profilseite navigieren:
+  this.router.navigate(['/edit-profile']);
+}
+
 }

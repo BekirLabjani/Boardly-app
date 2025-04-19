@@ -5,10 +5,17 @@
 }
 
 .user-img {
-  width: 50px;
-  border-radius: 100%;
-  border: 1px solid #eee;
-  height: 50px;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;             /* Kreisform */
+  object-fit: cover;              /* schneidet schön zu */
+  border: 2px solid white;        /* weißer Rahmen */
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.2); /* leichter Schatten */
+  transition: transform 0.3s ease;
+}
+
+.user-img:hover {
+  transform: scale(1.05);         /* sanfter Hover-Zoom */
 }
 
 .sidebar {
@@ -29,7 +36,7 @@ background: radial-gradient(at center, #101835, #151049);
 }
 
 .top {
-  height: 90px;
+  height: 100px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -84,7 +91,7 @@ i{
   align-items: center;
   pointer-events: none;
   opacity: 0;
-  margin-left: 20px;
+  margin-left: 30px;
 }
 
 .sidebar.active .top .logo {
@@ -102,6 +109,8 @@ i{
   width: 150px;
   height: 50px;
   justify-content: space-around;
+  padding-left: 12px;
+  cursor: pointer;
 
   >div {
     display: flex;
@@ -133,16 +142,17 @@ i{
 }
 
 .sidebar ul {
-  padding-top: 30px;
+  padding-top: 50px;
 }
 
 .sidebar ul li {
   position: relative;
   list-style-type: none;
-  height: 50px;
+  height: 70px;
   width: 90%;
   margin: 0.8rem auto;
   line-height: 50px;
+  cursor: pointer;
 }
 
 .sidebar ul li a {
@@ -151,6 +161,8 @@ i{
   align-items: center;
   text-decoration: none;
   border-radius: 0.8rem;
+  font-size: 1.1rem;
+
 }
 
 .sidebar ul li a:hover {
@@ -159,12 +171,11 @@ color: black;
 }
 
 .sidebar ul li a svg{
-  fill: white; /* Standardfarbe des Kreises */
+  fill: white; 
 }
 
-/* Beim Hover über den Link (a) ändert sich das fill im SVG */
 .sidebar ul li a:hover svg {
-  fill: #000000d3 !important; /* Farbe ändern */
+  fill: #000000d3 !important; 
 }
 .sidebar ul li a i {
 min-width: 50px;
@@ -185,7 +196,7 @@ font-size: 25px;
 
 .sidebar ul li .tooltip {
   position: absolute;
-  left: 125px;
+  left: 140px;
   top: 50%;
   transform: translate(-50%, -50%);
   box-shadow: -1px 0rem 2rem 2px rgba(-45, 0, 0, 2.2);
@@ -196,8 +207,9 @@ font-size: 25px;
   opacity: 0;
 }
 .sidebar.active .user {
-  width: 160px;
-  justify-content: center;
+    width: 100%;
+    justify-content: start;
+    gap: 10px;
 }
 .sidebar ul li:hover .tooltip {
   opacity: 1;
@@ -206,4 +218,29 @@ font-size: 25px;
 .sidebar.active ul li .tooltip {
   display: none;
 
+}
+
+.chat-link {
+  position: relative;
+
+  .user-circle-icon {
+    position: relative;
+    display: inline-block;
+
+    .badge {
+      position: absolute;
+      top: -2px;
+      right: 1px;
+      background-color: red;
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      padding: 6px 5px;
+      border-radius: 30px;
+      width: 25px;
+      text-align: center;
+      line-height: 1;
+      height: 25px;
+    }
+  }
 }
