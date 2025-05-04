@@ -8,7 +8,7 @@ import { CommonModule } from '@angular/common';
 @Component({
   selector: 'app-summary',
   standalone: true,
-  imports: [SidebarComponent, HeaderComponent,CommonModule],
+  imports: [SidebarComponent, HeaderComponent, CommonModule],
   templateUrl: './summary.component.html',
   styleUrl: './summary.component.scss'
 })
@@ -19,20 +19,24 @@ export class SummaryComponent implements OnInit {
   constructor(
     private sidebarService: SidebarService,
     private el: ElementRef
-  ) {}
+  ) { }
+
+  intervalId: any;
 
   ngOnInit(): void {
-    this.isSidebarActive = this.sidebarService.getSidebarStatus();
+    this.updateDateTime();
+    this.intervalId = setInterval(() => this.updateDateTime(), 1000);
+  }
+
+  ngOnDestroy(): void {
     this.updateSidebarStyles();
-    
-    this.sidebarService.sidebarStatus$.subscribe(status => {
-      this.isSidebarActive = status;
-      this.updateSidebarStyles();
-    });
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 
   private updateSidebarStyles() {
-    const summaryMainElement = this.el.nativeElement.querySelector('.summaryMain');
+    const summaryMainElement = this.el.nativeElement.querySelector('.dashboard');
     if (this.isSidebarActive) {
       summaryMainElement.style.marginLeft = '250px';
       summaryMainElement.style.width = 'calc(100vw - 250px)';
@@ -44,5 +48,28 @@ export class SummaryComponent implements OnInit {
 
   toggleSidebar() {
     this.sidebarService.toggleSidebar();
+  }
+
+  updateDateTime() {
+    const now = new Date();
+    const dateStr = now.toLocaleDateString('de-DE', {
+      weekday: 'long',
+      year: 'numeric',
+      month: 'long',
+      day: 'numeric',
+    });
+    const timeStr = now.toLocaleTimeString('de-DE', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    });
+
+    const dateEl = document.getElementById('current-date');
+    const timeEl = document.getElementById('current-time');
+
+    if (dateEl && timeEl) {
+      dateEl.innerText = dateStr;
+      timeEl.innerText = timeStr;
+    }
   }
 }

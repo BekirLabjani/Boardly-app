@@ -54,11 +54,11 @@ i{
 
 .sidebar.active ~ .main.content {
   left: 250px;
-  width: calc(100% - 250px);
+  width: calc(100% - 80px);
 }
 
 .sidebar.active {
-  width: 250px;
+  width: 80px;
 }
 
 .sidebar.active #btn {
@@ -160,9 +160,11 @@ i{
   display: flex;
   align-items: center;
   text-decoration: none;
+  flex-direction: column;
   border-radius: 0.8rem;
-  font-size: 1.1rem;
-
+  font-size: 13px;
+  display: flex;
+  align-items: center;
 }
 
 .sidebar ul li a:hover {
@@ -178,12 +180,12 @@ color: black;
   fill: #000000d3 !important; 
 }
 .sidebar ul li a i {
-min-width: 50px;
-height: 50px;
-border-radius: 12px;
-text-align: center;
-line-height: 50px;
-font-size: 25px;
+  min-width: 50px;
+  height: 35px;
+  border-radius: 12px;
+  text-align: center;
+  /* line-height: 50px; */
+  /* font-size: 11px; */
 }
 
 .sidebar .nav-item {
@@ -192,6 +194,10 @@ font-size: 25px;
 
 .sidebar.active .nav-item {
   opacity: 1;
+  padding: 0;
+  height: 32px;
+  display: flex;
+  align-items: center;
 }
 
 .sidebar ul li .tooltip {

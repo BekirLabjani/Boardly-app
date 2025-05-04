@@ -1,5 +1,5 @@
 <div
-  class="card shadow"
+  class="small-card"
   [ngClass]="{
     'priority-low': priority === 'low',
     'priority-medium': priority === 'medium',
@@ -22,8 +22,12 @@
     </span>
   </div>
   <div class="title">
-    <span><b>{{ title }}</b></span>
-    <span><b>{{ assignTo }}</b></span>
+    <span
+      ><b>{{ title }}</b></span
+    >
+    <span
+      ><b>{{ assignTo }}</b></span
+    >
   </div>
   <div class="description">
     <span>{{ description }}</span>

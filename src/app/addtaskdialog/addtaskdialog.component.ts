@@ -102,7 +102,7 @@ export class AddtaskdialogComponent implements OnInit {
   ) 
   {
     this.taskForm = this.fb.group({
-      title: ['', [Validators.required, Validators.minLength(10)]], 
+      title: ['', [Validators.required, Validators.minLength(5)]], 
       description: ['', [Validators.required, Validators.maxLength(100)]], // Maximal 500 Zeichen
       assignTo: [[], Validators.required],
       duDate: ['', Validators.required],

@@ -1,0 +1,72 @@
+{
+    "boards": [
+      {
+        "id": "board_001",
+        "title": "All Projects",
+        "color": "#4CAF50",
+        "createdAt": "2025-05-01T08:00:00Z",
+        "tasks": [
+          {
+            "id": "task_001",
+            "title": "Design Startseite überarbeiten",
+            "description": "Die Startseite soll benutzerfreundlicher gestaltet werden.",
+            "category": "Design",
+            "priority": "High",
+            "status": "In Progress",
+            "createdAt": "2025-05-01T08:15:00Z",
+            "dueDate": "2025-05-05T17:00:00Z",
+            "assignedTo": "Anna Müller",
+            "tags": ["UI", "Homepage"],
+            "comments": []
+          }
+        ]
+      }, 
+      {
+        "id": "board_002",
+        "title": "Todo",
+        "color": "#2196F3",
+        "createdAt": "2025-05-01T08:30:00Z",
+        "tasks": [
+          {
+            "id": "task_002",
+            "title": "Login-Funktion programmieren",
+            "description": "Benutzer sollen sich per E-Mail und Passwort anmelden können.",
+            "category": "Backend",
+            "priority": "Medium",
+            "status": "Todo",
+            "createdAt": "2025-05-01T08:45:00Z",
+            "dueDate": "2025-05-06T12:00:00Z",
+            "assignedTo": "Tom Schneider",
+            "tags": ["Auth", "API"],
+            "comments": [
+              {
+                "user": "Tom Schneider",
+                "message": "Ich beginne heute Abend damit.",
+                "timestamp": "2025-05-01T09:00:00Z"
+              }
+            ]
+          },
+          {
+            "id": "task_002",
+            "title": "Login-Funktion programmieren",
+            "description": "Benutzer sollen sich per E-Mail und Passwort anmelden können.",
+            "category": "Backend",
+            "priority": "Medium",
+            "status": "Todo",
+            "createdAt": "2025-05-01T08:45:00Z",
+            "dueDate": "2025-05-06T12:00:00Z",
+            "assignedTo": "Tom Schneider",
+            "tags": ["Auth", "API"],
+            "comments": [
+              {
+                "user": "Tom Schneider",
+                "message": "Ich beginne heute Abend damit.",
+                "timestamp": "2025-05-01T09:00:00Z"
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  }
+  
