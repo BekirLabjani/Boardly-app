@@ -1,0 +1,56 @@
+<app-sidebar></app-sidebar>
+
+<div class="dienstplan-form">
+  <h2>Dienst eintragen</h2>
+
+  <form>
+    <div class="form-group">
+      <label for="mitarbeiter">Mitarbeiter</label>
+      <input type="text" id="mitarbeiter" placeholder="Name eingeben">
+    </div>
+
+    <div class="form-group">
+      <label for="dienst-beginn">Dienstbeginn</label>
+      <input type="datetime-local" id="dienst-beginn">
+    </div>
+
+    <div class="form-group">
+      <label for="dienst-ende">Dienstende</label>
+      <input type="datetime-local" id="dienst-ende">
+    </div>
+
+    <button type="submit">Speichern</button>
+  </form>
+</div>
+
+<!-- Tabelle mit letzten Einträgen -->
+<div class="dienstplan-tabelle">
+  <h3>Letzte Dienste (4 Tage)</h3>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Mitarbeiter</th>
+        <th>Dienstbeginn</th>
+        <th>Dienstende</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Anna Müller</td>
+        <td>11.09.2025 09:00</td>
+        <td>11.09.2025 17:00</td>
+      </tr>
+      <tr>
+        <td>Max Mustermann</td>
+        <td>12.09.2025 08:00</td>
+        <td>12.09.2025 16:00</td>
+      </tr>
+      <tr>
+        <td>Anna Müller</td>
+        <td>13.09.2025 09:00</td>
+        <td>13.09.2025 17:00</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -8,6 +8,7 @@ import { PrivacyPolicyComponent } from './shared/privacy-policy/privacy-policy.c
 import { LegalNoticeComponent } from './shared/legal-notice/legal-notice.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { TrashComponent } from './trash/trash.component';
+import { DutyRosterComponent } from './duty-roster/duty-roster.component';
 
 export const routes: Routes = [
     { path: '', component: BoardComponent },
@@ -17,6 +18,7 @@ export const routes: Routes = [
     { path: 'profile', component: UserProfileComponent },
     { path: 'login', component: LogInComponent },
     { path: 'trash', component: TrashComponent },
+    { path: 'dusty', component: DutyRosterComponent },
     // { path: 'regist', component: SingUpComponent },
     // { path: 'privacypolicy', component: PrivacyPolicyComponent },
     // { path: 'legalnotice', component: LegalNoticeComponent }

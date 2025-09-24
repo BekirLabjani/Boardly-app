@@ -19,9 +19,7 @@
               d="M520-600v-240h320v240H520ZM120-440v-400h320v400H120Zm400 320v-400h320v400H520Zm-400 0v-240h320v240H120Zm80-400h160v-240H200v240Zm400 320h160v-240H600v240Zm0-480h160v-80H600v80ZM200-200h160v-80H200v80Zm160-320Zm240-160Zm0 240ZM360-280Z"
             /></svg
         ></i>
-        <span class="nav-item">Dashboard</span>
       </a>
-      <span class="tooltip">Dashboard</span>
     </li>
     <li>
       <a (click)="navigateTo($event, '/board')">
@@ -37,9 +35,7 @@
               d="M160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm360-80h100v-480H520v480Zm-180 0h100v-480H340v480Zm-180 0h100v-480H160v480Zm540 0h100v-480H700v480Z"
             /></svg
         ></i>
-        <span class="nav-item">Board</span>
       </a>
-      <span class="tooltip">Board</span>
     </li>
     <li>
       <a (click)="navigateTo($event, '/contact')">
@@ -55,9 +51,7 @@
               d="M160-40v-80h640v80H160Zm0-800v-80h640v80H160Zm320 400q50 0 85-35t35-85q0-50-35-85t-85-35q-50 0-85 35t-35 85q0 50 35 85t85 35ZM160-160q-33 0-56.5-23.5T80-240v-480q0-33 23.5-56.5T160-800h640q33 0 56.5 23.5T880-720v480q0 33-23.5 56.5T800-160H160Zm70-80q45-56 109-88t141-32q77 0 141 32t109 88h70v-480H160v480h70Zm118 0h264q-29-20-62.5-30T480-280q-36 0-69.5 10T348-240Zm132-280q-17 0-28.5-11.5T440-560q0-17 11.5-28.5T480-600q17 0 28.5 11.5T520-560q0 17-11.5 28.5T480-520Zm0 40Z"
             /></svg
         ></i>
-        <span class="nav-item">Contact</span>
       </a>
-      <span class="tooltip">Contact</span>
     </li>
     <li>
       <a (click)="navigateTo($event, '/profile')">
@@ -75,23 +69,94 @@
             />
           </svg>
         </i>
-        <span class="nav-item">Profile</span>
       </a>
-      <span class="tooltip">Profile</span>
     </li>
     <li>
       <a (click)="navigateTo($event, '/chat')" class="chat-link">
         <i class="user-circle-icon">
-          <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 0 24 24" width="24px" fill="#FFFFFF">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            height="24px"
+            viewBox="0 0 24 24"
+            width="24px"
+            fill="#FFFFFF"
+          >
             <path d="M0 0h24v24H0V0z" fill="none" />
-            <path d="M4 4h16v12H5.17L4 17.17V4zm0-2c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H4z"/>
+            <path
+              d="M4 4h16v12H5.17L4 17.17V4zm0-2c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2H4z"
+            />
           </svg>
           <span class="badge">3</span>
         </i>
-        <span class="nav-item">Chat</span>
       </a>
-      <span class="tooltip">chat</span>
-    </li>    
+    </li>
+    <li>
+      <a (click)="navigateTo($event, '/summary')">
+        <i class="material-symbols-outlined"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            role="img"
+            aria-label="Kalender Icon (Outline)"
+          >
+            <title>Kalender</title>
+            <g
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <!-- Rahmen -->
+              <rect x="3" y="5" width="18" height="16" rx="2" ry="2" />
+              <!-- Kopfzeile -->
+              <line x1="3" y1="9" x2="21" y2="9" />
+              <!-- Bindungen -->
+              <line x1="8" y1="3" x2="8" y2="7" />
+              <line x1="16" y1="3" x2="16" y2="7" />
+              <!-- kleine Felder (optional, symbolisch) -->
+              <circle cx="8" cy="13" r="0.8" fill="currentColor" />
+              <circle cx="12" cy="13" r="0.8" fill="currentColor" />
+              <circle cx="16" cy="13" r="0.8" fill="currentColor" />
+              <circle cx="8" cy="17" r="0.8" fill="currentColor" />
+              <circle cx="12" cy="17" r="0.8" fill="currentColor" />
+              <circle cx="16" cy="17" r="0.8" fill="currentColor" />
+            </g>
+          </svg>
+        </i>
+      </a>
+    </li>
+    <li>
+      <a (click)="navigateTo($event, '/dusty')">
+        <i class="material-symbols-outlined"
+          ><svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            role="img"
+            aria-label="Uhr Icon (Outline)"
+          >
+            <title>Uhr</title>
+            <g
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            >
+              <circle cx="12" cy="12" r="8.2" />
+              <!-- Minutenzeiger -->
+              <path d="M12 12 L16 9" />
+              <!-- Stundenzeiger -->
+              <path d="M12 12 L12 8" />
+            </g>
+          </svg>
+        </i>
+      </a>
+    </li>
     <li>
       <a (click)="navigateTo($event, '/trash')">
         <i class="bx bxs-trash"
@@ -106,9 +171,7 @@
               d="M280-120q-33 0-56.5-23.5T200-200v-520h-40v-80h200v-40h240v40h200v80h-40v520q0 33-23.5 56.5T680-120H280Zm400-600H280v520h400v-520ZM360-280h80v-360h-80v360Zm160 0h80v-360h-80v360ZM280-720v520-520Z"
             /></svg
         ></i>
-        <span class="nav-item">Trash</span>
       </a>
-      <span class="tooltip">Trash</span>
     </li>
     <li>
       <a (click)="navigateTo($event, '/login')">
@@ -126,9 +189,7 @@
             />
           </svg>
         </i>
-        <span class="nav-item">Logout</span>
       </a>
-      <span class="tooltip">Logout</span>
     </li>
   </ul>
 </div>
